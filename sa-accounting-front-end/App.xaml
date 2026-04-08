@@ -1,0 +1,832 @@
+﻿<Application x:Class="SA.Accounting.WPF.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" 
+             ShutdownMode="OnExplicitShutdown">
+
+    <Application.Resources>
+
+        <!-- ============================================ -->
+        <!-- الألوان الأساسية -->
+        <!-- ============================================ -->
+
+        <SolidColorBrush x:Key="DarkSidebarBg"        Color="#1F2937"/>
+        <SolidColorBrush x:Key="PrimaryColor"          Color="#1A1F3A"/>
+        <SolidColorBrush x:Key="SecondaryColor"        Color="#252B48"/>
+        <SolidColorBrush x:Key="AccentColor"           Color="#FFB800"/>
+        <SolidColorBrush x:Key="SuccessColor"          Color="#10B981"/>
+        <SolidColorBrush x:Key="TextPrimaryColor"      Color="#1F2937"/>
+        <SolidColorBrush x:Key="TextSecondaryColor"    Color="#6B7280"/>
+        <SolidColorBrush x:Key="BorderColor"           Color="#E5E7EB"/>
+        <SolidColorBrush x:Key="HoverColor"            Color="#F3F4F6"/>
+        <SolidColorBrush x:Key="CardBackground"        Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TableRowHover"         Color="#F9FAFB"/>
+        <SolidColorBrush x:Key="ErrorBrush"            Color="#EF4444"/>
+        <SolidColorBrush x:Key="PrimaryBrush"          Color="#000000"/>
+        <SolidColorBrush x:Key="PrimaryHoverBrush"     Color="#1A1A1A"/>
+        <SolidColorBrush x:Key="TextMainBrush"         Color="#111827"/>
+        <SolidColorBrush x:Key="TextSubBrush"          Color="#6B7280"/>
+        <SolidColorBrush x:Key="SidebarText"           Color="#9CA3AF"/>
+        <SolidColorBrush x:Key="SidebarTextHover"      Color="#D1D5DB"/>
+
+
+        <!-- ============================================ -->
+        <!-- InfoLabel -->
+        <!-- ============================================ -->
+
+        <Style x:Key="InfoLabel" TargetType="TextBlock">
+            <Setter Property="FontSize"   Value="11"/>
+            <Setter Property="Foreground" Value="#9CA3AF"/>
+            <Setter Property="Margin"     Value="0,0,0,3"/>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- InfoValue -->
+        <!-- ============================================ -->
+
+        <Style x:Key="InfoValue" TargetType="TextBlock">
+            <Setter Property="FontSize"   Value="14"/>
+            <Setter Property="Foreground" Value="#111827"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- AccountCardClickable -->
+        <!-- ============================================ -->
+
+        <Style x:Key="AccountCardClickable" TargetType="Border">
+            <Setter Property="Background"      Value="White"/>
+            <Setter Property="BorderBrush"     Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius"    Value="12"/>
+            <Setter Property="Padding"         Value="18"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#818CF8"/>
+                    <Setter Property="Background"  Value="#FAFAFE"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#6366F1" Opacity="0.08"
+                                      BlurRadius="12" ShadowDepth="2"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- OwnerCardStyle -->
+        <!-- ============================================ -->
+
+        <Style x:Key="OwnerCardStyle" TargetType="Border">
+            <Setter Property="Background"      Value="#FFFBEB"/>
+            <Setter Property="BorderBrush"     Value="#FDE68A"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius"    Value="10"/>
+            <Setter Property="Padding"         Value="14"/>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- CopyBtnStyle -->
+        <!-- ============================================ -->
+
+        <Style x:Key="CopyBtnStyle" TargetType="Button">
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="ToolTip"         Value="نسخ"/>
+            <Setter Property="Padding"         Value="5,3"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="4"
+                        Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#F3F4F6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- BackButtonStyle -->
+        <!-- ============================================ -->
+
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Padding"         Value="8,4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="6"
+                        Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#F3F4F6"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- ModernButtonStyle — Telerik RadButton -->
+        <!-- ============================================ -->
+
+        <Style x:Key="ModernButtonStyle" TargetType="telerik:RadButton">
+            <Setter Property="Background"                Value="#1A1F3A"/>
+            <Setter Property="Foreground"                Value="White"/>
+            <Setter Property="Padding"                   Value="16,0"/>
+            <Setter Property="FontSize"                  Value="12"/>
+            <Setter Property="FontWeight"                Value="SemiBold"/>
+            <Setter Property="BorderThickness"           Value="0"/>
+            <Setter Property="CornerRadius"              Value="7"/>
+            <Setter Property="Cursor"                    Value="Hand"/>
+            <Setter Property="Height"                    Value="34"/>
+            <Setter Property="MinWidth"                  Value="120"/>
+            <Setter Property="VerticalContentAlignment"  Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerik:RadButton">
+                        <Border x:Name="BorderElement"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding Content}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BorderElement" Property="Background" Value="#252B48"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="BorderElement" Property="Background" Value="#111827"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="BorderElement" Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- ModernInputStyle — RadWatermarkTextBox -->
+        <!-- ============================================ -->
+
+        <Style x:Key="ModernInputStyle" TargetType="telerik:RadWatermarkTextBox">
+            <Setter Property="Padding"                  Value="10,0"/>
+            <Setter Property="FontSize"                 Value="12"/>
+            <Setter Property="BorderBrush"              Value="#E5E7EB"/>
+            <Setter Property="BorderThickness"          Value="1"/>
+            <Setter Property="Background"               Value="#F9FAFB"/>
+            <Setter Property="Height"                   Value="34"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#D1D5DB"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush"     Value="#3B82F6"/>
+                    <Setter Property="BorderThickness"  Value="2"/>
+                    <Setter Property="Background"       Value="White"/>
+                </Trigger>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush"     Value="#EF4444"/>
+                    <Setter Property="BorderThickness"  Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- RowInputStyle — داخل ItemsControl -->
+        <!-- ============================================ -->
+
+        <Style x:Key="RowInputStyle" TargetType="telerik:RadWatermarkTextBox">
+            <Setter Property="Height"                   Value="32"/>
+            <Setter Property="Padding"                  Value="8,0"/>
+            <Setter Property="FontSize"                 Value="12"/>
+            <Setter Property="BorderBrush"              Value="#E5E7EB"/>
+            <Setter Property="BorderThickness"          Value="1"/>
+            <Setter Property="Background"               Value="#F9FAFB"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#D1D5DB"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush"     Value="#3B82F6"/>
+                    <Setter Property="BorderThickness"  Value="2"/>
+                    <Setter Property="Background"       Value="White"/>
+                </Trigger>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush"     Value="#EF4444"/>
+                    <Setter Property="BorderThickness"  Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- ModernTextBoxStyle — TextBox عادي -->
+        <!-- ============================================ -->
+
+        <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
+            <Setter Property="Padding"          Value="10,8"/>
+            <Setter Property="FontSize"         Value="12"/>
+            <Setter Property="BorderBrush"      Value="#E5E7EB"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="Background"       Value="#F9FAFB"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#D1D5DB"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush"     Value="#3B82F6"/>
+                    <Setter Property="BorderThickness"  Value="2"/>
+                    <Setter Property="Background"       Value="White"/>
+                </Trigger>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush"     Value="#EF4444"/>
+                    <Setter Property="BorderThickness"  Value="2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+        <!-- ============================================ -->
+        <!-- Label Styles -->
+        <!-- ============================================ -->
+
+        <Style x:Key="InputLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize"   Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#374151"/>
+            <Setter Property="Margin"     Value="0,0,0,5"/>
+        </Style>
+
+        <Style x:Key="SectionLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize"           Value="13"/>
+            <Setter Property="FontWeight"         Value="Bold"/>
+            <Setter Property="Foreground"         Value="#111827"/>
+            <Setter Property="VerticalAlignment"  Value="Center"/>
+        </Style>
+
+        <Style x:Key="RowLabelStyle" TargetType="TextBlock">
+            <Setter Property="FontSize"   Value="11"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#6B7280"/>
+            <Setter Property="Margin"     Value="0,0,0,4"/>
+        </Style>
+
+        <Style x:Key="ValidationTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground"   Value="#EF4444"/>
+            <Setter Property="FontSize"     Value="10"/>
+            <Setter Property="Margin"       Value="0,3,0,0"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <Style x:Key="ValidationSuccessTextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#10B981"/>
+            <Setter Property="FontSize"   Value="10"/>
+            <Setter Property="Margin"     Value="0,3,0,0"/>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- HyperlinkStyle -->
+        <!-- ============================================ -->
+
+        <Style x:Key="HyperlinkStyle" TargetType="TextBlock">
+            <Setter Property="Foreground"       Value="#3B82F6"/>
+            <Setter Property="FontSize"         Value="12"/>
+            <Setter Property="Cursor"           Value="Hand"/>
+            <Setter Property="TextDecorations"  Value="None"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="TextDecorations" Value="Underline"/>
+                    <Setter Property="Foreground"      Value="#2563EB"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- AddButtonDark — زر إضافة داكن -->
+        <!-- ============================================ -->
+
+        <Style x:Key="AddButtonDark" TargetType="Button">
+            <Setter Property="Height"  Value="32"/>
+            <Setter Property="Padding" Value="12,0"/>
+            <Setter Property="Cursor"  Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd"
+                                Background="#1A1F3A"
+                                CornerRadius="7"
+                                Padding="{TemplateBinding Padding}"
+                                Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#252B48"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#111827"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- RemoveRowButton — زر حذف Row -->
+        <!-- ============================================ -->
+
+        <Style x:Key="RemoveRowButton" TargetType="Button">
+            <Setter Property="Width"  Value="30"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="DelBd"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                BorderThickness="1"
+                                CornerRadius="6"
+                                Width="30" Height="30">
+                            <TextBlock Text="🗑️"
+                                       FontSize="13"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="DelBd" Property="Background"    Value="#FEE2E2"/>
+                                <Setter TargetName="DelBd" Property="BorderBrush"   Value="#FECACA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- CancelButtonStyle -->
+        <!-- ============================================ -->
+
+        <Style x:Key="CancelButtonStyle" TargetType="Button">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="border"
+                                Background="#F3F4F6"
+                                BorderBrush="#E5E7EB"
+                                BorderThickness="1"
+                                CornerRadius="7"
+                                Padding="16,0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#E5E7EB"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- RowCardStyle -->
+        <!-- ============================================ -->
+
+        <Style x:Key="RowCardStyle" TargetType="Border">
+            <Setter Property="Background"       Value="White"/>
+            <Setter Property="BorderBrush"      Value="#E5E7EB"/>
+            <Setter Property="BorderThickness"  Value="1"/>
+            <Setter Property="CornerRadius"     Value="7"/>
+            <Setter Property="Padding"          Value="12"/>
+            <Setter Property="Margin"           Value="0,0,0,8"/>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- Badges -->
+        <!-- ============================================ -->
+
+        <Style x:Key="BadgeYellow" TargetType="Border">
+            <Setter Property="Background"       Value="#FEF3C7"/>
+            <Setter Property="CornerRadius"     Value="10"/>
+            <Setter Property="Padding"          Value="7,1"/>
+            <Setter Property="Margin"           Value="6,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="BadgeGreen" TargetType="Border">
+            <Setter Property="Background"       Value="#D1FAE5"/>
+            <Setter Property="CornerRadius"     Value="10"/>
+            <Setter Property="Padding"          Value="7,1"/>
+            <Setter Property="Margin"           Value="6,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- ModernComboBoxStyle — RadComboBox -->
+        <!-- ============================================ -->
+
+        <Style x:Key="ModernComboBoxStyle" TargetType="telerik:RadComboBox">
+            <Setter Property="Padding"                   Value="10,0,28,0"/>
+            <Setter Property="FontSize"                  Value="12"/>
+            <Setter Property="BorderBrush"               Value="#E5E7EB"/>
+            <Setter Property="BorderThickness"           Value="1"/>
+            <Setter Property="Background"                Value="#F9FAFB"/>
+            <Setter Property="Foreground"                Value="#111827"/>
+            <Setter Property="Height"                    Value="32"/>
+            <Setter Property="VerticalContentAlignment"  Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerik:RadComboBox">
+                        <Grid>
+                            <Border x:Name="BorderElement"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="6">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="26"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter
+                                        Grid.Column="0"
+                                        Content="{TemplateBinding SelectionBoxItem}"
+                                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                        Margin="{TemplateBinding Padding}"
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    <Border Grid.Column="1" Background="Transparent">
+                                        <Path Data="M 0 0 L 4 4 L 8 0 Z"
+                                              Fill="#6B7280"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                                    </Border>
+                                    <Popup x:Name="PART_Popup"
+                                           IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                           Placement="Bottom"
+                                           PlacementTarget="{Binding ElementName=BorderElement}"
+                                           AllowsTransparency="True">
+                                        <Border Background="White"
+                                                BorderBrush="#E5E7EB"
+                                                BorderThickness="1"
+                                                CornerRadius="6"
+                                                MinWidth="{TemplateBinding ActualWidth}"
+                                                MaxHeight="180">
+                                            <Border.Effect>
+                                                <DropShadowEffect Color="#000000"
+                                                                  Opacity="0.1"
+                                                                  BlurRadius="8"
+                                                                  ShadowDepth="2"/>
+                                            </Border.Effect>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                                <ItemsPresenter/>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="BorderElement" Property="BorderBrush" Value="#D1D5DB"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="BorderElement" Property="BorderBrush"    Value="#3B82F6"/>
+                                <Setter TargetName="BorderElement" Property="BorderThickness" Value="2"/>
+                                <Setter TargetName="BorderElement" Property="Background"      Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="telerik:RadComboBoxItem">
+            <Setter Property="Padding"                   Value="10,8"/>
+            <Setter Property="FontSize"                  Value="12"/>
+            <Setter Property="Foreground"                Value="#111827"/>
+            <Setter Property="Background"                Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerik:RadComboBoxItem">
+                        <Border x:Name="ItemBorder"
+                                Background="{TemplateBinding Background}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#F9FAFB"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#EFF6FF"/>
+                                <Setter Property="Foreground"                          Value="#1E40AF"/>
+                                <Setter Property="FontWeight"                          Value="SemiBold"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected"   Value="True"/>
+                                    <Condition Property="IsMouseOver"  Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#DBEAFE"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- Telerik RadGridView Styles -->
+        <!-- ============================================ -->
+
+        <Style x:Key="ModernGridViewStyle" TargetType="telerik:RadGridView">
+            <Setter Property="Background"              Value="White"/>
+            <Setter Property="BorderBrush"             Value="Transparent"/>
+            <Setter Property="BorderThickness"         Value="0"/>
+            <Setter Property="RowIndicatorVisibility"  Value="Collapsed"/>
+            <Setter Property="ShowGroupPanel"          Value="False"/>
+            <Setter Property="AutoGenerateColumns"     Value="False"/>
+            <Setter Property="CanUserFreezeColumns"    Value="False"/>
+            <Setter Property="RowHeight"               Value="48"/>
+            <Setter Property="FontSize"                Value="12"/>
+            <Setter Property="GridLinesVisibility"     Value="Horizontal"/>
+            <Setter Property="VerticalGridLinesBrush"  Value="Transparent"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#F3F4F6"/>
+        </Style>
+
+        <Style x:Key="ModernGridViewHeaderStyle" TargetType="telerik:GridViewHeaderCell">
+            <Setter Property="Background"                Value="#FAFAFA"/>
+            <Setter Property="Foreground"                Value="#6B7280"/>
+            <Setter Property="FontSize"                  Value="11"/>
+            <Setter Property="FontWeight"                Value="SemiBold"/>
+            <Setter Property="Padding"                   Value="12,10"/>
+            <Setter Property="BorderBrush"               Value="#E5E7EB"/>
+            <Setter Property="BorderThickness"           Value="0,0,0,2"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment"  Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerik:GridViewHeaderCell">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ModernGridViewRowStyle" TargetType="telerik:GridViewRow">
+            <Setter Property="Background"              Value="White"/>
+            <Setter Property="Height"                  Value="48"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#F9FAFB"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#EFF6FF"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected"  Value="True"/>
+                        <Condition Property="IsMouseOver" Value="True"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Background" Value="#DBEAFE"/>
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="telerik:GridViewCell">
+            <Setter Property="BorderThickness"          Value="0"/>
+            <Setter Property="Padding"                  Value="12"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background"               Value="Transparent"/>
+            <Setter Property="Foreground"               Value="#111827"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="#111827"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- EditButton / DeleteButton -->
+        <!-- ============================================ -->
+
+        <Style x:Key="EditButton" TargetType="Button">
+            <Setter Property="Background"     Value="#1A1F3A"/>
+            <Setter Property="Foreground"     Value="White"/>
+            <Setter Property="FontSize"       Value="11"/>
+            <Setter Property="FontWeight"     Value="SemiBold"/>
+            <Setter Property="Padding"        Value="12,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"         Value="Hand"/>
+            <Setter Property="Height"         Value="28"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#252B48"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#111827"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DeleteButton" TargetType="Button">
+            <Setter Property="Background"     Value="#EF4444"/>
+            <Setter Property="Foreground"     Value="White"/>
+            <Setter Property="FontSize"       Value="11"/>
+            <Setter Property="FontWeight"     Value="SemiBold"/>
+            <Setter Property="Padding"        Value="12,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor"         Value="Hand"/>
+            <Setter Property="Height"         Value="28"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#DC2626"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="#B91C1C"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- RadDataPager -->
+        <!-- ============================================ -->
+
+        <Style x:Key="ModernDataPagerStyle" TargetType="telerik:RadDataPager">
+            <Setter Property="Background"      Value="Transparent"/>
+            <Setter Property="Foreground"      Value="#374151"/>
+            <Setter Property="FontSize"        Value="12"/>
+            <Setter Property="FontWeight"      Value="Medium"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style x:Key="PaginationButton" TargetType="telerik:RadButton">
+            <Setter Property="Width"           Value="30"/>
+            <Setter Property="Height"          Value="30"/>
+            <Setter Property="Background"      Value="White"/>
+            <Setter Property="Foreground"      Value="#6B7280"/>
+            <Setter Property="BorderBrush"     Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius"    Value="5"/>
+            <Setter Property="FontSize"        Value="11"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerik:RadButton">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background"  Value="#F9FAFB"/>
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#D1D5DB"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PageNumberButton" TargetType="telerik:RadToggleButton">
+            <Setter Property="Width"           Value="30"/>
+            <Setter Property="Height"          Value="30"/>
+            <Setter Property="Background"      Value="White"/>
+            <Setter Property="Foreground"      Value="#6B7280"/>
+            <Setter Property="BorderBrush"     Value="#E5E7EB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius"    Value="5"/>
+            <Setter Property="FontSize"        Value="12"/>
+            <Setter Property="FontWeight"      Value="Medium"/>
+            <Setter Property="Cursor"          Value="Hand"/>
+            <Setter Property="Margin"          Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="telerik:RadToggleButton">
+                        <Border x:Name="ButtonBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="{TemplateBinding CornerRadius}"
+                                Width="{TemplateBinding Width}"
+                                Height="{TemplateBinding Height}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              Content="{TemplateBinding Content}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background"  Value="#F9FAFB"/>
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#D1D5DB"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background"  Value="#1A1F3A"/>
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#1A1F3A"/>
+                                <Setter Property="Foreground"                             Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ============================================ -->
+        <!-- StatusBadge -->
+        <!-- ============================================ -->
+
+        <Style x:Key="StatusBadgeActive" TargetType="Border">
+            <Setter Property="Background"   Value="#D1FAE5"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding"      Value="8,3"/>
+        </Style>
+
+    </Application.Resources>
+</Application>

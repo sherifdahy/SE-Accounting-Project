@@ -1,0 +1,515 @@
+﻿<UserControl
+    FlowDirection="RightToLeft"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SA.Accounting.WPF.Portals.SystemAdministration.UserControls.Platforms"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    x:Class="SA.Accounting.WPF.Portals.SystemAdministration.UserControls.Platforms.PlatformsControl"
+    mc:Ignorable="d"
+    d:DesignHeight="600"
+    d:DesignWidth="900"
+    Loaded="UserControl_Loaded"
+    Background="#F9FAFB">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <!-- ═══ Layer 1: القائمة ═══ -->
+        <Grid x:Name="ListPanel">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel Margin="24,20,24,32">
+
+                    <!-- ═══════════════════════════════════════ -->
+                    <!-- ═══ 📊 Statistics Cards (القديمة) ═════ -->
+                    <!-- ═══════════════════════════════════════ -->
+                    <Grid Margin="0,0,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0" Background="White"
+                                CornerRadius="10" Padding="16" Margin="0,0,8,0">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#000000" Opacity="0.05"
+                                                  BlurRadius="8" ShadowDepth="2" Direction="270"/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <Grid Margin="0,0,0,10">
+                                    <TextBlock Text="إجمالي المنصات" FontSize="12"
+                                               Foreground="#6B7280" HorizontalAlignment="Right"/>
+                                    <Border Background="#EFF6FF" Width="32" Height="32"
+                                            CornerRadius="8" HorizontalAlignment="Left">
+                                        <TextBlock Text="🌐" FontSize="16"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </Grid>
+                                <TextBlock Text="{Binding TotalPlatforms}" FontSize="26"
+                                           FontWeight="Bold" Foreground="#111827" Margin="0,0,0,3"/>
+                                <TextBlock Text="منصة مسجلة" FontSize="11" Foreground="#10B981"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="1" Background="White"
+                                CornerRadius="10" Padding="16" Margin="0,0,8,0">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#000000" Opacity="0.05"
+                                                  BlurRadius="8" ShadowDepth="2" Direction="270"/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <Grid Margin="0,0,0,10">
+                                    <TextBlock Text="المنصات النشطة" FontSize="12"
+                                               Foreground="#6B7280" HorizontalAlignment="Right"/>
+                                    <Border Background="#D1FAE5" Width="32" Height="32"
+                                            CornerRadius="8" HorizontalAlignment="Left">
+                                        <TextBlock Text="✅" FontSize="16"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </Grid>
+                                <TextBlock Text="{Binding TotalActivePlatforms}" FontSize="26"
+                                           FontWeight="Bold" Foreground="#111827" Margin="0,0,0,3"/>
+                                <TextBlock Text="منصة نشطة" FontSize="11" Foreground="#10B981"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="2" Background="White"
+                                CornerRadius="10" Padding="16" Margin="0,0,8,0">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#000000" Opacity="0.05"
+                                                  BlurRadius="8" ShadowDepth="2" Direction="270"/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <Grid Margin="0,0,0,10">
+                                    <TextBlock Text="المنصات المحذوفة" FontSize="12"
+                                               Foreground="#6B7280" HorizontalAlignment="Right"/>
+                                    <Border Background="#FEE2E2" Width="32" Height="32"
+                                            CornerRadius="8" HorizontalAlignment="Left">
+                                        <TextBlock Text="🗑️" FontSize="16"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </Grid>
+                                <TextBlock Text="{Binding TotalDeletedPlatforms}" FontSize="26"
+                                           FontWeight="Bold" Foreground="#111827" Margin="0,0,0,3"/>
+                                <TextBlock Text="منصة محذوفة" FontSize="11" Foreground="#DC2626"/>
+                            </StackPanel>
+                        </Border>
+
+                        <Border Grid.Column="3" Background="White"
+                                CornerRadius="10" Padding="16">
+                            <Border.Effect>
+                                <DropShadowEffect Color="#000000" Opacity="0.05"
+                                                  BlurRadius="8" ShadowDepth="2" Direction="270"/>
+                            </Border.Effect>
+                            <StackPanel>
+                                <Grid Margin="0,0,0,10">
+                                    <TextBlock Text="إجمالي الروابط" FontSize="12"
+                                               Foreground="#6B7280" HorizontalAlignment="Right"/>
+                                    <Border Background="#F3E8FF" Width="32" Height="32"
+                                            CornerRadius="8" HorizontalAlignment="Left">
+                                        <TextBlock Text="🔗" FontSize="16"
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </Grid>
+                                <TextBlock Text="{Binding TotalUrls}" FontSize="26"
+                                           FontWeight="Bold" Foreground="#111827" Margin="0,0,0,3"/>
+                                <TextBlock Text="رابط مسجل" FontSize="11" Foreground="#6B7280"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!-- ═══════════════════════════════════════════ -->
+                    <!-- ═══ 📋 Platforms Section (القديم + Table) ═ -->
+                    <!-- ═══════════════════════════════════════════ -->
+                    <Border Background="White" CornerRadius="10" Padding="20">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" Opacity="0.05"
+                                              BlurRadius="8" ShadowDepth="2" Direction="270"/>
+                        </Border.Effect>
+
+                        <StackPanel>
+
+                            <!-- ── Header: عنوان + زر إضافة ── -->
+                            <Grid Margin="0,0,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Text="جميع المنصات" FontSize="16"
+                                               FontWeight="Bold" Foreground="#111827"/>
+                                    <TextBlock Text="إدارة ومتابعة معلومات المنصات" FontSize="12"
+                                               Foreground="#6B7280" Margin="0,3,0,0"/>
+                                </StackPanel>
+
+                                <telerik:RadButton Grid.Column="1"
+                                                   Content="+ إضافة منصة"
+                                                   Click="AddPlatformButton_Click"
+                                                   Style="{StaticResource ModernButtonStyle}"
+                                                   Width="130" Height="36" FontSize="13"/>
+                            </Grid>
+
+                            <!-- ── Search + Filter ── -->
+                            <Grid Margin="0,0,0,20">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <telerik:RadWatermarkTextBox
+                                    Grid.Column="0"
+                                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                                    WatermarkContent="ابحث عن منصة..."
+                                    Style="{StaticResource ModernInputStyle}"
+                                    Height="38" FontSize="13" Width="300" Margin="0,0,10,0"/>
+
+                                <telerik:RadComboBox
+                                    Grid.Column="1"
+                                    Style="{StaticResource ModernComboBoxStyle}"
+                                    Width="180" Height="38" SelectedIndex="0"
+                                    SelectionChanged="FilterComboBox_SelectionChanged">
+                                    <telerik:RadComboBoxItem Content="النشطة فقط" Tag="false"/>
+                                    <telerik:RadComboBoxItem Content="جميع المنصات" Tag="true"/>
+                                </telerik:RadComboBox>
+                            </Grid>
+
+                            <!-- ═══════════════════════════════════════ -->
+                            <!-- ═══ Table المنصات (الجديد) ════════════ -->
+                            <!-- ═══════════════════════════════════════ -->
+                            <Border CornerRadius="10"
+                                    BorderBrush="#E2E8F0" BorderThickness="1"
+                                    ClipToBounds="True">
+
+                                <StackPanel>
+
+                                    <!-- Table Header -->
+                                    <Border Background="#F8FAFC"
+                                            Padding="20,12"
+                                            BorderBrush="#E2E8F0"
+                                            BorderThickness="0,0,0,1">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="55"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="1.2*"/>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="150"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Grid.Column="0" Text="#"
+                                                       FontSize="12" FontWeight="SemiBold"
+                                                       Foreground="#64748B"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="المنصة"
+                                                       FontSize="12" FontWeight="SemiBold"
+                                                       Foreground="#64748B"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="2" Text="الرابط"
+                                                       FontSize="12" FontWeight="SemiBold"
+                                                       Foreground="#64748B"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="3" Text="الحالة"
+                                                       FontSize="12" FontWeight="SemiBold"
+                                                       Foreground="#64748B"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="4" Text="إجراءات"
+                                                       FontSize="12" FontWeight="SemiBold"
+                                                       Foreground="#64748B"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </Border>
+
+                                    <!-- Platform Rows -->
+                                    <ItemsControl ItemsSource="{Binding FilteredPlatforms}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Border Padding="20,14"
+                                                        BorderBrush="#F1F5F9"
+                                                        BorderThickness="0,0,0,1"
+                                                        Cursor="Hand">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="Background" Value="Transparent"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#F8FAFC"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="55"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                            <ColumnDefinition Width="1.2*"/>
+                                                            <ColumnDefinition Width="80"/>
+                                                            <ColumnDefinition Width="150"/>
+                                                        </Grid.ColumnDefinitions>
+
+                                                        <!-- ID -->
+                                                        <TextBlock Grid.Column="0"
+                                                                   FontSize="12" Foreground="#94A3B8"
+                                                                   VerticalAlignment="Center">
+                                                            <Run Text="#"/>
+                                                            <Run Text="{Binding Id, Mode=OneWay}"/>
+                                                        </TextBlock>
+
+                                                        <!-- المنصة: صورة + اسم -->
+                                                        <StackPanel Grid.Column="1"
+                                                                    Orientation="Horizontal"
+                                                                    VerticalAlignment="Center">
+
+                                                            <Border Width="40" Height="40"
+                                                                    CornerRadius="10"
+                                                                    Margin="0,0,12,0"
+                                                                    ClipToBounds="True"
+                                                                    BorderBrush="#E2E8F0"
+                                                                    BorderThickness="1">
+                                                                <Border.Background>
+                                                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                                        <GradientStop Color="#F1F5F9" Offset="0"/>
+                                                                        <GradientStop Color="#E2E8F0" Offset="1"/>
+                                                                    </LinearGradientBrush>
+                                                                </Border.Background>
+
+                                                                <Grid>
+                                                                    <Image Source="{Binding ImageUrl}"
+                                                                           Stretch="UniformToFill"
+                                                                           RenderOptions.BitmapScalingMode="HighQuality">
+                                                                        <Image.Style>
+                                                                            <Style TargetType="Image">
+                                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="">
+                                                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="{x:Null}">
+                                                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </Image.Style>
+                                                                    </Image>
+
+                                                                    <TextBlock Text="🌐" FontSize="18"
+                                                                               HorizontalAlignment="Center"
+                                                                               VerticalAlignment="Center"
+                                                                               Opacity="0.5">
+                                                                        <TextBlock.Style>
+                                                                            <Style TargetType="TextBlock">
+                                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                                                <Style.Triggers>
+                                                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="">
+                                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                                    </DataTrigger>
+                                                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="{x:Null}">
+                                                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                                                    </DataTrigger>
+                                                                                </Style.Triggers>
+                                                                            </Style>
+                                                                        </TextBlock.Style>
+                                                                    </TextBlock>
+                                                                </Grid>
+                                                            </Border>
+
+                                                            <TextBlock Text="{Binding Name}"
+                                                                       FontSize="14" FontWeight="SemiBold"
+                                                                       Foreground="#1E293B"
+                                                                       VerticalAlignment="Center"
+                                                                       TextTrimming="CharacterEllipsis"
+                                                                       MaxWidth="180"
+                                                                       ToolTip="{Binding Name}"/>
+                                                        </StackPanel>
+
+                                                        <!-- الرابط -->
+                                                        <TextBlock Grid.Column="2"
+                                                                   Text="{Binding Url}"
+                                                                   FontSize="12" Foreground="#6366F1"
+                                                                   VerticalAlignment="Center"
+                                                                   TextTrimming="CharacterEllipsis"
+                                                                   ToolTip="{Binding Url}"
+                                                                   FlowDirection="LeftToRight"
+                                                                   Opacity="0.85"/>
+
+                                                        <!-- الحالة -->
+                                                        <Border Grid.Column="3"
+                                                                CornerRadius="20"
+                                                                Padding="10,4"
+                                                                HorizontalAlignment="Center"
+                                                                VerticalAlignment="Center">
+                                                            <Border.Style>
+                                                                <Style TargetType="Border">
+                                                                    <Setter Property="Background" Value="#ECFDF5"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding IsDeleted}" Value="True">
+                                                                            <Setter Property="Background" Value="#FEF2F2"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+                                                            <TextBlock FontSize="11" FontWeight="SemiBold"
+                                                                       HorizontalAlignment="Center">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Setter Property="Text" Value="نشط"/>
+                                                                        <Setter Property="Foreground" Value="#059669"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding IsDeleted}" Value="True">
+                                                                                <Setter Property="Text" Value="محذوف"/>
+                                                                                <Setter Property="Foreground" Value="#DC2626"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Border>
+
+                                                        <!-- أزرار الإجراءات -->
+                                                        <StackPanel Grid.Column="4"
+                                                                    Orientation="Horizontal"
+                                                                    HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center">
+
+                                                            <Button ToolTip="فتح في المتصفح"
+                                                                    Command="{Binding DataContext.OpenUrlCommand,
+                                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Cursor="Hand" Margin="0,0,4,0">
+                                                                <Button.Template>
+                                                                    <ControlTemplate TargetType="Button">
+                                                                        <Border x:Name="Bd" Width="32" Height="32"
+                                                                                CornerRadius="8"
+                                                                                Background="Transparent">
+                                                                            <TextBlock Text="🔗" FontSize="13"
+                                                                                       HorizontalAlignment="Center"
+                                                                                       VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                        <ControlTemplate.Triggers>
+                                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                                <Setter TargetName="Bd"
+                                                                                        Property="Background" Value="#F1F5F9"/>
+                                                                            </Trigger>
+                                                                        </ControlTemplate.Triggers>
+                                                                    </ControlTemplate>
+                                                                </Button.Template>
+                                                            </Button>
+
+                                                            <Button ToolTip="تعديل"
+                                                                    Command="{Binding DataContext.UpdatePlatformCommand,
+                                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Cursor="Hand" Margin="0,0,4,0">
+                                                                <Button.Template>
+                                                                    <ControlTemplate TargetType="Button">
+                                                                        <Border x:Name="Bd" Width="32" Height="32"
+                                                                                CornerRadius="8"
+                                                                                Background="Transparent">
+                                                                            <TextBlock Text="✏️" FontSize="13"
+                                                                                       HorizontalAlignment="Center"
+                                                                                       VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                        <ControlTemplate.Triggers>
+                                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                                <Setter TargetName="Bd"
+                                                                                        Property="Background" Value="#EEF2FF"/>
+                                                                            </Trigger>
+                                                                        </ControlTemplate.Triggers>
+                                                                    </ControlTemplate>
+                                                                </Button.Template>
+                                                            </Button>
+
+                                                            <Button ToolTip="حذف"
+                                                                    Command="{Binding DataContext.DeletePlatformCommand,
+                                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                    CommandParameter="{Binding}"
+                                                                    Cursor="Hand">
+                                                                <Button.Template>
+                                                                    <ControlTemplate TargetType="Button">
+                                                                        <Border x:Name="Bd" Width="32" Height="32"
+                                                                                CornerRadius="8"
+                                                                                Background="Transparent">
+                                                                            <TextBlock Text="🗑️" FontSize="13"
+                                                                                       HorizontalAlignment="Center"
+                                                                                       VerticalAlignment="Center"/>
+                                                                        </Border>
+                                                                        <ControlTemplate.Triggers>
+                                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                                <Setter TargetName="Bd"
+                                                                                        Property="Background" Value="#FEF2F2"/>
+                                                                            </Trigger>
+                                                                        </ControlTemplate.Triggers>
+                                                                    </ControlTemplate>
+                                                                </Button.Template>
+                                                            </Button>
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </Border>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                    <!-- Empty State -->
+                                    <Border Padding="0,50">
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding HasNoPlatforms}" Value="True">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <Border Background="#F1F5F9" Width="72" Height="72"
+                                                    CornerRadius="20"
+                                                    HorizontalAlignment="Center"
+                                                    Margin="0,0,0,16">
+                                                <TextBlock Text="🌐" FontSize="32"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"
+                                                           Opacity="0.6"/>
+                                            </Border>
+                                            <TextBlock Text="لا توجد منصات"
+                                                       FontSize="16" FontWeight="SemiBold"
+                                                       Foreground="#475569"
+                                                       HorizontalAlignment="Center"
+                                                       Margin="0,0,0,6"/>
+                                            <TextBlock Text="اضغط على + إضافة منصة للبدء"
+                                                       FontSize="12" Foreground="#94A3B8"
+                                                       HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Pagination -->
+                            <TextBlock Text="{Binding PaginationInfo}"
+                                       FontSize="12" Foreground="#6B7280"
+                                       HorizontalAlignment="Left"
+                                       Margin="0,16,0,0"/>
+
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- ═══ Layer 2: الشاشة الفرعية ═══ -->
+        <ContentControl x:Name="ChildContent" Visibility="Collapsed"/>
+
+    </Grid>
+</UserControl>
