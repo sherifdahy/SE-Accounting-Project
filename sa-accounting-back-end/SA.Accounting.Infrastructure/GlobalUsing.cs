@@ -1,0 +1,10 @@
+﻿global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
+global using SA.Accounting.Core.Entities;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using SA.Accounting.Core.Entities.Relations;
+global using Microsoft.EntityFrameworkCore.Storage;
+global using SA.Accounting.Core.Entities.Interfaces;
+global using SA.Accounting.Infrastructure.Presistance.Data;
