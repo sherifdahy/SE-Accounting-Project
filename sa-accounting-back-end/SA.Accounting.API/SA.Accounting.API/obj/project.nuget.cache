@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JxaPJk+1tMs=",
+  "dgSpecHash": "7Poay5kyKuE=",
   "success": true,
-  "projectFilePath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
+  "projectFilePath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shrif\\.nuget\\packages\\asp.versioning.abstractions\\8.1.0\\asp.versioning.abstractions.8.1.0.nupkg.sha512",
     "C:\\Users\\shrif\\.nuget\\packages\\asp.versioning.http\\8.1.1\\asp.versioning.http.8.1.1.nupkg.sha512",

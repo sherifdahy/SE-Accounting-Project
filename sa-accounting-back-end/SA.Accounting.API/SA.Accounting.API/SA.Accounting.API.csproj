@@ -23,4 +23,6 @@
 		<ProjectReference Include="..\..\SA.Accounting.Application\SA.Accounting.Application.csproj" />
 	</ItemGroup>
 
+	<ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

@@ -84,7 +84,6 @@ public static class DependencyInjection
                 builder.AllowAnyHeader();
                 builder.AllowAnyMethod();
                 builder.AllowAnyOrigin();
-                //builder.WithOrigins(configuration.GetSection("AllowedOrigins").Get<string[]>()!);
             });
         });
         return services;

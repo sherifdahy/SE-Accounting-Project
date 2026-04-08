@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Portals\SystemAdministration\Dialogs\Companies\CompanyFormDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Portals\SystemAdministration\UserControls\Companies\CreateCompanyControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Portals\SystemAdministration\UserControls\Companies\DisplayCompanyControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Portals\SystemAdministration\UserControls\Companies\UpdateCompanyControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Portals\SystemAdministration\UserControls\Employees\EmployeesControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Portals\SystemAdministration\UserControls\Platforms\CreatePlatformControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Portals\SystemAdministration\UserControls\Platforms\PlatformsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Portals\SystemAdministration\UserControls\Platforms\UpdatePlatformControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Portals\SystemAdministration\Windows\MainWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>

@@ -3519,11 +3519,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Services\\SA.Accounting.Services.csproj",
+      "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj",
       "projectName": "SA.Accounting.Services",
-      "projectPath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Services\\SA.Accounting.Services.csproj",
+      "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj",
       "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-      "outputPath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Services\\obj\\",
+      "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -3547,8 +3547,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Core\\SA.Accounting.Core.csproj": {
-              "projectPath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Core\\SA.Accounting.Core.csproj"
+            "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj": {
+              "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj"
             }
           }
         }

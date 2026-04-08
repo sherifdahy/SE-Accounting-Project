@@ -5426,11 +5426,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
+      "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
       "projectName": "SA.Accounting.Application",
-      "projectPath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
+      "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
       "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-      "outputPath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Application\\obj\\",
+      "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -5454,11 +5454,11 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj": {
-              "projectPath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj"
+            "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj": {
+              "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj"
             },
-            "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Services\\SA.Accounting.Services.csproj": {
-              "projectPath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Services\\SA.Accounting.Services.csproj"
+            "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj": {
+              "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj"
             }
           }
         }

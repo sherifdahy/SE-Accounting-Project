@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SA.Accounting.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+15517077ed418073806a481c4cad4eddd116553e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SA.Accounting.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SA.Accounting.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

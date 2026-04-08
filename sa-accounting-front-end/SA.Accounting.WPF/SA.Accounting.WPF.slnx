@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Domain/">
+    <Project Path="../SA.Accounting.Core/SA.Accounting.Core.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="../SA.Accounting.Infrastructure/SA.Accounting.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Presentation/">
+    <Project Path="SA.Accounting.WPF.csproj" />
+  </Folder>
+  <Project Path="../SA.Accounting.Application/SA.Accounting.Application.csproj" />
+</Solution>

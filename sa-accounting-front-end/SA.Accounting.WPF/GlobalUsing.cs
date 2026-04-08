@@ -1,0 +1,9 @@
+﻿global using FluentValidation;
+global using SA.Accounting.Core.Abstraction;
+global using SA.Accounting.Core.Contracts;
+global using SA.Accounting.Core.Enums;
+global using SA.Accounting.Core.Interfaces;
+global using SA.Accounting.Infrastructure.Clients;
+global using SA.Accounting.Infrastructure.Handlers;
+global using SA.Accounting.Infrastructure.OptionClasses;
+global using SA.Accounting.Services;

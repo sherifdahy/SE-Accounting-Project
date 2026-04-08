@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zxXXpVAaJYI=",
+  "dgSpecHash": "9r4YwEFApCQ=",
   "success": true,
-  "projectFilePath": "F:\\SA.Accounting\\SA.Accounting.Backend\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
+  "projectFilePath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shrif\\.nuget\\packages\\azure.core\\1.47.1\\azure.core.1.47.1.nupkg.sha512",
     "C:\\Users\\shrif\\.nuget\\packages\\azure.identity\\1.14.2\\azure.identity.1.14.2.nupkg.sha512",
