@@ -2,31 +2,52 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Portals\SystemAdministration\Dialogs\Companies\CompanyFormDialog.xaml.cs">
+    <Compile Update="AuthWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Portals\SystemAdministration\UserControls\Companies\CreateCompanyControl.xaml.cs">
+    <Compile Update="Contols\HeaderControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Portals\SystemAdministration\UserControls\Companies\DisplayCompanyControl.xaml.cs">
+    <Compile Update="Contols\SidebarControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Portals\SystemAdministration\UserControls\Companies\UpdateCompanyControl.xaml.cs">
+    <Compile Update="MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Portals\SystemAdministration\UserControls\Employees\EmployeesControl.xaml.cs">
+    <Compile Update="Views\Auth\LoginView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Portals\SystemAdministration\UserControls\Platforms\CreatePlatformControl.xaml.cs">
+    <Compile Update="Views\Home\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Portals\SystemAdministration\UserControls\Platforms\PlatformsControl.xaml.cs">
+    <Compile Update="Views\UserControls\Companies\CreateCompanyControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Portals\SystemAdministration\UserControls\Platforms\UpdatePlatformControl.xaml.cs">
+    <Compile Update="Views\UserControls\Companies\DisplayCompanyControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Portals\SystemAdministration\Windows\MainWindow.xaml.cs">
+    <Compile Update="Views\UserControls\Companies\UpdateCompanyControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Platforms\CreatePlatformControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Platforms\PlatformsControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Platforms\UpdatePlatformControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Users\CreateUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Users\UpdateUserControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\UserControls\Users\UsersControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Windows\MainWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -136,6 +136,34 @@ namespace SA.Accounting.Infrastructure.Migrations
                             ClaimType = "permissions",
                             ClaimValue = "platforms:toggleStatus",
                             RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ClaimType = "permissions",
+                            ClaimValue = "users:read",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ClaimType = "permissions",
+                            ClaimValue = "users:create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ClaimType = "permissions",
+                            ClaimValue = "users:update",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ClaimType = "permissions",
+                            ClaimValue = "users:toggleStatus",
+                            RoleId = 1
                         });
                 });
 

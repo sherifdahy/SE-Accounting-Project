@@ -3,19 +3,12 @@
   "WorkspaceRootPath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|f:\\sa.accounting\\sa-accounting-front-end\\sa.accounting.application\\authservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|f:\\sa.accounting\\sa-accounting-front-end\\sa.accounting.wpf\\state\\authenticators\\authenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:state\\authenticators\\authenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|f:\\sa.accounting\\sa-accounting-front-end\\sa.accounting.wpf\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|f:\\sa.accounting\\sa-accounting-front-end\\sa.accounting.wpf\\servicesregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:servicesregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|f:\\sa.accounting\\sa-accounting-front-end\\sa.accounting.wpf\\windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:windows\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|f:\\sa.accounting\\sa-accounting-front-end\\sa.accounting.wpf\\state\\navigators\\navigator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:state\\navigators\\navigator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -33,53 +26,28 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-08T19:51:26.348Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AuthService.cs",
-              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Application\\AuthService.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\AuthService.cs",
-              "ToolTip": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Application\\AuthService.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Application\\AuthService.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAAAA8AAAAEAAAAAAAAAA==",
+              "Title": "Authenticator.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\State\\Authenticators\\Authenticator.cs",
+              "RelativeDocumentMoniker": "State\\Authenticators\\Authenticator.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\State\\Authenticators\\Authenticator.cs",
+              "RelativeToolTip": "State\\Authenticators\\Authenticator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T19:45:49.076Z",
+              "WhenOpened": "2026-04-12T03:02:04.685Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "LoginWindow.xaml.cs",
-              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\Windows\\LoginWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Windows\\LoginWindow.xaml.cs",
-              "ToolTip": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\Windows\\LoginWindow.xaml.cs",
-              "RelativeToolTip": "Windows\\LoginWindow.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAmAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "Navigator.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\State\\Navigators\\Navigator.cs",
+              "RelativeDocumentMoniker": "State\\Navigators\\Navigator.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\State\\Navigators\\Navigator.cs",
+              "RelativeToolTip": "State\\Navigators\\Navigator.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T17:52:45.493Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ServicesRegistration.cs",
-              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\ServicesRegistration.cs",
-              "RelativeDocumentMoniker": "ServicesRegistration.cs",
-              "ToolTip": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\ServicesRegistration.cs",
-              "RelativeToolTip": "ServicesRegistration.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAkwFEAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T17:44:37.186Z",
+              "WhenOpened": "2026-04-12T03:01:47.377Z",
               "EditorCaption": ""
             }
           ]

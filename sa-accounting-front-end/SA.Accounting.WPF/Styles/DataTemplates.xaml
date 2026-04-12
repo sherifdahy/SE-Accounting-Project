@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:SA.Accounting.WPF.ViewModels"
+                    xmlns:views="clr-namespace:SA.Accounting.WPF.Views">
+
+    <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+        <views:HomeView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:LoginViewModel}">
+        <views:LoginView/>
+    </DataTemplate>
+</ResourceDictionary>

@@ -71,7 +71,7 @@ public sealed partial class UpdateCompanyViewModel
             foreach (var p in result ?? [])
                 Platforms.Add(p);
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
         finally { IsBusy = false; }
     }
 
@@ -114,7 +114,7 @@ public sealed partial class UpdateCompanyViewModel
             SuppressValidation = false;
             ClearAllErrors();
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
         finally { IsBusy = false; }
     }
 

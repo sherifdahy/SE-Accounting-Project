@@ -26,6 +26,13 @@ public static class Permissions
     public const string ToggleStatusPlatfroms = "platforms:toggleStatus";
     #endregion
 
+    #region Users Permissions
+    public const string GetUsers = "users:read";
+    public const string CreateUsers = "users:create";
+    public const string UpdateUsers = "users:update";
+    public const string ToggleStatusUsers = "users:toggleStatus";
+    #endregion
+
     public static IList<string> GetAllPermissions()
     {
         return typeof(Permissions).GetFields().Select(x => x.GetValue(x) as string).ToList()!;

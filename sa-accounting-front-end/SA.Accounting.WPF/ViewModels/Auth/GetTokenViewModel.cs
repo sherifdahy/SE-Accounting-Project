@@ -52,7 +52,7 @@ public sealed partial class GetTokenViewModel
             if (response is not null)
                 OnLoginSuccess?.Invoke();
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) { }
         finally { IsBusy = false; }
     }
 

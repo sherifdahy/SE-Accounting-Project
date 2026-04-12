@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="DarkSidebarBg"     Color="#1F2937"/>
+    <SolidColorBrush x:Key="PrimaryColor"      Color="#1A1F3A"/>
+    <SolidColorBrush x:Key="SecondaryColor"    Color="#252B48"/>
+    <SolidColorBrush x:Key="AccentColor"       Color="#FFB800"/>
+    <SolidColorBrush x:Key="SuccessColor"      Color="#10B981"/>
+    <SolidColorBrush x:Key="TextPrimaryColor"  Color="#1F2937"/>
+    <SolidColorBrush x:Key="TextSecondaryColor" Color="#6B7280"/>
+    <SolidColorBrush x:Key="BorderColor"       Color="#E5E7EB"/>
+    <SolidColorBrush x:Key="HoverColor"        Color="#F3F4F6"/>
+    <SolidColorBrush x:Key="CardBackground"    Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="TableRowHover"     Color="#F9FAFB"/>
+    <SolidColorBrush x:Key="ErrorBrush"        Color="#EF4444"/>
+    <SolidColorBrush x:Key="PrimaryBrush"      Color="#000000"/>
+    <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#1A1A1A"/>
+    <SolidColorBrush x:Key="TextMainBrush"     Color="#111827"/>
+    <SolidColorBrush x:Key="TextSubBrush"      Color="#6B7280"/>
+    <SolidColorBrush x:Key="SidebarText"       Color="#9CA3AF"/>
+    <SolidColorBrush x:Key="SidebarTextHover"  Color="#D1D5DB"/>
+
+</ResourceDictionary>

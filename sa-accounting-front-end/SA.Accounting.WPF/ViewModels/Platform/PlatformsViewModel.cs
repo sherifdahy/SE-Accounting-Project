@@ -70,7 +70,7 @@ public sealed partial class PlatformsViewModel : ObservableObject
 
             ApplySearchFilter();
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) { }
         finally { IsBusy = false; }
     }
 
@@ -87,7 +87,7 @@ public sealed partial class PlatformsViewModel : ObservableObject
             TotalDeletedPlatforms = all.Count(p => p.IsDeleted);
             TotalUrls = all.Count(p => !string.IsNullOrWhiteSpace(p.Url));
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) { }
     }
 
     // ─── Search Filter (local only) ─────────────
@@ -137,7 +137,7 @@ public sealed partial class PlatformsViewModel : ObservableObject
             await _platformService.ToggleStatusAsync(platform.Id);
             await LoadPlatformsAsync();
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
     }
 
     [RelayCommand]
@@ -152,7 +152,7 @@ public sealed partial class PlatformsViewModel : ObservableObject
                 UseShellExecute = true
             });
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
     }
 
     [RelayCommand]

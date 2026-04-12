@@ -70,7 +70,7 @@ public sealed partial class CreateCompanyViewModel
             foreach (var p in result ?? [])
                 Platforms.Add(p);
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
         finally { IsBusy = false; }
     }
 
@@ -125,7 +125,7 @@ public sealed partial class CreateCompanyViewModel
                     "حدث خطأ أثناء الحفظ، يرجى المحاولة مرة أخرى", "خطأ");
             }
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
         finally { IsBusy = false; }
     }
 

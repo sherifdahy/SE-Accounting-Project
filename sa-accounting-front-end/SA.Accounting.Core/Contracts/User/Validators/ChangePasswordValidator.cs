@@ -1,5 +1,9 @@
-using FluentValidation;
+﻿using FluentValidation;
+using SA.Accounting.Core.Consts;
 using SA.Accounting.Core.Contracts.User.Requests;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace SA.Accounting.Core.Contracts.User.Validators
 {
@@ -12,9 +16,8 @@ namespace SA.Accounting.Core.Contracts.User.Validators
 
             RuleFor(x => x.NewPassword)
                 .NotEmpty()
-                .NotEqual(x=>x.CurrentPassword);
+                .Matches(RegexPatterns.Password)
+                .NotEqual(x => x.CurrentPassword);
         }
     }
 }
-
-

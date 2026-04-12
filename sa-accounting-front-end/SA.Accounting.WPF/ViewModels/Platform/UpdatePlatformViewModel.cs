@@ -119,7 +119,6 @@ public sealed partial class UpdatePlatformViewModel
         }
         catch (Exception ex)
         {
-            GlobalExceptionHandler.Handle(ex);
             await _dialogService.ShowErrorAsync(
                 "حدث خطأ أثناء تحميل بيانات المنصة", "خطأ");
         }
@@ -224,7 +223,7 @@ public sealed partial class UpdatePlatformViewModel
                 "تم تحديث المنصة بنجاح ✓", "نجح التحديث");
             OnSaved?.Invoke();
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) { }
         finally { IsBusy = false; }
     }
 

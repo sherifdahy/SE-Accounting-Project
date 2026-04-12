@@ -1,14 +1,29 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 using SA.Accounting.Core.Interfaces;
 using SA.Accounting.Infrastructure.Clients.Auth;
 using SA.Accounting.Infrastructure.Clients.Company;
 using SA.Accounting.Infrastructure.Clients.Platform;
-using SA.Accounting.Infrastructure.Handlers;
-using SA.Accounting.Infrastructure.OptionClasses;
-using SA.Accounting.Services;
+using SA.Accounting.Infrastructure.Clients.User;
+using SA.Accounting.WPF.Factories;
+using SA.Accounting.WPF.Factories.Auth;
+using SA.Accounting.WPF.Factories.Home;
+using SA.Accounting.WPF.Interfaces;
+using SA.Accounting.WPF.Portals.SystemAdministration.UserControls.Companies;
+using SA.Accounting.WPF.Portals.SystemAdministration.UserControls.Platforms;
 using SA.Accounting.WPF.Services;
+using SA.Accounting.WPF.State.Authenticators;
+using SA.Accounting.WPF.State.Navigators;
+using SA.Accounting.WPF.ViewModels;
+using SA.Accounting.WPF.ViewModels.Auth;
+using SA.Accounting.WPF.ViewModels.Company;
+using SA.Accounting.WPF.ViewModels.Main;
+using SA.Accounting.WPF.ViewModels.Platform;
+using SA.Accounting.WPF.ViewModels.User;
+using SA.Accounting.WPF.Views.UserControls.Users;
+using SA.Accounting.WPF.Windows;
 using System.Net.Http;
 
 namespace SA.Accounting.WPF;
@@ -23,41 +38,61 @@ public static class ServicesRegistration
         AddRefitConfig(services, configuration);
         AddServicesConfig(services, configuration);
 
+
+        services.AddSingleton<INavigator, Navigator>();
+        services.AddSingleton<IAuthenticator, Authenticator>();
+        services.AddSingleton<IAppNavigationService, AppNavigationService>();
+
+        services.AddSingleton<IViewModelAbstractFactory, ViewModelAbstractFactory>();
+        services.AddSingleton<IViewModelFactory<HomeViewModel>, HomeViewModelFactory>();
+        services.AddSingleton<IViewModelFactory<LoginViewModel>, LoginViewModelFactory>();
+
+        services.AddTransient<SidebarViewModel>();
+        services.AddTransient<HeaderViewModel>();
+        services.AddTransient<MainViewModel>();
+        services.AddTransient<AuthWindowViewModel>();
+        services.AddTransient(s=> new MainWindow(s.GetRequiredService<MainViewModel>(),s.GetRequiredService<HeaderViewModel>(),s.GetRequiredService<SidebarViewModel>()));
+        services.AddTransient(s => new AuthWindow(s.GetRequiredService<AuthWindowViewModel>()));
+
         return services;
     }
 
     public static IServiceCollection AddWindowsConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddTransient<Windows.LoginWindow>();
-        services.AddTransient<Portals.SystemAdministration.Windows.MainWindow>();
+        services.AddTransient<LoginWindow>();
+        services.AddTransient<MainWindow>();
 
         return services;
     }
 
     public static IServiceCollection AddViewModelsConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddTransient<ViewModels.Company.CreateCompanyViewModel>();
-        services.AddTransient<ViewModels.Company.UpdateCompanyViewModel>();
-        services.AddTransient<ViewModels.Company.DisplayCompanyViewModel>();
-        services.AddTransient<ViewModels.Auth.GetTokenViewModel>();
-        services.AddTransient<ViewModels.Platform.PlatformsViewModel>();
-        services.AddTransient<ViewModels.Platform.CreatePlatformViewModel>();
-        services.AddTransient<ViewModels.Platform.UpdatePlatformViewModel>();
+        services.AddTransient<CreateCompanyViewModel>();
+        services.AddTransient<UpdateCompanyViewModel>();
+        services.AddTransient<DisplayCompanyViewModel>();
+        services.AddTransient<GetTokenViewModel>();
+        services.AddTransient<PlatformsViewModel>();
+        services.AddTransient<CreatePlatformViewModel>();
+        services.AddTransient<UpdatePlatformViewModel>();
+        services.AddTransient<UsersViewModel>();
+        services.AddTransient<CreateUserViewModel>();
+        services.AddTransient<UpdateUserViewModel>();
 
         return services;
     }
 
     public static IServiceCollection AddUserControlsConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddTransient<Portals.SystemAdministration.Dialogs.Companies.CompanyFormDialog>();
-        services.AddTransient<Portals.SystemAdministration.UserControls.Companies.CompaniesControl>();
-        services.AddTransient<Portals.SystemAdministration.UserControls.Employees.EmployeesControl>();
-        services.AddTransient<Portals.SystemAdministration.UserControls.Companies.CreateCompanyControl>();
-        services.AddTransient<Portals.SystemAdministration.UserControls.Companies.UpdateCompanyControl>();
-        services.AddTransient<Portals.SystemAdministration.UserControls.Companies.DisplayCompanyControl>();
-        services.AddTransient<Portals.SystemAdministration.UserControls.Platforms.PlatformsControl>();
-        services.AddTransient<Portals.SystemAdministration.UserControls.Platforms.CreatePlatformControl>();
-        services.AddTransient<Portals.SystemAdministration.UserControls.Platforms.UpdatePlatformControl>();
+        services.AddTransient<CompaniesControl>();
+        services.AddTransient<UsersControl>();
+        services.AddTransient<CreateUserControl>();
+        services.AddTransient<UpdateUserControl>();
+        services.AddTransient<CreateCompanyControl>();
+        services.AddTransient<UpdateCompanyControl>();
+        services.AddTransient<DisplayCompanyControl>();
+        services.AddTransient<PlatformsControl>();
+        services.AddTransient<CreatePlatformControl>();
+        services.AddTransient<UpdatePlatformControl>();
 
         return services;
     }
@@ -74,6 +109,14 @@ public static class ServicesRegistration
             {
                 ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
             });
+
+        services.AddRefitClient<IUserClient>()
+            .ConfigureHttpClient(options => options.BaseAddress = new Uri(apiSettings!.BaseUrl))
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+            {
+                ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+            })
+            .AddHttpMessageHandler<AuthHeaderHandler>();
 
         services.AddRefitClient<ICompanyClient>()
             .ConfigureHttpClient(options => options.BaseAddress = new Uri(apiSettings!.BaseUrl))
@@ -93,7 +136,6 @@ public static class ServicesRegistration
 
         return services;
     }
-
     public static IServiceCollection AddServicesConfig(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<ICacheService, CacheService>();
@@ -104,6 +146,7 @@ public static class ServicesRegistration
         services.AddTransient<IAuthService, AuthService>();
         services.AddTransient<ICompanyService, CompanyService>();
         services.AddTransient<IPlatformService, PlatformService>();
+        services.AddTransient<IUserService, UserService>();
 
         services.AddDistributedMemoryCache();
 

@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SA.Accounting.Infrastructure.Handlers;
-using SA.Accounting.WPF.Windows;
-using SA.Accounting.WPF.Services;
+using SA.Accounting.WPF.Interfaces;
 using System.IO;
 using System.Windows;
 
@@ -38,7 +36,6 @@ public partial class App : Application
     private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
         var configuration = context.Configuration;
-
         services.AddCustomServices(configuration);
     }
 
@@ -50,29 +47,8 @@ public partial class App : Application
 
         await _host.StartAsync();
 
-        ShowLogin();
-    }
-
-    public void ShowLogin()
-    {
-        ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
-        var loginWindow = Services.GetRequiredService<LoginWindow>();
-        var result = loginWindow.ShowDialog();
-
-        if (result == true)
-            ShowMain();
-        else
-            Shutdown();
-    }
-
-    public void ShowMain()
-    {
-        ShutdownMode = ShutdownMode.OnMainWindowClose;
-
-        var mainWindow = Services.GetRequiredService<SA.Accounting.WPF.Portals.SystemAdministration.Windows.MainWindow>();
-        MainWindow = mainWindow;
-        mainWindow.Show();
+        var appNavigationService = Services.GetRequiredService<IAppNavigationService>();
+        appNavigationService.Start();
     }
 
     protected override async void OnExit(ExitEventArgs e)

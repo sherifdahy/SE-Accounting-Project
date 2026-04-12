@@ -47,10 +47,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Portals\SystemAdministration\UserControls\Companies\CompaniesControl.xaml.cs">
+    <Compile Update="Views\UserControls\Companies\CompaniesControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Windows\LoginWindow.xaml.cs">
+    <Compile Update="Views\Windows\LoginWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

@@ -58,7 +58,7 @@ public sealed partial class DisplayCompanyViewModel : ObservableObject
             foreach (var a in company.Accounts ?? [])
                 Accounts.Add(a);
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
         finally { IsBusy = false; }
     }
 
@@ -76,6 +76,6 @@ public sealed partial class DisplayCompanyViewModel : ObservableObject
                 UseShellExecute = true
             });
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
     }
 }

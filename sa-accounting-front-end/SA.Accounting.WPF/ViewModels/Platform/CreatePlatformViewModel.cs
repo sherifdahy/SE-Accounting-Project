@@ -147,7 +147,7 @@ public sealed partial class CreatePlatformViewModel
                     "حدث خطأ أثناء الحفظ", "خطأ");
             }
         }
-        catch (Exception ex) { GlobalExceptionHandler.Handle(ex); }
+        catch (Exception ex) {  }
         finally { IsBusy = false; }
     }
 

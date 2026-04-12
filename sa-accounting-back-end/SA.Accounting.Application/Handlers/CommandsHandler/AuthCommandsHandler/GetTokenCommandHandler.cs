@@ -33,7 +33,7 @@ public class GetTokenCommandHandler : IRequestHandler<GetTokenCommand, Result<Au
         if (applicationUser is null)
             return Result.Failure<AuthResponse>(UserErrors.InvalidCredentials);
 
-        var signInResult = await _signInManager.PasswordSignInAsync(applicationUser, request.Password, false, true);
+        var signInResult = await _signInManager.CheckPasswordSignInAsync(applicationUser, request.Password, true);
 
         if (signInResult.Succeeded)
         {

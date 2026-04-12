@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET10_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NET9_0_OR_GREATER;NET10_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
 F:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\App.xaml
-11-770412389
+301438646865
 3-968210657
-301754470209
+65-2020675005
 3291759257480
-Portals\SystemAdministration\Dialogs\Companies\CompanyFormDialog.xaml;Portals\SystemAdministration\UserControls\Companies\CompaniesControl.xaml;Portals\SystemAdministration\UserControls\Companies\CreateCompanyControl.xaml;Portals\SystemAdministration\UserControls\Companies\DisplayCompanyControl.xaml;Portals\SystemAdministration\UserControls\Companies\UpdateCompanyControl.xaml;Portals\SystemAdministration\UserControls\Employees\EmployeesControl.xaml;Portals\SystemAdministration\UserControls\Platforms\CreatePlatformControl.xaml;Portals\SystemAdministration\UserControls\Platforms\PlatformsControl.xaml;Portals\SystemAdministration\UserControls\Platforms\UpdatePlatformControl.xaml;Portals\SystemAdministration\Windows\MainWindow.xaml;Windows\LoginWindow.xaml;
+AuthWindow.xaml;Contols\HeaderControl.xaml;Contols\SidebarControl.xaml;MainWindow.xaml;Styles\BorderCardStyles.xaml;Styles\ButtonStyles.xaml;Styles\Colors.xaml;Styles\ComboBoxStyles.xaml;Styles\DataTemplates.xaml;Styles\GridStyles.xaml;Styles\HeaderStyles.xaml;Styles\InputStyles.xaml;Styles\PagerStyles.xaml;Styles\SidebarStyles.xaml;Styles\TelerikStyles.xaml;Styles\TextStyles.xaml;Views\Auth\LoginView.xaml;Views\Home\HomeView.xaml;Views\UserControls\Companies\CompaniesControl.xaml;Views\UserControls\Companies\CreateCompanyControl.xaml;Views\UserControls\Companies\DisplayCompanyControl.xaml;Views\UserControls\Companies\UpdateCompanyControl.xaml;Views\UserControls\Platforms\CreatePlatformControl.xaml;Views\UserControls\Platforms\PlatformsControl.xaml;Views\UserControls\Platforms\UpdatePlatformControl.xaml;Views\UserControls\Users\CreateUserControl.xaml;Views\UserControls\Users\UpdateUserControl.xaml;Views\UserControls\Users\UsersControl.xaml;Views\Windows\LoginWindow.xaml;Views\Windows\MainWindow.xaml;
 
-False
+True
 

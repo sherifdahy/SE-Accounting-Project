@@ -3,8 +3,30 @@
   "WorkspaceRootPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.api\\sa.accounting.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|solutionrelative:sa.accounting.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.application\\handlers\\commandshandler\\authcommandshandler\\gettokencommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.application\\commands\\auth\\gettokencommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DCC2651-A027-EE9D-7BA6-4B57457DEB45}|..\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.infrastructure\\migrations\\20260409104157_add_users_permissions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6ACAE6DD-60CF-9D60-86A9-AC210EB8055B}|..\\SA.Accounting.Core\\SA.Accounting.Core.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.core\\abstractions\\consts\\permissions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9DCC2651-A027-EE9D-7BA6-4B57457DEB45}|..\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.infrastructure\\abstractions\\consts\\defaultusers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.application\\abstractions\\consts\\regexp\\regexpatterns.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.api\\sa.accounting.api\\globalexeptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|solutionrelative:sa.accounting.api\\globalexeptionhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|f:\\sa.accounting\\sa-accounting-back-end\\sa.accounting.api\\sa.accounting.api\\extensions\\resultextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|solutionrelative:sa.accounting.api\\extensions\\resultextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,15 +45,102 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\appsettings.json",
-              "RelativeDocumentMoniker": "SA.Accounting.API\\appsettings.json",
-              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\appsettings.json",
-              "RelativeToolTip": "SA.Accounting.API\\appsettings.json",
-              "ViewState": "AgIAABIAAAAAAAAAAAAuwBAAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-04-08T17:56:24.084Z",
+              "Title": "GetTokenCommandHandler.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\Handlers\\CommandsHandler\\AuthCommandsHandler\\GetTokenCommandHandler.cs",
+              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Handlers\\CommandsHandler\\AuthCommandsHandler\\GetTokenCommandHandler.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\Handlers\\CommandsHandler\\AuthCommandsHandler\\GetTokenCommandHandler.cs",
+              "RelativeToolTip": "..\\SA.Accounting.Application\\Handlers\\CommandsHandler\\AuthCommandsHandler\\GetTokenCommandHandler.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAiwCQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:52:45.672Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GetTokenCommand.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\Commands\\Auth\\GetTokenCommand.cs",
+              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Commands\\Auth\\GetTokenCommand.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\Commands\\Auth\\GetTokenCommand.cs",
+              "RelativeToolTip": "..\\SA.Accounting.Application\\Commands\\Auth\\GetTokenCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-11T15:52:36.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "20260409104157_add_users_permissions.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Migrations\\20260409104157_add_users_permissions.cs",
+              "RelativeDocumentMoniker": "..\\SA.Accounting.Infrastructure\\Migrations\\20260409104157_add_users_permissions.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Migrations\\20260409104157_add_users_permissions.cs",
+              "RelativeToolTip": "..\\SA.Accounting.Infrastructure\\Migrations\\20260409104157_add_users_permissions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T10:41:58.026Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Permissions.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\Abstractions\\Consts\\Permissions.cs",
+              "RelativeDocumentMoniker": "..\\SA.Accounting.Core\\Abstractions\\Consts\\Permissions.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\Abstractions\\Consts\\Permissions.cs",
+              "RelativeToolTip": "..\\SA.Accounting.Core\\Abstractions\\Consts\\Permissions.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T10:40:35.479Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DefaultUsers.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Abstractions\\Consts\\DefaultUsers.cs",
+              "RelativeDocumentMoniker": "..\\SA.Accounting.Infrastructure\\Abstractions\\Consts\\DefaultUsers.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Abstractions\\Consts\\DefaultUsers.cs",
+              "RelativeToolTip": "..\\SA.Accounting.Infrastructure\\Abstractions\\Consts\\DefaultUsers.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T10:40:28.402Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RegexPatterns.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\Abstractions\\Consts\\RegExp\\RegexPatterns.cs",
+              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Abstractions\\Consts\\RegExp\\RegexPatterns.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\Abstractions\\Consts\\RegExp\\RegexPatterns.cs",
+              "RelativeToolTip": "..\\SA.Accounting.Application\\Abstractions\\Consts\\RegExp\\RegexPatterns.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T09:21:45.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GlobalExeptionHandler.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\GlobalExeptionHandler.cs",
+              "RelativeDocumentMoniker": "SA.Accounting.API\\GlobalExeptionHandler.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\GlobalExeptionHandler.cs",
+              "RelativeToolTip": "SA.Accounting.API\\GlobalExeptionHandler.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAAwDMAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T23:48:30.682Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ResultExtension.cs",
+              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\Extensions\\ResultExtension.cs",
+              "RelativeDocumentMoniker": "SA.Accounting.API\\Extensions\\ResultExtension.cs",
+              "ToolTip": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\Extensions\\ResultExtension.cs",
+              "RelativeToolTip": "SA.Accounting.API\\Extensions\\ResultExtension.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAABkAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T23:45:12.299Z"
             }
           ]
         }
