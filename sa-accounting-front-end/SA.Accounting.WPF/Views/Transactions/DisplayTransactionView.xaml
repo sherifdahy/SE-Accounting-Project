@@ -1,0 +1,747 @@
+﻿<UserControl x:Class="SA.Accounting.WPF.Views.DisplayTransactionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:enums="clr-namespace:SA.Accounting.Core.Enums;assembly=SA.Accounting.Core"
+             mc:Ignorable="d"
+             d:DesignHeight="700" d:DesignWidth="900"
+             FlowDirection="RightToLeft"
+             Background="{StaticResource SurfaceHoverBrush}">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+
+        <StackPanel Margin="24,20,24,32">
+
+            <!-- ═══════════════════════════════════
+                 PAGE HEADER
+            ═══════════════════════════════════ -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Back -->
+                <Button Grid.Column="0"
+                        Style="{StaticResource BtnGhost}"
+                        Command="{Binding GoBackCommand}"
+                        Margin="0,0,12,0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="→" FontSize="14"
+                                   Foreground="{StaticResource TextMutedBrush}"
+                                   Margin="0,0,6,0"/>
+                        <TextBlock Text="رجوع"
+                                   FontSize="{StaticResource FontSizeMd}"
+                                   Foreground="{StaticResource TextMutedBrush}"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Title -->
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource PageHeaderTitle}">
+                        <Run Text="معاملة رقم"/>
+                        <Run Text="{Binding Transaction.Number, Mode=OneWay}"
+                             Foreground="{StaticResource InfoBrush}"/>
+                    </TextBlock>
+                    <TextBlock Text="تفاصيل المعاملة والبنود والسجل"
+                               Style="{StaticResource PageHeaderSubtitle}"/>
+                </StackPanel>
+
+                <!-- Edit -->
+                <Button Grid.Column="2"
+                        Style="{StaticResource BtnPrimary}"
+                        Command="{Binding EditCommand}"
+                        Width="120">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="✏️" FontSize="13" Margin="0,0,6,0"/>
+                        <TextBlock Text="تعديل" Foreground="White"
+                                   FontSize="{StaticResource FontSizeMd}"
+                                   FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+            <!-- ═══════════════════════════════════
+                 STATS
+            ═══════════════════════════════════ -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Total Amount -->
+                <Border Grid.Column="0" Style="{StaticResource StatCard}" Margin="0,0,8,0">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <TextBlock Text="إجمالي المبلغ" Style="{StaticResource StatCaption}"/>
+                            <Border Style="{StaticResource StatIconBox}"
+                                    Background="{StaticResource SuccessLightBrush}">
+                                <TextBlock Text="💰" FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <TextBlock Text="{Binding TotalAmount, StringFormat='{}{0:N2}'}"
+                                   Style="{StaticResource StatValue}"/>
+                        <TextBlock Text="جنيه"
+                                   FontSize="{StaticResource FontSizeSm}"
+                                   Foreground="{StaticResource SuccessBrush}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Items Count -->
+                <Border Grid.Column="1" Style="{StaticResource StatCard}" Margin="0,0,8,0">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <TextBlock Text="عدد البنود" Style="{StaticResource StatCaption}"/>
+                            <Border Style="{StaticResource StatIconBox}"
+                                    Background="{StaticResource InfoLightBrush}">
+                                <TextBlock Text="📦" FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <TextBlock Text="{Binding Items.Count}"
+                                   Style="{StaticResource StatValue}"/>
+                        <TextBlock Text="بند"
+                                   FontSize="{StaticResource FontSizeSm}"
+                                   Foreground="{StaticResource InfoBrush}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- History Count -->
+                <Border Grid.Column="2" Style="{StaticResource StatCard}" Margin="0,0,8,0">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <TextBlock Text="سجل التغييرات" Style="{StaticResource StatCaption}"/>
+                            <Border Style="{StaticResource StatIconBox}"
+                                    Background="{StaticResource WarningLightBrush}">
+                                <TextBlock Text="📝" FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <TextBlock Text="{Binding Histories.Count}"
+                                   Style="{StaticResource StatValue}"/>
+                        <TextBlock Text="تغيير"
+                                   FontSize="{StaticResource FontSizeSm}"
+                                   Foreground="{StaticResource WarningBrush}"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Status -->
+                <Border Grid.Column="3" Style="{StaticResource StatCard}">
+                    <StackPanel>
+                        <Grid Margin="0,0,0,10">
+                            <TextBlock Text="الحالة" Style="{StaticResource StatCaption}"/>
+                            <Border>
+                                <Border.Style>
+                                    <Style TargetType="Border"
+                                           BasedOn="{StaticResource StatIconBox}">
+                                        <Setter Property="Background"
+                                                Value="{StaticResource WarningLightBrush}"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Transaction.CurrentState}"
+                                                         Value="{x:Static enums:TransactionState.Approved}">
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource SuccessLightBrush}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Transaction.CurrentState}"
+                                                         Value="{x:Static enums:TransactionState.Rejected}">
+                                                <Setter Property="Background"
+                                                        Value="{StaticResource ErrorLightBrush}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <TextBlock FontSize="16"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="🕐"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Transaction.CurrentState}"
+                                                             Value="{x:Static enums:TransactionState.Approved}">
+                                                    <Setter Property="Text" Value="✅"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Transaction.CurrentState}"
+                                                             Value="{x:Static enums:TransactionState.Rejected}">
+                                                    <Setter Property="Text" Value="❌"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Border>
+                        </Grid>
+                        <TextBlock FontSize="26" FontWeight="Bold" Margin="0,0,0,3">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Text" Value="جديد"/>
+                                    <Setter Property="Foreground"
+                                            Value="{StaticResource WarningBrush}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Transaction.CurrentState}"
+                                                     Value="{x:Static enums:TransactionState.Approved}">
+                                            <Setter Property="Text" Value="مقبول"/>
+                                            <Setter Property="Foreground"
+                                                    Value="{StaticResource SuccessBrush}"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Transaction.CurrentState}"
+                                                     Value="{x:Static enums:TransactionState.Rejected}">
+                                            <Setter Property="Text" Value="مرفوض"/>
+                                            <Setter Property="Foreground"
+                                                    Value="{StaticResource ErrorBrush}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text="الحالة الحالية"
+                                   FontSize="{StaticResource FontSizeSm}"
+                                   Foreground="{StaticResource TextMutedBrush}"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- ═══════════════════════════════════
+                 INFO + HISTORY (Side by Side)
+            ═══════════════════════════════════ -->
+            <Grid Margin="0,0,0,14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- ── RIGHT: Transaction Info ── -->
+                <Border Grid.Column="0" Style="{StaticResource SectionCard}"
+                        Margin="0,0,8,0">
+                    <StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Border Style="{StaticResource SectionIndicator}"
+                                    Background="{StaticResource InfoBrush}"/>
+                            <TextBlock Text="معلومات المعاملة"
+                                       Style="{StaticResource SectionLabel}"/>
+                        </StackPanel>
+
+                        <!-- Number -->
+                        <Border Style="{StaticResource InfoCard}" Margin="0,0,0,8">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <Border Style="{StaticResource InfoIconBox}"
+                                            Background="{StaticResource InfoLightBrush}">
+                                        <TextBlock Text="🔢" FontSize="14"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="رقم المعاملة"
+                                               Style="{StaticResource InfoCaption}"
+                                               VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Transaction.Number}"
+                                           Style="{StaticResource InfoValue}"/>
+                            </StackPanel>
+                        </Border>
+
+                        <!-- DateTime + CreatedAt -->
+                        <Grid Margin="0,0,0,8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Border Grid.Column="0" Style="{StaticResource InfoCard}"
+                                    Margin="0,0,6,0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                        <Border Style="{StaticResource InfoIconBox}"
+                                                Background="{StaticResource SuccessLightBrush}">
+                                            <TextBlock Text="📅" FontSize="14"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="تاريخ المعاملة"
+                                                   Style="{StaticResource InfoCaption}"
+                                                   VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Transaction.DateTime,
+                                                   StringFormat='{}{0:yyyy/MM/dd}'}"
+                                               Style="{StaticResource InfoDateValue}"/>
+                                </StackPanel>
+                            </Border>
+
+                            <Border Grid.Column="1" Style="{StaticResource InfoCard}"
+                                    Margin="6,0,0,0">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                        <Border Style="{StaticResource InfoIconBox}"
+                                                Background="{StaticResource WarningLightBrush}">
+                                            <TextBlock Text="🕐" FontSize="14"
+                                                       HorizontalAlignment="Center"
+                                                       VerticalAlignment="Center"/>
+                                        </Border>
+                                        <TextBlock Text="تاريخ الإنشاء"
+                                                   Style="{StaticResource InfoCaption}"
+                                                   VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Transaction.CreatedAt,
+                                                   StringFormat='{}{0:yyyy/MM/dd hh:mm tt}'}"
+                                               Style="{StaticResource InfoDateValue}"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                        <!-- Note -->
+                        <Border Style="{StaticResource InfoCard}">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                                    <Border Style="{StaticResource InfoIconBox}"
+                                            Background="{StaticResource SurfaceAltBrush}">
+                                        <TextBlock Text="📝" FontSize="14"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="ملاحظات"
+                                               Style="{StaticResource InfoCaption}"
+                                               VerticalAlignment="Center" Margin="8,0,0,0"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Transaction.Note}"
+                                           Style="{StaticResource InfoValue}"
+                                           TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+
+                <!-- ── LEFT: Transaction History ── -->
+                <Border Grid.Column="1" Style="{StaticResource SectionCard}"
+                        Margin="8,0,0,0">
+                    <StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Border Style="{StaticResource SectionIndicator}"
+                                    Background="{StaticResource WarningBrush}"/>
+                            <TextBlock Text="سجل التغييرات"
+                                       Style="{StaticResource SectionLabel}"/>
+                            <Border Style="{StaticResource BadgeDark}" Margin="10,0,0,0">
+                                <TextBlock Text="{Binding Histories.Count}"
+                                           Foreground="White"
+                                           FontSize="{StaticResource FontSizeSm}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <!-- History Items -->
+                        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                      MaxHeight="350">
+                            <ItemsControl ItemsSource="{Binding Histories}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource CardRow}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Timeline Icon -->
+                                                <Border Grid.Column="0">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border"
+                                                               BasedOn="{StaticResource HistoryTimelineIcon}">
+                                                            <Setter Property="Background"
+                                                                    Value="{StaticResource WarningLightBrush}"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ToState}"
+                                                                             Value="{x:Static enums:TransactionState.Approved}">
+                                                                    <Setter Property="Background"
+                                                                            Value="{StaticResource SuccessLightBrush}"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger Binding="{Binding ToState}"
+                                                                             Value="{x:Static enums:TransactionState.Rejected}">
+                                                                    <Setter Property="Background"
+                                                                            Value="{StaticResource ErrorLightBrush}"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <TextBlock FontSize="16"
+                                                               HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Text" Value="🔄"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding ToState}"
+                                                                                 Value="{x:Static enums:TransactionState.Approved}">
+                                                                        <Setter Property="Text" Value="✅"/>
+                                                                    </DataTrigger>
+                                                                    <DataTrigger Binding="{Binding ToState}"
+                                                                                 Value="{x:Static enums:TransactionState.Rejected}">
+                                                                        <Setter Property="Text" Value="❌"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Border>
+
+                                                <!-- Content -->
+                                                <StackPanel Grid.Column="1"
+                                                            VerticalAlignment="Center">
+
+                                                    <!-- From → To -->
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Margin="0,0,0,4">
+
+                                                        <!-- From Badge -->
+                                                        <Border>
+                                                            <Border.Style>
+                                                                <Style TargetType="Border"
+                                                                       BasedOn="{StaticResource StateBadge}">
+                                                                    <Setter Property="Background"
+                                                                            Value="{StaticResource SurfaceAltBrush}"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding FromState}"
+                                                                                     Value="{x:Static enums:TransactionState.Approved}">
+                                                                            <Setter Property="Background"
+                                                                                    Value="{StaticResource SuccessLightBrush}"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding FromState}"
+                                                                                     Value="{x:Static enums:TransactionState.Rejected}">
+                                                                            <Setter Property="Background"
+                                                                                    Value="{StaticResource ErrorLightBrush}"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+                                                            <TextBlock>
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock"
+                                                                           BasedOn="{StaticResource StateBadgeText}">
+                                                                        <Setter Property="Text" Value="جديد"/>
+                                                                        <Setter Property="Foreground"
+                                                                                Value="{StaticResource TextMutedBrush}"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding FromState}"
+                                                                                         Value="{x:Static enums:TransactionState.Approved}">
+                                                                                <Setter Property="Text" Value="مقبول"/>
+                                                                                <Setter Property="Foreground"
+                                                                                        Value="{StaticResource SuccessBrush}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding FromState}"
+                                                                                         Value="{x:Static enums:TransactionState.Rejected}">
+                                                                                <Setter Property="Text" Value="مرفوض"/>
+                                                                                <Setter Property="Foreground"
+                                                                                        Value="{StaticResource ErrorBrush}"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Border>
+
+                                                        <TextBlock Style="{StaticResource StateArrowText}"/>
+
+                                                        <!-- To Badge -->
+                                                        <Border>
+                                                            <Border.Style>
+                                                                <Style TargetType="Border"
+                                                                       BasedOn="{StaticResource StateBadge}">
+                                                                    <Setter Property="Background"
+                                                                            Value="{StaticResource WarningLightBrush}"/>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding ToState}"
+                                                                                     Value="{x:Static enums:TransactionState.Approved}">
+                                                                            <Setter Property="Background"
+                                                                                    Value="{StaticResource SuccessLightBrush}"/>
+                                                                        </DataTrigger>
+                                                                        <DataTrigger Binding="{Binding ToState}"
+                                                                                     Value="{x:Static enums:TransactionState.Rejected}">
+                                                                            <Setter Property="Background"
+                                                                                    Value="{StaticResource ErrorLightBrush}"/>
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Border.Style>
+                                                            <TextBlock>
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock"
+                                                                           BasedOn="{StaticResource StateBadgeText}">
+                                                                        <Setter Property="Text" Value="جديد"/>
+                                                                        <Setter Property="Foreground"
+                                                                                Value="{StaticResource WarningBrush}"/>
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding ToState}"
+                                                                                         Value="{x:Static enums:TransactionState.Approved}">
+                                                                                <Setter Property="Text" Value="مقبول"/>
+                                                                                <Setter Property="Foreground"
+                                                                                        Value="{StaticResource SuccessBrush}"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding ToState}"
+                                                                                         Value="{x:Static enums:TransactionState.Rejected}">
+                                                                                <Setter Property="Text" Value="مرفوض"/>
+                                                                                <Setter Property="Foreground"
+                                                                                        Value="{StaticResource ErrorBrush}"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Border>
+                                                    </StackPanel>
+
+                                                    <!-- User -->
+                                                    <StackPanel Orientation="Horizontal"
+                                                                Margin="0,3,0,0">
+                                                        <TextBlock Text="بواسطة"
+                                                                   Style="{StaticResource HistoryMetaText}"
+                                                                   Margin="0,0,4,0"/>
+                                                        <TextBlock Text="{Binding CreatedByName}"
+                                                                   Style="{StaticResource HistoryUserText}"/>
+                                                    </StackPanel>
+
+                                                    <!-- Note -->
+                                                    <TextBlock Text="{Binding Note}"
+                                                               Style="{StaticResource HistoryNoteText}"/>
+
+                                                    <!-- Date -->
+                                                    <TextBlock Text="{Binding CreatedAt,
+                                                                   StringFormat='{}{0:yyyy/MM/dd hh:mm tt}'}"
+                                                               Style="{StaticResource HistoryDateText}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+
+                        <!-- Empty State -->
+                        <Border Padding="0,30"
+                                Visibility="{Binding HasNoHistories,
+                                    Converter={StaticResource BoolToVis}}">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="📝" FontSize="28" Opacity="0.5"
+                                           HorizontalAlignment="Center" Margin="0,0,0,8"/>
+                                <TextBlock Text="لا يوجد سجل تغييرات"
+                                           FontSize="{StaticResource FontSizeMd}"
+                                           Foreground="{StaticResource TextPlaceholderBrush}"
+                                           HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <!-- ═══════════════════════════════════
+                 TRANSACTION ITEMS (Full Width)
+            ═══════════════════════════════════ -->
+            <Border Style="{StaticResource SectionCard}" Margin="0">
+                <StackPanel>
+
+                    <!-- Section Header -->
+                    <Grid Margin="0,0,0,16">
+                        <StackPanel Orientation="Horizontal">
+                            <Border Style="{StaticResource SectionIndicator}"
+                                    Background="{StaticResource SuccessBrush}"/>
+                            <TextBlock Text="بنود المعاملة"
+                                       Style="{StaticResource SectionLabel}"/>
+                            <Border Style="{StaticResource BadgeDark}" Margin="10,0,0,0">
+                                <TextBlock Text="{Binding Items.Count}"
+                                           Foreground="White"
+                                           FontSize="{StaticResource FontSizeSm}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+
+                        <TextBlock HorizontalAlignment="Left"
+                                   VerticalAlignment="Center"
+                                   FontSize="{StaticResource FontSizeLg}"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource SuccessBrush}">
+                            <Run Text="الإجمالي:"/>
+                            <Run Text="{Binding TotalAmount, Mode=OneWay,
+                                     StringFormat='{}{0:N2}'}"/>
+                            <Run Text="جنيه"/>
+                        </TextBlock>
+                    </Grid>
+
+                    <!-- Items Table -->
+                    <Border Style="{StaticResource TableBorder}">
+                        <StackPanel>
+
+                            <!-- Header -->
+                            <Border Style="{StaticResource TableHeaderBorder}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="100"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0" Text="#"
+                                               Style="{StaticResource TableHeaderText}"/>
+                                    <TextBlock Grid.Column="1" Text="التصنيف"
+                                               Style="{StaticResource TableHeaderText}"/>
+                                    <TextBlock Grid.Column="2" Text="الشركة"
+                                               Style="{StaticResource TableHeaderText}"/>
+                                    <TextBlock Grid.Column="3" Text="ملاحظات"
+                                               Style="{StaticResource TableHeaderText}"/>
+                                    <TextBlock Grid.Column="4" Text="المبلغ"
+                                               Style="{StaticResource TableHeaderText}"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </Border>
+
+                            <!-- Rows -->
+                            <ItemsControl ItemsSource="{Binding Items}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource TableRowBorder}">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="50"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="100"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- ID -->
+                                                <TextBlock Grid.Column="0"
+                                                           FontSize="{StaticResource FontSizeMd}"
+                                                           Foreground="{StaticResource TextPlaceholderBrush}"
+                                                           VerticalAlignment="Center">
+                                                    <Run Text="#"/><Run Text="{Binding Id, Mode=OneWay}"/>
+                                                </TextBlock>
+
+                                                <!-- Category -->
+                                                <StackPanel Grid.Column="1"
+                                                            Orientation="Horizontal"
+                                                            VerticalAlignment="Center">
+                                                    <Border Width="32" Height="32"
+                                                            CornerRadius="16"
+                                                            Margin="0,0,10,0"
+                                                            BorderBrush="{StaticResource BorderDefaultBrush}"
+                                                            BorderThickness="1">
+                                                        <Border.Background>
+                                                            <LinearGradientBrush StartPoint="0,0"
+                                                                                 EndPoint="1,1">
+                                                                <GradientStop Color="#FEF3C7" Offset="0"/>
+                                                                <GradientStop Color="#FDE68A" Offset="1"/>
+                                                            </LinearGradientBrush>
+                                                        </Border.Background>
+                                                        <TextBlock Text="📂" FontSize="14"
+                                                                   HorizontalAlignment="Center"
+                                                                   VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <TextBlock Text="{Binding TransactionCategoryName}"
+                                                               FontSize="{StaticResource FontSizeMd}"
+                                                               FontWeight="SemiBold"
+                                                               Foreground="{StaticResource TextPrimaryBrush}"
+                                                               VerticalAlignment="Center"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               MaxWidth="140"
+                                                               ToolTip="{Binding TransactionCategoryName}"/>
+                                                </StackPanel>
+
+                                                <!-- Company -->
+                                                <StackPanel Grid.Column="2"
+                                                            Orientation="Horizontal"
+                                                            VerticalAlignment="Center">
+                                                    <Border Width="32" Height="32"
+                                                            CornerRadius="16"
+                                                            Margin="0,0,10,0"
+                                                            BorderBrush="{StaticResource BorderDefaultBrush}"
+                                                            BorderThickness="1">
+                                                        <Border.Background>
+                                                            <LinearGradientBrush StartPoint="0,0"
+                                                                                 EndPoint="1,1">
+                                                                <GradientStop Color="#EEF2FF" Offset="0"/>
+                                                                <GradientStop Color="#E0E7FF" Offset="1"/>
+                                                            </LinearGradientBrush>
+                                                        </Border.Background>
+                                                        <TextBlock Text="🏢" FontSize="14"
+                                                                   HorizontalAlignment="Center"
+                                                                   VerticalAlignment="Center"/>
+                                                    </Border>
+                                                    <TextBlock Text="{Binding CompanyName}"
+                                                               FontSize="{StaticResource FontSizeMd}"
+                                                               Foreground="{StaticResource TextSecondaryBrush}"
+                                                               VerticalAlignment="Center"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               MaxWidth="140"
+                                                               ToolTip="{Binding CompanyName}"/>
+                                                </StackPanel>
+
+                                                <!-- Note -->
+                                                <TextBlock Grid.Column="3"
+                                                           Text="{Binding Note}"
+                                                           FontSize="{StaticResource FontSizeMd}"
+                                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                                           VerticalAlignment="Center"
+                                                           TextTrimming="CharacterEllipsis"
+                                                           MaxWidth="160"
+                                                           ToolTip="{Binding Note}"/>
+
+                                                <!-- Amount Badge -->
+                                                <Border Grid.Column="4"
+                                                        Background="{StaticResource SuccessLightBrush}"
+                                                        CornerRadius="20" Padding="10,4"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center">
+                                                    <TextBlock Text="{Binding Amount,
+                                                                   StringFormat='{}{0:N2}'}"
+                                                               FontSize="{StaticResource FontSizeSm}"
+                                                               FontWeight="Bold"
+                                                               Foreground="{StaticResource SuccessBrush}"
+                                                               HorizontalAlignment="Center"
+                                                               FlowDirection="LeftToRight"/>
+                                                </Border>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <!-- Empty State -->
+                            <Border Padding="0,30"
+                                    Visibility="{Binding HasNoItems,
+                                        Converter={StaticResource BoolToVis}}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="📦" FontSize="28" Opacity="0.5"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,0,0,8"/>
+                                    <TextBlock Text="لا يوجد بنود لهذه المعاملة"
+                                               FontSize="{StaticResource FontSizeMd}"
+                                               Foreground="{StaticResource TextPlaceholderBrush}"
+                                               HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

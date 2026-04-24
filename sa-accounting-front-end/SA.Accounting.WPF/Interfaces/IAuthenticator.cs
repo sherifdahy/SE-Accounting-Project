@@ -9,6 +9,8 @@ public interface IAuthenticator
 {
     AuthResponse? CurrentAuthResponse { get; }
     CurrentUserResponse? CurrentUserResponse { get; }
+
+    event Action StateChanged;
     bool IsLoggedIn { get; }
     Task LoginAsync(string email,string password);
     void Logout();

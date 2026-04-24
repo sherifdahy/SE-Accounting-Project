@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj": {}
+    "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj": {}
   },
   "projects": {
-    "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj": {
+    "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
+        "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
         "projectName": "SA.Accounting.API",
-        "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
-        "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-        "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\obj\\",
+        "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
+        "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+        "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -28,6 +30,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+          "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,8 +39,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj": {
-                "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj"
+              "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj": {
+                "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj"
               }
             }
           }
@@ -72,7 +76,7 @@
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.15.1, )"
+              "version": "[4.16.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -110,7 +114,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -528,21 +532,23 @@
         }
       }
     },
-    "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj": {
+    "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
+        "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
         "projectName": "SA.Accounting.Application",
-        "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
-        "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-        "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\obj\\",
+        "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
+        "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+        "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -552,6 +558,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+          "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -559,11 +567,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj": {
-                "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj"
+              "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj": {
+                "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj"
               },
-              "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj": {
-                "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj"
+              "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj": {
+                "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj"
               }
             }
           }
@@ -600,6 +608,10 @@
             "MediatR": {
               "target": "Package",
               "version": "[13.1.0, )"
+            },
+            "System.Security.Cryptography.Xml": {
+              "target": "Package",
+              "version": "[10.0.6, )"
             }
           },
           "imports": [
@@ -618,7 +630,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -896,21 +908,23 @@
         }
       }
     },
-    "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj": {
+    "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
+        "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
         "projectName": "SA.Accounting.Core",
-        "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
-        "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-        "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\obj\\",
+        "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
+        "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+        "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -920,6 +934,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+          "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -974,7 +990,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -1392,21 +1408,23 @@
         }
       }
     },
-    "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj": {
+    "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj",
+        "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj",
         "projectName": "SA.Accounting.Infrastructure",
-        "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-        "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\obj\\",
+        "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+        "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -1416,6 +1434,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+          "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -1423,8 +1443,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj": {
-                "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj"
+              "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj": {
+                "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj"
               }
             }
           }
@@ -1486,7 +1506,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -1904,21 +1924,23 @@
         }
       }
     },
-    "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj": {
+    "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj",
+        "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj",
         "projectName": "SA.Accounting.Services",
-        "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj",
-        "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-        "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Services\\obj\\",
+        "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Services\\SA.Accounting.Services.csproj",
+        "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+        "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -1928,6 +1950,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+          "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -1935,8 +1959,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj": {
-                "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj"
+              "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj": {
+                "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj"
               }
             }
           }
@@ -1976,7 +2000,7 @@
             },
             "MailKit": {
               "target": "Package",
-              "version": "[4.15.1, )"
+              "version": "[4.16.0, )"
             },
             "Mapster": {
               "target": "Package",
@@ -1992,7 +2016,7 @@
             },
             "MimeKit": {
               "target": "Package",
-              "version": "[4.15.1, )"
+              "version": "[4.16.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -2018,7 +2042,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

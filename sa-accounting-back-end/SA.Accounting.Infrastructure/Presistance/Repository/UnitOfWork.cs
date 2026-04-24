@@ -2,6 +2,7 @@
 using SA.Accounting.Core.Entities.Companies;
 using SA.Accounting.Core.Entities.Platforms;
 using SA.Accounting.Core.Entities.Transactions;
+using SA.Accounting.Core.Interfaces;
 
 namespace SA.Accounting.Infrastructure.Presistance.Repository;
 
@@ -19,8 +20,7 @@ public class UnitOfWork : IUnitOfWork
         Transactions = new Repository<Transaction>(_context);
         TransactionCategories = new Repository<TransactionCategory>(_context);
         TransactionItems = new Repository<TransactionItem>(_context);
-        UserCompanies = new Repository<UserCompany>(_context);
-        CompanyUserTransactions = new Repository<CompanyUserTransaction>(_context);
+        UserCompanies = new UserCompaniesRepository(_context);
         Accounts = new Repository<Account>(_context);
     }
 
@@ -31,8 +31,7 @@ public class UnitOfWork : IUnitOfWork
     public IRepository<Transaction> Transactions { get; }
     public IRepository<TransactionCategory> TransactionCategories { get; }
     public IRepository<TransactionItem> TransactionItems { get; }
-    public IRepository<UserCompany> UserCompanies { get; }
-    public IRepository<CompanyUserTransaction> CompanyUserTransactions { get; }
+    public IUserCompaniesRepository UserCompanies { get; }
     public IRepository<Account> Accounts { get; }
     public void Dispose()
     {

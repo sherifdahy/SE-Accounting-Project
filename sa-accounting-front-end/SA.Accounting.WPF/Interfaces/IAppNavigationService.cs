@@ -7,6 +7,7 @@ namespace SA.Accounting.WPF.Interfaces;
 public interface IAppNavigationService
 {
     void Start();
-    void LoginSucceeded();
+    void LoginSuccess();
     void Logout();
+    void CloseApplication();
 }

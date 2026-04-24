@@ -9,13 +9,18 @@ public class Authenticator : IAuthenticator
 {
     private readonly IAuthService _authService;
     private readonly IJwtTokenService _jwtTokenService;
-    public Authenticator(IAuthService authService,IJwtTokenService jwtTokenService)
+    private readonly IAccountStore _accountStore;
+
+    public Authenticator(IAuthService authService,IJwtTokenService jwtTokenService,IAccountStore accountStore)
     {
         _jwtTokenService = jwtTokenService;
+        _accountStore = accountStore;
         _authService = authService;
     }
+
+    public event Action StateChanged;
     public AuthResponse? CurrentAuthResponse { get; private set; }
-    public CurrentUserResponse? CurrentUserResponse { get; private set; }
+    public CurrentUserResponse CurrentUserResponse { get => _accountStore.CurrentUserResponse; private set { _accountStore.CurrentUserResponse = value; StateChanged?.Invoke(); } }
     public bool IsLoggedIn => CurrentAuthResponse != null;
     public async Task LoginAsync(string email, string password)
     {

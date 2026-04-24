@@ -1,0 +1,41 @@
+﻿<Window x:Class="SA.Accounting.WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SA.Accounting.WPF"
+        xmlns:controls="clr-namespace:SA.Accounting.WPF.Contols"
+        mc:Ignorable="d"
+        FlowDirection="RightToLeft"
+        Title="Saber Eid Accounting"
+        Closed="Window_Closed"
+        Height="450"
+        Width="800"
+        WindowState="Maximized"
+        Background="#F3F4F6">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Sidebar -->
+        <controls:SidebarControl DataContext="{Binding SidebarViewModel}" Grid.Column="0"/>
+
+        <!-- Main Area -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <controls:HeaderControl DataContext="{Binding HeaderViewModel}" Grid.Row="0"/>
+            <!-- Content -->
+            <Border Grid.Row="1" Background="#F9FAFB">
+                <ContentControl Content="{Binding CurrentViewModel}"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

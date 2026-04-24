@@ -8,13 +8,14 @@ namespace SA.Accounting.Core.Interfaces;
 
 public interface IUserService
 {
-    Task<PaginatedList<UserResponse>> GetUsersAsync(RequestFilters filters,bool includeDisabled);
-    Task<UserResponse> GetUserByIdAsync(int id);
-    Task CreateUserAsync(CreateUserRequest request);
-    Task UpdateUserAsync(int id,UpdateUserRequest request);
+    Task<PaginatedList<UserResponse>> GetAllAsync(RequestFilters filters,bool includeDisabled=false);
+    Task<UserResponse> GetByIdAsync(int id);
+    Task CreateAsync(CreateUserRequest request);
+    Task UpdateAsync(int id,UpdateUserRequest request);
     Task ToggleStatusAsync(int id);
-    Task<List<CompanyResponse>> GetUserCompaniesAsync(int id, RequestFilters filters);
-    Task AssignCompaniesToUserAsync(int id,AssignUserCompaniesRequest request);
-    Task DeleteUserCompanyAsync(int userId, int companyId);
-    Task DeleteUserCompaniesAsync(string userId);
+    Task<PaginatedList<CompanyResponse>> GetUserCompaniesAsync(int userId,RequestFilters filters);
+    Task AssignCompanyToUserAsync(int userId, int companyId);
+    Task RemoveCompanyFromUserAsync(int userId, int companyId);
+    Task AssignAllCompaniesToUserAsync(int userId);
+    Task RemoveAllCompaniesFromUserAsync(int userId);
 }

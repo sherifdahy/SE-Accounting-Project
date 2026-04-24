@@ -1,0 +1,133 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ══════ Labels ══════ -->
+    <Style x:Key="InputLabel" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMd}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}"/>
+        <Setter Property="Margin" Value="0,0,0,5"/>
+    </Style>
+
+    <Style x:Key="SectionLabel" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeLg}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="RowLabel" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+        <Setter Property="Margin" Value="0,0,0,4"/>
+    </Style>
+
+    <!-- ══════ Info Display ══════ -->
+    <Style x:Key="InfoCaption" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPlaceholderBrush}"/>
+        <Setter Property="Margin" Value="0,0,0,3"/>
+    </Style>
+
+    <Style x:Key="InfoValue" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXl}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+    </Style>
+
+    <!-- ══════ Validation ══════ -->
+    <Style x:Key="ValidationError" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource ErrorBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMd}"/>
+        <Setter Property="Margin" Value="0,3,0,0"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+
+    <Style x:Key="ValidationSuccess" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource SuccessBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeXs}"/>
+        <Setter Property="Margin" Value="0,3,0,0"/>
+    </Style>
+
+    <!-- ══════ Hyperlink ══════ -->
+    <Style x:Key="HyperlinkText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource InfoBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMd}"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="TextDecorations" Value="None"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="TextDecorations" Value="Underline"/>
+                <Setter Property="Foreground" Value="#2563EB"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!-- ══════ Table Header Text ══════ -->
+    <Style x:Key="TableHeaderText" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMd}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- ══════ Stat Value ══════ -->
+    <Style x:Key="StatValue" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+        <Setter Property="Margin" Value="0,0,0,3"/>
+    </Style>
+
+    <!-- ══════ Stat Caption ══════ -->
+    <Style x:Key="StatCaption" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMd}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+
+    <!-- ══════ Page Title ══════ -->
+    <Style x:Key="PageTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+    </Style>
+
+    <!-- ══════ Page Subtitle ══════ -->
+    <Style x:Key="PageSubtitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMd}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+        <Setter Property="Margin" Value="0,3,0,0"/>
+    </Style>
+
+
+    <!-- ══════ Page Header ══════ -->
+    <Style x:Key="PageHeaderTitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+    </Style>
+
+    <Style x:Key="PageHeaderSubtitle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMd}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextMutedBrush}"/>
+        <Setter Property="Margin" Value="0,3,0,0"/>
+    </Style>
+
+    <!-- ══════ Section Header ══════ -->
+    <Style x:Key="SectionSubtext" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="{StaticResource FontSizeSm}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextPlaceholderBrush}"/>
+        <Setter Property="Margin" Value="0,2,0,0"/>
+    </Style>
+
+    <!-- ══════ Required Star ══════ -->
+    <Style x:Key="RequiredStar" TargetType="TextBlock">
+        <Setter Property="Text" Value=" *"/>
+        <Setter Property="Foreground" Value="{StaticResource ErrorBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource FontSizeMd}"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+    
+</ResourceDictionary>

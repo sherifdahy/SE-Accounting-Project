@@ -2,22 +2,6 @@
   "version": 3,
   "targets": {
     "net10.0-windows7.0": {
-      "CommunityToolkit.Mvvm/8.3.2": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "build": {
-          "buildTransitive/CommunityToolkit.Mvvm.targets": {}
-        }
-      },
       "FluentValidation/12.1.0": {
         "type": "package",
         "compile": {
@@ -65,43 +49,65 @@
           "lib/net7.0/Mapster.DependencyInjection.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore/7.0.0": {
+      "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.Bcl.HashCode/1.1.0": {
+        "type": "package",
+        "compile": {
+          "ref/netcoreapp2.1/Microsoft.Bcl.HashCode.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.dll": {
+            "related": ".xml"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore/3.1.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.0",
-          "Microsoft.EntityFrameworkCore.Analyzers": "7.0.0",
-          "Microsoft.Extensions.Caching.Memory": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection": "7.0.0",
-          "Microsoft.Extensions.Logging": "7.0.0"
+          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "Microsoft.Bcl.HashCode": "1.1.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "3.1.5",
+          "Microsoft.EntityFrameworkCore.Analyzers": "3.1.5",
+          "Microsoft.Extensions.Caching.Memory": "3.1.5",
+          "Microsoft.Extensions.DependencyInjection": "3.1.5",
+          "Microsoft.Extensions.Logging": "3.1.5",
+          "System.ComponentModel.Annotations": "4.7.0"
         },
         "compile": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.dll": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.dll": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.dll": {
             "related": ".xml"
           }
-        },
-        "build": {
-          "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/7.0.0": {
+      "Microsoft.EntityFrameworkCore.Abstractions/3.1.5": {
         "type": "package",
         "compile": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
             "related": ".xml"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/7.0.0": {
+      "Microsoft.EntityFrameworkCore.Analyzers/3.1.5": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/_._": {}
@@ -129,27 +135,23 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/7.0.0": {
+      "Microsoft.Extensions.Caching.Memory/3.1.5": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "7.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Options": "7.0.0",
-          "Microsoft.Extensions.Primitives": "7.0.0"
+          "Microsoft.Extensions.Caching.Abstractions": "3.1.5",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "3.1.5",
+          "Microsoft.Extensions.Logging.Abstractions": "3.1.5",
+          "Microsoft.Extensions.Options": "3.1.5"
         },
         "compile": {
-          "lib/net7.0/Microsoft.Extensions.Caching.Memory.dll": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net7.0/Microsoft.Extensions.Caching.Memory.dll": {
+          "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll": {
             "related": ".xml"
           }
-        },
-        "build": {
-          "buildTransitive/net6.0/_._": {}
         }
       },
       "Microsoft.Extensions.Configuration/10.0.0": {
@@ -1089,6 +1091,19 @@
           }
         }
       },
+      "System.ComponentModel.Annotations/4.7.0": {
+        "type": "package",
+        "compile": {
+          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.1/System.ComponentModel.Annotations.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.IdentityModel.Tokens.Jwt/8.17.0": {
         "type": "package",
         "dependencies": {
@@ -1106,10 +1121,10 @@
           }
         }
       },
-      "Telerik.UI.for.Wpf.70.Xaml/2023.1.117": {
+      "Telerik.UI.for.Wpf.NetCore.Xaml/2023.1.117": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.OData.Client": "7.8.3",
           "SharpDX": "4.2.0",
           "SharpDX.DXGI": "4.2.0",
@@ -1119,394 +1134,394 @@
           "SharpDX.Mathematics": "4.2.0"
         },
         "compile": {
-          "lib/net7.0-windows/MediaFoundation.dll": {},
-          "lib/net7.0-windows/Telerik.Documents.SpreadsheetStreaming.dll": {
+          "lib/netcoreapp3.1/MediaFoundation.dll": {},
+          "lib/netcoreapp3.1/Telerik.Documents.SpreadsheetStreaming.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Pivot.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Pivot.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Adomd.dll": {
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Adomd.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Queryable.dll": {
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Queryable.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Xmla.dll": {
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Xmla.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Cloud.Controls.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Cloud.Controls.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Cloud.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Cloud.dll": {
             "related": ".Controls.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Chart.Direct2D.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.Direct2D.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Chart.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.dll": {
             "related": ".Direct2D.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Charting.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Charting.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ConversationalUI.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ConversationalUI.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Data.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Data.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.DataServices.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.DataServices.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.DataVisualization.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.DataVisualization.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Extensions.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Extensions.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Ribbon.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Ribbon.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.dll": {
             "related": ".Extensions.xml;.Ribbon.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Docking.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Docking.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.EntityFrameworkCore.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.EntityFrameworkCore.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Expressions.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Expressions.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FileDialogs.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FileDialogs.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewers.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewers.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewersUI.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewersUI.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GanttView.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GanttView.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.Export.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.Export.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.dll": {
             "related": ".Export.xml;.SpreadsheetStreamingExport.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ImageEditor.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ImageEditor.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Input.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Input.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Media.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Media.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Navigation.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Navigation.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Pivot.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Pivot.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.PivotFieldList.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.PivotFieldList.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.RibbonView.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.RibbonView.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.RichTextBox.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.RichTextBox.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ScheduleView.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ScheduleView.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Spreadsheet.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Spreadsheet.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.SpreadsheetUI.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.SpreadsheetUI.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.SyntaxEditor.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.SyntaxEditor.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.VirtualGrid.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.VirtualGrid.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.dll": {
             "related": ".Chart.Direct2D.xml;.Chart.xml;.Charting.xml;.ConversationalUI.xml;.Data.xml;.DataServices.xml;.DataVisualization.xml;.Diagrams.Extensions.xml;.Diagrams.Ribbon.xml;.Diagrams.xml;.Docking.xml;.EntityFrameworkCore.xml;.Expressions.xml;.FileDialogs.xml;.FixedDocumentViewers.xml;.FixedDocumentViewersUI.xml;.GanttView.xml;.GridView.Export.xml;.GridView.SpreadsheetStreamingExport.xml;.GridView.xml;.ImageEditor.xml;.Input.xml;.Media.xml;.Navigation.xml;.Pivot.xml;.PivotFieldList.xml;.RibbonView.xml;.RichTextBox.xml;.ScheduleView.xml;.Spreadsheet.xml;.SpreadsheetUI.xml;.SyntaxEditor.xml;.VirtualGrid.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Data.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Data.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Diagrams.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Diagrams.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.CMapUtils.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.CMapUtils.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.DrawingML.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.DrawingML.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Fixed.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Fixed.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.dll": {
             "related": ".FormatProviders.Doc.xml;.FormatProviders.Pdf.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.dll": {
             "related": ".DataGrid.xml;.RadGridView.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.dll": {
             "related": ".FormatProviders.OpenXml.xml;.FormatProviders.Pdf.xml;.FormatProviders.Xls.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.MediaFoundation.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.MediaFoundation.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.PersistenceFramework.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.PersistenceFramework.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Scheduling.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Scheduling.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.SyntaxEditor.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.SyntaxEditor.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Zip.Extensions.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Zip.Extensions.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Zip.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Zip.dll": {
             "related": ".Extensions.xml;.xml"
           }
         },
         "runtime": {
-          "lib/net7.0-windows/MediaFoundation.dll": {},
-          "lib/net7.0-windows/Telerik.Documents.SpreadsheetStreaming.dll": {
+          "lib/netcoreapp3.1/MediaFoundation.dll": {},
+          "lib/netcoreapp3.1/Telerik.Documents.SpreadsheetStreaming.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Pivot.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Pivot.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Adomd.dll": {
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Adomd.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Queryable.dll": {
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Queryable.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Xmla.dll": {
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Xmla.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Cloud.Controls.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Cloud.Controls.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Cloud.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Cloud.dll": {
             "related": ".Controls.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Chart.Direct2D.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.Direct2D.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Chart.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.dll": {
             "related": ".Direct2D.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Charting.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Charting.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ConversationalUI.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ConversationalUI.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Data.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Data.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.DataServices.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.DataServices.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.DataVisualization.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.DataVisualization.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Extensions.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Extensions.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Ribbon.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Ribbon.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.dll": {
             "related": ".Extensions.xml;.Ribbon.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Docking.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Docking.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.EntityFrameworkCore.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.EntityFrameworkCore.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Expressions.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Expressions.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FileDialogs.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FileDialogs.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewers.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewers.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewersUI.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewersUI.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GanttView.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GanttView.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.Export.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.Export.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.dll": {
             "related": ".Export.xml;.SpreadsheetStreamingExport.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ImageEditor.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ImageEditor.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Input.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Input.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Media.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Media.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Navigation.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Navigation.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Pivot.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Pivot.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.PivotFieldList.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.PivotFieldList.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.RibbonView.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.RibbonView.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.RichTextBox.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.RichTextBox.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ScheduleView.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ScheduleView.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Spreadsheet.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Spreadsheet.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.SpreadsheetUI.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.SpreadsheetUI.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.SyntaxEditor.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.SyntaxEditor.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.VirtualGrid.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.VirtualGrid.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.dll": {
             "related": ".Chart.Direct2D.xml;.Chart.xml;.Charting.xml;.ConversationalUI.xml;.Data.xml;.DataServices.xml;.DataVisualization.xml;.Diagrams.Extensions.xml;.Diagrams.Ribbon.xml;.Diagrams.xml;.Docking.xml;.EntityFrameworkCore.xml;.Expressions.xml;.FileDialogs.xml;.FixedDocumentViewers.xml;.FixedDocumentViewersUI.xml;.GanttView.xml;.GridView.Export.xml;.GridView.SpreadsheetStreamingExport.xml;.GridView.xml;.ImageEditor.xml;.Input.xml;.Media.xml;.Navigation.xml;.Pivot.xml;.PivotFieldList.xml;.RibbonView.xml;.RichTextBox.xml;.ScheduleView.xml;.Spreadsheet.xml;.SpreadsheetUI.xml;.SyntaxEditor.xml;.VirtualGrid.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Data.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Data.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Diagrams.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Diagrams.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.CMapUtils.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.CMapUtils.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.DrawingML.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.DrawingML.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Fixed.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Fixed.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.dll": {
             "related": ".FormatProviders.Doc.xml;.FormatProviders.Pdf.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.dll": {
             "related": ".DataGrid.xml;.RadGridView.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.dll": {
             "related": ".FormatProviders.OpenXml.xml;.FormatProviders.Pdf.xml;.FormatProviders.Xls.xml;.xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.MediaFoundation.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.MediaFoundation.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.PersistenceFramework.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.PersistenceFramework.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Scheduling.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Scheduling.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.SyntaxEditor.Core.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.SyntaxEditor.Core.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Zip.Extensions.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Zip.Extensions.dll": {
             "related": ".xml"
           },
-          "lib/net7.0-windows/Telerik.Windows.Zip.dll": {
+          "lib/netcoreapp3.1/Telerik.Windows.Zip.dll": {
             "related": ".Extensions.xml;.xml"
           }
         },
         "resource": {
-          "lib/net7.0-windows/de/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/de/Telerik.Windows.Controls.resources.dll": {
             "locale": "de"
           },
-          "lib/net7.0-windows/es/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/es/Telerik.Windows.Controls.resources.dll": {
             "locale": "es"
           },
-          "lib/net7.0-windows/fr/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/fr/Telerik.Windows.Controls.resources.dll": {
             "locale": "fr"
           },
-          "lib/net7.0-windows/it/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/it/Telerik.Windows.Controls.resources.dll": {
             "locale": "it"
           },
-          "lib/net7.0-windows/nl/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/nl/Telerik.Windows.Controls.resources.dll": {
             "locale": "nl"
           },
-          "lib/net7.0-windows/tr/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/tr/Telerik.Windows.Controls.resources.dll": {
             "locale": "tr"
           }
         }
@@ -1530,7 +1545,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "CommunityToolkit.Mvvm": "8.3.2",
           "FluentValidation": "12.1.0"
         },
         "compile": {
@@ -1562,47 +1576,6 @@
     }
   },
   "libraries": {
-    "CommunityToolkit.Mvvm/8.3.2": {
-      "sha512": "m8EolE1A0Updj68WTsZSGI6VWb6mUqHPh7QFo0kt7+JPhYMNXRS1ch8TS/oITAdcxTLrwMOp3ku1KjeG1/Zdpg==",
-      "type": "package",
-      "path": "communitytoolkit.mvvm/8.3.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "License.md",
-        "ThirdPartyNotices.txt",
-        "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
-        "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
-        "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
-        "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
-        "build/CommunityToolkit.Mvvm.FeatureSwitches.targets",
-        "build/CommunityToolkit.Mvvm.SourceGenerators.targets",
-        "build/CommunityToolkit.Mvvm.WindowsSdk.targets",
-        "build/CommunityToolkit.Mvvm.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.FeatureSwitches.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.SourceGenerators.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.WindowsSdk.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.targets",
-        "communitytoolkit.mvvm.8.3.2.nupkg.sha512",
-        "communitytoolkit.mvvm.nuspec",
-        "lib/net6.0/CommunityToolkit.Mvvm.dll",
-        "lib/net6.0/CommunityToolkit.Mvvm.pdb",
-        "lib/net6.0/CommunityToolkit.Mvvm.xml",
-        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.dll",
-        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.pdb",
-        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.xml",
-        "lib/net8.0/CommunityToolkit.Mvvm.dll",
-        "lib/net8.0/CommunityToolkit.Mvvm.pdb",
-        "lib/net8.0/CommunityToolkit.Mvvm.xml",
-        "lib/netstandard2.0/CommunityToolkit.Mvvm.dll",
-        "lib/netstandard2.0/CommunityToolkit.Mvvm.pdb",
-        "lib/netstandard2.0/CommunityToolkit.Mvvm.xml",
-        "lib/netstandard2.1/CommunityToolkit.Mvvm.dll",
-        "lib/netstandard2.1/CommunityToolkit.Mvvm.pdb",
-        "lib/netstandard2.1/CommunityToolkit.Mvvm.xml"
-      ]
-    },
     "FluentValidation/12.1.0": {
       "sha512": "FqWEn8BdbbFEHGanj9K8SVo+LyBeFWy2rolaE+e1TNUbifr8M7Iss+I1AqTSc8kjKtvjl/WN4XIHiRpslh42bA==",
       "type": "package",
@@ -1660,46 +1633,97 @@
         "mapster.dependencyinjection.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore/7.0.0": {
-      "sha512": "9W+IfmAzMrp2ZpKZLhgTlWljSBM9Erldis1us61DAGi+L7Q6vilTbe1G2zDxtYO8F2H0I0Qnupdx5Cp4s2xoZw==",
+    "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+      "sha512": "yuvf07qFWFqtK3P/MRkEKLhn5r2UbSpVueRziSqj0yJQIKFwG1pq9mOayK3zE5qZCTs0CbrwL9M6R8VwqyGy2w==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/7.0.0",
+      "path": "microsoft.bcl.asyncinterfaces/1.1.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "buildTransitive/net6.0/Microsoft.EntityFrameworkCore.props",
-        "lib/net6.0/Microsoft.EntityFrameworkCore.dll",
-        "lib/net6.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.7.0.0.nupkg.sha512",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Bcl.AsyncInterfaces.dll",
+        "lib/net461/Microsoft.Bcl.AsyncInterfaces.xml",
+        "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+        "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.xml",
+        "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+        "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.xml",
+        "microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
+        "microsoft.bcl.asyncinterfaces.nuspec",
+        "ref/net461/Microsoft.Bcl.AsyncInterfaces.dll",
+        "ref/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+        "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Microsoft.Bcl.HashCode/1.1.0": {
+      "sha512": "J2G1k+u5unBV+aYcwxo94ip16Rkp65pgWFb0R6zwJipzWNMgvqlWeuI7/+R+e8bob66LnSG+llLJ+z8wI94cHg==",
+      "type": "package",
+      "path": "microsoft.bcl.hashcode/1.1.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net461/Microsoft.Bcl.HashCode.dll",
+        "lib/net461/Microsoft.Bcl.HashCode.xml",
+        "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.dll",
+        "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.xml",
+        "lib/netstandard2.0/Microsoft.Bcl.HashCode.dll",
+        "lib/netstandard2.0/Microsoft.Bcl.HashCode.xml",
+        "lib/netstandard2.1/Microsoft.Bcl.HashCode.dll",
+        "lib/netstandard2.1/Microsoft.Bcl.HashCode.xml",
+        "microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
+        "microsoft.bcl.hashcode.nuspec",
+        "ref/net461/Microsoft.Bcl.HashCode.dll",
+        "ref/netcoreapp2.1/Microsoft.Bcl.HashCode.dll",
+        "ref/netstandard2.0/Microsoft.Bcl.HashCode.dll",
+        "ref/netstandard2.1/Microsoft.Bcl.HashCode.dll",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
+    "Microsoft.EntityFrameworkCore/3.1.5": {
+      "sha512": "1jYVmK8dMKGhtMMrtw0hicRjAJq8hnFSuXHdJTIGa04UVWFvsMFwWsdO3Y1ziCLgR2xM7u5AgUcFLGbV0t9cOg==",
+      "type": "package",
+      "path": "microsoft.entityframeworkcore/3.1.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.dll",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.xml",
+        "microsoft.entityframeworkcore.3.1.5.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/7.0.0": {
-      "sha512": "Pfu3Zjj5+d2Gt27oE9dpGiF/VobBB+s5ogrfI9sBsXQE1SG49RqVz5+IyeNnzhyejFrPIQsPDRMchhcojy4Hbw==",
+    "Microsoft.EntityFrameworkCore.Abstractions/3.1.5": {
+      "sha512": "xZ3mUVu22p2h0ZKTWgoyK9YjA2H11cJcZssDcZYs8iLUVHPxMcb+ITOKpMdnV6SkEiQQ5pvjPXQ5J7VxiGSwDw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/7.0.0",
+      "path": "microsoft.entityframeworkcore.abstractions/3.1.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
-        "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
+        "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
+        "microsoft.entityframeworkcore.abstractions.3.1.5.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/7.0.0": {
-      "sha512": "Qkd2H+jLe37o5ku+LjT6qf7kAHY75Yfn2bBDQgqr13DTOLYpEy1Mt93KPFjaZvIu/srEcbfGGMRL7urKm5zN8Q==",
+    "Microsoft.EntityFrameworkCore.Analyzers/3.1.5": {
+      "sha512": "NhxlI6Qj/QUt79ApeBrpKo+a5TGt/UCddxd9rLHD7Zd6yLyfkDOMiyu4oPqhnMhpqmzo/gd79tW7BMwIxgEZCw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/7.0.0",
+      "path": "microsoft.entityframeworkcore.analyzers/3.1.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "lib/netstandard2.0/_._",
-        "microsoft.entityframeworkcore.analyzers.7.0.0.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.3.1.5.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
@@ -1732,31 +1756,20 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Caching.Memory/7.0.0": {
-      "sha512": "xpidBs2KCE2gw1JrD0quHE72kvCaI3xFql5/Peb2GRtUuZX+dYPoK/NTdVMiM67Svym0M0Df9A3xyU0FbMQhHw==",
+    "Microsoft.Extensions.Caching.Memory/3.1.5": {
+      "sha512": "tqnVZ/tyXiBAEeLtcTvyb/poVp/gn6bbpdr12SAbO4TcfNkd1eNCEbyyABo0qhiQh6vVwba41aixklElx4grdw==",
       "type": "package",
-      "path": "microsoft.extensions.caching.memory/7.0.0",
+      "path": "microsoft.extensions.caching.memory/3.1.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
-        "LICENSE.TXT",
-        "THIRD-PARTY-NOTICES.TXT",
-        "buildTransitive/net461/Microsoft.Extensions.Caching.Memory.targets",
-        "buildTransitive/net462/_._",
-        "buildTransitive/net6.0/_._",
-        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.Caching.Memory.targets",
-        "lib/net462/Microsoft.Extensions.Caching.Memory.dll",
-        "lib/net462/Microsoft.Extensions.Caching.Memory.xml",
-        "lib/net6.0/Microsoft.Extensions.Caching.Memory.dll",
-        "lib/net6.0/Microsoft.Extensions.Caching.Memory.xml",
-        "lib/net7.0/Microsoft.Extensions.Caching.Memory.dll",
-        "lib/net7.0/Microsoft.Extensions.Caching.Memory.xml",
+        "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll",
+        "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.xml",
-        "microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
-        "microsoft.extensions.caching.memory.nuspec",
-        "useSharedDesignerContext.txt"
+        "microsoft.extensions.caching.memory.3.1.5.nupkg.sha512",
+        "microsoft.extensions.caching.memory.nuspec"
       ]
     },
     "Microsoft.Extensions.Configuration/10.0.0": {
@@ -3144,6 +3157,95 @@
         "sharpdx.mathematics.nuspec"
       ]
     },
+    "System.ComponentModel.Annotations/4.7.0": {
+      "sha512": "0YFqjhp/mYkDGpU0Ye1GjE53HMp9UVfGN7seGpAMttAC0C40v5gw598jCgpbBLMmCo0E5YRLBv5Z2doypO49ZQ==",
+      "type": "package",
+      "path": "system.componentmodel.annotations/4.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net45/_._",
+        "lib/net461/System.ComponentModel.Annotations.dll",
+        "lib/netcore50/System.ComponentModel.Annotations.dll",
+        "lib/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "lib/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "lib/portable-net45+win8/_._",
+        "lib/win8/_._",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net45/_._",
+        "ref/net461/System.ComponentModel.Annotations.dll",
+        "ref/net461/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/System.ComponentModel.Annotations.dll",
+        "ref/netcore50/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/de/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/es/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/fr/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/it/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ja/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ko/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/ru/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netcore50/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.1/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.1/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.3/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.3/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.dll",
+        "ref/netstandard1.4/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/de/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/es/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/fr/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/it/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ja/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ko/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/ru/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hans/System.ComponentModel.Annotations.xml",
+        "ref/netstandard1.4/zh-hant/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.0/System.ComponentModel.Annotations.xml",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.dll",
+        "ref/netstandard2.1/System.ComponentModel.Annotations.xml",
+        "ref/portable-net45+win8/_._",
+        "ref/win8/_._",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._",
+        "system.componentmodel.annotations.4.7.0.nupkg.sha512",
+        "system.componentmodel.annotations.nuspec",
+        "useSharedDesignerContext.txt",
+        "version.txt"
+      ]
+    },
     "System.IdentityModel.Tokens.Jwt/8.17.0": {
       "sha512": "nKikRYheDeSaXA3wGr2otwaiRFygBa25m+hc7MEomZVIEWZvKVqd8wgP9yn+8QpLRGgw//dUs4LErGx9gtVmAA==",
       "type": "package",
@@ -3170,10 +3272,10 @@
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
-    "Telerik.UI.for.Wpf.70.Xaml/2023.1.117": {
-      "sha512": "QqZ9R7chaccgAt06ra1p8+AF7m9GSsWLULmY2vv8Xfg5brqtzvrfgABXaGGj1aDDFfcUdeV1Y9jnoAzAtdEVzw==",
+    "Telerik.UI.for.Wpf.NetCore.Xaml/2023.1.117": {
+      "sha512": "8mXutB5r+IRNWzDqk4uADdAVeZQWzppY9XHZ7sAmA9pcHuDsIN2JtTR7G6Gt7gSTGDCejXMh72txHA0GXWQ0KQ==",
       "type": "package",
-      "path": "telerik.ui.for.wpf.70.xaml/2023.1.117",
+      "path": "telerik.ui.for.wpf.netcore.xaml/2023.1.117",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
@@ -3183,174 +3285,174 @@
         "LicenseAgreements/ThirdParty/Progress Telerik UI for WPF - notices.txt",
         "LicenseAgreements/ThirdParty/SpecFlow.txt",
         "images/wpf.png",
-        "lib/net7.0-windows/Design/Telerik.Windows.Cloud.Controls.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Chart.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.ConversationalUI.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Data.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.DataServices.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.DataVisualization.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Diagrams.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Diagrams.Extensions.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Diagrams.Ribbon.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Docking.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.EntityFrameworkCore.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Expressions.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.FileDialogs.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.FixedDocumentViewers.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.FixedDocumentViewersUI.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.GanttView.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.GridView.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.ImageEditor.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Input.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Media.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Navigation.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Pivot.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.PivotFieldList.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.RibbonView.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.RichTextBox.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.ScheduleView.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.Spreadsheet.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.SpreadsheetUI.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.SyntaxEditor.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Controls.VirtualGrid.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.Core.DesignTools.dll",
-        "lib/net7.0-windows/Design/Telerik.Windows.SuggestedActions.DesignTools.dll",
-        "lib/net7.0-windows/MediaFoundation.dll",
-        "lib/net7.0-windows/Telerik.Documents.SpreadsheetStreaming.dll",
-        "lib/net7.0-windows/Telerik.Documents.SpreadsheetStreaming.xml",
-        "lib/net7.0-windows/Telerik.Pivot.Core.dll",
-        "lib/net7.0-windows/Telerik.Pivot.Core.xml",
-        "lib/net7.0-windows/Telerik.Pivot.DataProviders.Adomd.dll",
-        "lib/net7.0-windows/Telerik.Pivot.DataProviders.Adomd.xml",
-        "lib/net7.0-windows/Telerik.Pivot.DataProviders.Queryable.dll",
-        "lib/net7.0-windows/Telerik.Pivot.DataProviders.Queryable.xml",
-        "lib/net7.0-windows/Telerik.Pivot.DataProviders.Xmla.dll",
-        "lib/net7.0-windows/Telerik.Pivot.DataProviders.Xmla.xml",
-        "lib/net7.0-windows/Telerik.Windows.Cloud.Controls.dll",
-        "lib/net7.0-windows/Telerik.Windows.Cloud.Controls.xml",
-        "lib/net7.0-windows/Telerik.Windows.Cloud.dll",
-        "lib/net7.0-windows/Telerik.Windows.Cloud.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Chart.Direct2D.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Chart.Direct2D.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Chart.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Chart.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Charting.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Charting.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.ConversationalUI.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.ConversationalUI.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Data.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Data.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.DataServices.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.DataServices.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.DataVisualization.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.DataVisualization.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Extensions.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Extensions.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Ribbon.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Ribbon.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Docking.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Docking.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.EntityFrameworkCore.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.EntityFrameworkCore.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Expressions.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Expressions.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.FileDialogs.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.FileDialogs.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewers.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewers.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewersUI.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewersUI.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.GanttView.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.GanttView.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.GridView.Export.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.GridView.Export.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.GridView.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.GridView.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.ImageEditor.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.ImageEditor.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Input.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Input.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Media.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Media.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Navigation.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Navigation.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Pivot.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Pivot.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.PivotFieldList.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.PivotFieldList.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.RibbonView.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.RibbonView.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.RichTextBox.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.RichTextBox.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.ScheduleView.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.ScheduleView.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Spreadsheet.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.Spreadsheet.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.SpreadsheetUI.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.SpreadsheetUI.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.SyntaxEditor.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.SyntaxEditor.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.VirtualGrid.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.VirtualGrid.xml",
-        "lib/net7.0-windows/Telerik.Windows.Controls.dll",
-        "lib/net7.0-windows/Telerik.Windows.Controls.xml",
-        "lib/net7.0-windows/Telerik.Windows.Data.dll",
-        "lib/net7.0-windows/Telerik.Windows.Data.xml",
-        "lib/net7.0-windows/Telerik.Windows.Diagrams.Core.dll",
-        "lib/net7.0-windows/Telerik.Windows.Diagrams.Core.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.CMapUtils.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.CMapUtils.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Core.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Core.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.DrawingML.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.DrawingML.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Fixed.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Fixed.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Doc.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Flow.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Flow.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.DataGrid.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.DataGrid.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.RadGridView.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.RadGridView.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.xml",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.dll",
-        "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.xml",
-        "lib/net7.0-windows/Telerik.Windows.MediaFoundation.dll",
-        "lib/net7.0-windows/Telerik.Windows.MediaFoundation.xml",
-        "lib/net7.0-windows/Telerik.Windows.PersistenceFramework.dll",
-        "lib/net7.0-windows/Telerik.Windows.PersistenceFramework.xml",
-        "lib/net7.0-windows/Telerik.Windows.Scheduling.Core.dll",
-        "lib/net7.0-windows/Telerik.Windows.Scheduling.Core.xml",
-        "lib/net7.0-windows/Telerik.Windows.SyntaxEditor.Core.dll",
-        "lib/net7.0-windows/Telerik.Windows.SyntaxEditor.Core.xml",
-        "lib/net7.0-windows/Telerik.Windows.Zip.Extensions.dll",
-        "lib/net7.0-windows/Telerik.Windows.Zip.Extensions.xml",
-        "lib/net7.0-windows/Telerik.Windows.Zip.dll",
-        "lib/net7.0-windows/Telerik.Windows.Zip.xml",
-        "lib/net7.0-windows/de/Telerik.Windows.Controls.resources.dll",
-        "lib/net7.0-windows/es/Telerik.Windows.Controls.resources.dll",
-        "lib/net7.0-windows/fr/Telerik.Windows.Controls.resources.dll",
-        "lib/net7.0-windows/it/Telerik.Windows.Controls.resources.dll",
-        "lib/net7.0-windows/nl/Telerik.Windows.Controls.resources.dll",
-        "lib/net7.0-windows/tr/Telerik.Windows.Controls.resources.dll",
-        "telerik.ui.for.wpf.70.xaml.2023.1.117.nupkg.sha512",
-        "telerik.ui.for.wpf.70.xaml.nuspec",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Cloud.Controls.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Chart.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.ConversationalUI.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Data.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.DataServices.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.DataVisualization.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Diagrams.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Diagrams.Extensions.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Diagrams.Ribbon.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Docking.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.EntityFrameworkCore.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Expressions.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.FileDialogs.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.FixedDocumentViewers.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.FixedDocumentViewersUI.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.GanttView.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.GridView.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.ImageEditor.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Input.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Media.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Navigation.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Pivot.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.PivotFieldList.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.RibbonView.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.RichTextBox.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.ScheduleView.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.Spreadsheet.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.SpreadsheetUI.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.SyntaxEditor.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Controls.VirtualGrid.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.Core.DesignTools.dll",
+        "lib/netcoreapp3.1/Design/Telerik.Windows.SuggestedActions.DesignTools.dll",
+        "lib/netcoreapp3.1/MediaFoundation.dll",
+        "lib/netcoreapp3.1/Telerik.Documents.SpreadsheetStreaming.dll",
+        "lib/netcoreapp3.1/Telerik.Documents.SpreadsheetStreaming.xml",
+        "lib/netcoreapp3.1/Telerik.Pivot.Core.dll",
+        "lib/netcoreapp3.1/Telerik.Pivot.Core.xml",
+        "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Adomd.dll",
+        "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Adomd.xml",
+        "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Queryable.dll",
+        "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Queryable.xml",
+        "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Xmla.dll",
+        "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Xmla.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Cloud.Controls.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Cloud.Controls.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Cloud.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Cloud.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.Direct2D.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.Direct2D.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Charting.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Charting.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.ConversationalUI.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.ConversationalUI.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Data.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Data.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.DataServices.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.DataServices.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.DataVisualization.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.DataVisualization.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Extensions.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Extensions.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Ribbon.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Ribbon.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Docking.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Docking.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.EntityFrameworkCore.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.EntityFrameworkCore.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Expressions.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Expressions.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.FileDialogs.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.FileDialogs.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewers.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewers.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewersUI.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewersUI.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.GanttView.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.GanttView.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.Export.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.Export.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.ImageEditor.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.ImageEditor.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Input.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Input.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Media.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Media.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Navigation.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Navigation.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Pivot.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Pivot.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.PivotFieldList.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.PivotFieldList.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.RibbonView.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.RibbonView.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.RichTextBox.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.RichTextBox.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.ScheduleView.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.ScheduleView.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Spreadsheet.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.Spreadsheet.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.SpreadsheetUI.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.SpreadsheetUI.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.SyntaxEditor.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.SyntaxEditor.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.VirtualGrid.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.VirtualGrid.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Controls.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Data.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Data.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Diagrams.Core.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Diagrams.Core.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.CMapUtils.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.CMapUtils.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Core.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Core.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.DrawingML.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.DrawingML.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Fixed.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Fixed.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Doc.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.DataGrid.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.DataGrid.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.RadGridView.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.RadGridView.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.MediaFoundation.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.MediaFoundation.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.PersistenceFramework.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.PersistenceFramework.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Scheduling.Core.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Scheduling.Core.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.SyntaxEditor.Core.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.SyntaxEditor.Core.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Zip.Extensions.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Zip.Extensions.xml",
+        "lib/netcoreapp3.1/Telerik.Windows.Zip.dll",
+        "lib/netcoreapp3.1/Telerik.Windows.Zip.xml",
+        "lib/netcoreapp3.1/de/Telerik.Windows.Controls.resources.dll",
+        "lib/netcoreapp3.1/es/Telerik.Windows.Controls.resources.dll",
+        "lib/netcoreapp3.1/fr/Telerik.Windows.Controls.resources.dll",
+        "lib/netcoreapp3.1/it/Telerik.Windows.Controls.resources.dll",
+        "lib/netcoreapp3.1/nl/Telerik.Windows.Controls.resources.dll",
+        "lib/netcoreapp3.1/tr/Telerik.Windows.Controls.resources.dll",
+        "telerik.ui.for.wpf.netcore.xaml.2023.1.117.nupkg.sha512",
+        "telerik.ui.for.wpf.netcore.xaml.nuspec",
         "tools/VisualStudioToolsManifest.xml"
       ]
     },
@@ -3372,7 +3474,6 @@
   },
   "projectFileDependencyGroups": {
     "net10.0-windows7.0": [
-      "CommunityToolkit.Mvvm >= 8.3.2",
       "Mapster >= 7.4.0",
       "Mapster.DependencyInjection >= 1.0.1",
       "Microsoft.Extensions.Configuration.Json >= 10.0.0",
@@ -3380,29 +3481,32 @@
       "Microsoft.Extensions.Hosting >= 10.0.0",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.135",
       "SA.Accounting.Application >= 1.0.0",
-      "Telerik.UI.for.Wpf.70.Xaml >= 2023.1.117"
+      "Telerik.UI.for.Wpf.NetCore.Xaml >= 2023.1.117"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\shrif\\.nuget\\packages\\": {},
+    "C:\\Users\\Sherif Dahy\\.nuget\\packages\\": {},
+    "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\SA.Accounting.WPF.csproj",
+      "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\SA.Accounting.WPF.csproj",
       "projectName": "SA.Accounting.WPF",
-      "projectPath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\SA.Accounting.WPF.csproj",
-      "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-      "outputPath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\obj\\",
+      "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\SA.Accounting.WPF.csproj",
+      "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+      "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -3412,6 +3516,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+        "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -3419,8 +3525,8 @@
           "framework": "net10.0-windows7.0",
           "targetAlias": "net10.0-windows",
           "projectReferences": {
-            "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj": {
-              "projectPath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj"
+            "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj": {
+              "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj"
             }
           }
         }
@@ -3442,10 +3548,6 @@
         "framework": "net10.0-windows7.0",
         "targetAlias": "net10.0-windows",
         "dependencies": {
-          "CommunityToolkit.Mvvm": {
-            "target": "Package",
-            "version": "[8.3.2, )"
-          },
           "Mapster": {
             "target": "Package",
             "version": "[7.4.0, )"
@@ -3470,7 +3572,7 @@
             "target": "Package",
             "version": "[1.1.135, )"
           },
-          "Telerik.UI.for.Wpf.70.Xaml": {
+          "Telerik.UI.for.Wpf.NetCore.Xaml": {
             "target": "Package",
             "version": "[2023.1.117, )"
           }
@@ -3494,7 +3596,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

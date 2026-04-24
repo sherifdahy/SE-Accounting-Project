@@ -1,0 +1,539 @@
+﻿<UserControl
+    x:Class="SA.Accounting.WPF.Views.CreatePlatformView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+    mc:Ignorable="d"
+    FlowDirection="RightToLeft"
+    Background="{StaticResource SurfaceHoverBrush}"
+    d:DesignWidth="860">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="24,20,24,32">
+
+            <!-- ══════ Page Header ══════ -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <Border Width="42" Height="42"
+                        Background="{StaticResource PrimaryBrush}"
+                        CornerRadius="{StaticResource RadiusXl}"
+                        Margin="0,0,12,0">
+                    <TextBlock Text="🌐" FontSize="20"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="إنشاء منصة جديدة"
+                               Style="{StaticResource PageHeaderTitle}"/>
+                    <TextBlock Text="قم بتعبئة البيانات التالية لتسجيل منصة جديدة في النظام"
+                               Style="{StaticResource PageHeaderSubtitle}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- ══════ بيانات المنصة ══════ -->
+            <Border Style="{StaticResource SectionCard}">
+                <StackPanel>
+
+                    <!-- Section Header -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                        <Border Style="{StaticResource SectionIndicator}"
+                                Background="{StaticResource TextPrimaryBrush}"/>
+                        <StackPanel>
+                            <TextBlock Text="بيانات المنصة"
+                                       Style="{StaticResource SectionLabel}"/>
+                            <TextBlock Text="المعلومات الأساسية للمنصة"
+                                       Style="{StaticResource SectionSubtext}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Row 1: Name + Url -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- اسم المنصة -->
+                        <StackPanel Grid.Column="0">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Text="اسم المنصة"
+                                           Style="{StaticResource InputLabel}" Margin="0"/>
+                                <TextBlock Style="{StaticResource RequiredStar}"/>
+                            </StackPanel>
+                            <telerik:RadWatermarkTextBox
+                                x:Name="NameBox"
+                                Text="{Binding Name, Mode=TwoWay,
+                                       UpdateSourceTrigger=PropertyChanged,
+                                       ValidatesOnNotifyDataErrors=True}"
+                                WatermarkContent="أدخل اسم المنصة"
+                                Style="{StaticResource InputDefault}"
+                                Validation.ErrorTemplate="{x:Null}"/>
+                            <TextBlock Style="{StaticResource ValidationError}"
+                                       Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                              ElementName=NameBox}"
+                                       Visibility="{Binding (Validation.HasError),
+                                                    ElementName=NameBox,
+                                                    Converter={StaticResource BoolToVis}}"/>
+                        </StackPanel>
+
+                        <!-- رابط المنصة -->
+                        <StackPanel Grid.Column="2">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Text="رابط المنصة"
+                                           Style="{StaticResource InputLabel}" Margin="0"/>
+                                <TextBlock Style="{StaticResource RequiredStar}"/>
+                            </StackPanel>
+                            <telerik:RadWatermarkTextBox
+                                x:Name="UrlBox"
+                                Text="{Binding Url, Mode=TwoWay,
+                                       UpdateSourceTrigger=PropertyChanged,
+                                       ValidatesOnNotifyDataErrors=True}"
+                                WatermarkContent="https://example.com"
+                                Style="{StaticResource InputDefault}"
+                                FlowDirection="LeftToRight"
+                                HorizontalContentAlignment="Left"
+                                Validation.ErrorTemplate="{x:Null}"/>
+                            <TextBlock Style="{StaticResource ValidationError}"
+                                       Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                              ElementName=UrlBox}"
+                                       Visibility="{Binding (Validation.HasError),
+                                                    ElementName=UrlBox,
+                                                    Converter={StaticResource BoolToVis}}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Row 2: ImageUrl + Preview -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- رابط الصورة -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="رابط الصورة (اختياري)"
+                                       Style="{StaticResource InputLabel}"/>
+                            <telerik:RadWatermarkTextBox
+                                x:Name="ImageUrlBox"
+                                Text="{Binding ImageUrl, Mode=TwoWay,
+                                       UpdateSourceTrigger=PropertyChanged,
+                                       ValidatesOnNotifyDataErrors=True}"
+                                WatermarkContent="https://example.com/logo.png"
+                                Style="{StaticResource InputDefault}"
+                                FlowDirection="LeftToRight"
+                                HorizontalContentAlignment="Left"
+                                Validation.ErrorTemplate="{x:Null}"/>
+                            <TextBlock Style="{StaticResource ValidationError}"
+                                       Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                              ElementName=ImageUrlBox}"
+                                       Visibility="{Binding (Validation.HasError),
+                                                    ElementName=ImageUrlBox,
+                                                    Converter={StaticResource BoolToVis}}"/>
+                        </StackPanel>
+
+                        <!-- معاينة الصورة -->
+                        <StackPanel Grid.Column="2" VerticalAlignment="Bottom">
+                            <Border Background="{StaticResource InputBackgroundBrush}"
+                                    BorderBrush="{StaticResource BorderDefaultBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="{StaticResource RadiusLg}"
+                                    Height="{StaticResource InputHeightLg}"
+                                    Padding="8,0">
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+
+                                    <Image Source="{Binding ImageUrl}"
+                                           MaxHeight="24" MaxWidth="24"
+                                           Stretch="Uniform" Margin="0,0,8,0"
+                                           RenderOptions.BitmapScalingMode="HighQuality">
+                                        <Image.Style>
+                                            <Style TargetType="Image">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+
+                                    <TextBlock Text="🖼️" FontSize="14"
+                                               VerticalAlignment="Center"
+                                               Margin="0,0,6,0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+
+                                    <TextBlock FontSize="{StaticResource FontSizeSm}"
+                                               Foreground="{StaticResource TextPlaceholderBrush}"
+                                               VerticalAlignment="Center">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="معاينة الصورة"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="">
+                                                        <Setter Property="Text" Value="لم يتم إدخال رابط"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ImageUrl}" Value="{x:Null}">
+                                                        <Setter Property="Text" Value="لم يتم إدخال رابط"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ══════ المحددات (Selectors) ══════ -->
+            <Border Style="{StaticResource SectionCard}">
+                <StackPanel>
+
+                    <!-- Section Header -->
+                    <Grid Margin="0,0,0,14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <Border Style="{StaticResource SectionIndicator}"
+                                    Background="{StaticResource InfoBrush}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="المحددات (Selectors)"
+                                               Style="{StaticResource SectionLabel}"/>
+                                    <Border Background="{StaticResource InfoLightBrush}"
+                                            CornerRadius="{StaticResource RadiusXl}"
+                                            Padding="7,1" Margin="6,0,0,0"
+                                            VerticalAlignment="Center">
+                                        <TextBlock Text="{Binding Selectors.Count}"
+                                                   FontSize="{StaticResource FontSizeXs}"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource InfoDarkBrush}"/>
+                                    </Border>
+                                </StackPanel>
+                                <TextBlock Text="أضف محددات العناصر المرتبطة بالمنصة — الترتيب يحدد الأولوية"
+                                           Style="{StaticResource SectionSubtext}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button Grid.Column="1"
+                                Style="{StaticResource BtnPrimary}"
+                                Command="{Binding AddSelectorCommand}"
+                                Height="{StaticResource InputHeightMd}">
+                            <StackPanel Orientation="Horizontal" Margin="2,0">
+                                <TextBlock Text="+" FontSize="14" FontWeight="Bold"
+                                           Foreground="White" VerticalAlignment="Center"
+                                           Margin="0,0,5,0"/>
+                                <TextBlock Text="إضافة محدد"
+                                           FontSize="{StaticResource FontSizeMd}"
+                                           FontWeight="SemiBold" Foreground="White"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <!-- Selectors List -->
+                    <ItemsControl ItemsSource="{Binding Selectors}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardRow}"
+                                        Margin="0,0,0,8">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="12"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <!-- ═══ Reorder Column ═══ -->
+                                        <StackPanel Grid.Column="0"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"
+                                                    Width="44">
+
+                                            <!-- Move Up -->
+                                            <Button Style="{StaticResource BtnReorder}"
+                                                    Command="{Binding DataContext.MoveSelectorUpCommand,
+                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    ToolTip="نقل لأعلى"
+                                                    Margin="0,0,0,2">
+                                                <TextBlock Text="▲"
+                                                           FontSize="{StaticResource FontSizeXs}"
+                                                           Foreground="{StaticResource TextMutedBrush}"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                            </Button>
+
+                                            <!-- Priority Badge -->
+                                            <Border Background="{StaticResource InfoLightBrush}"
+                                                    CornerRadius="{StaticResource RadiusMd}"
+                                                    Padding="6,3"
+                                                    HorizontalAlignment="Center"
+                                                    Margin="0,2">
+                                                <TextBlock Text="{Binding DisplayOrder}"
+                                                           FontSize="{StaticResource FontSizeMd}"
+                                                           FontWeight="Bold"
+                                                           Foreground="{StaticResource InfoDarkBrush}"
+                                                           HorizontalAlignment="Center"/>
+                                            </Border>
+
+                                            <!-- Move Down -->
+                                            <Button Style="{StaticResource BtnReorder}"
+                                                    Command="{Binding DataContext.MoveSelectorDownCommand,
+                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    ToolTip="نقل لأسفل"
+                                                    Margin="0,2,0,0">
+                                                <TextBlock Text="▼"
+                                                           FontSize="{StaticResource FontSizeXs}"
+                                                           Foreground="{StaticResource TextMutedBrush}"
+                                                           HorizontalAlignment="Center"
+                                                           VerticalAlignment="Center"/>
+                                            </Button>
+                                        </StackPanel>
+
+                                        <!-- ═══ Selector Content ═══ -->
+                                        <Grid Grid.Column="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="8"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Row 1: Value + Remove -->
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="8"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel Grid.Column="0">
+                                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                                        <TextBlock Text="القيمة (Value)"
+                                                                   Style="{StaticResource RowLabel}" Margin="0"/>
+                                                        <TextBlock Style="{StaticResource RequiredStar}"/>
+                                                    </StackPanel>
+                                                    <telerik:RadWatermarkTextBox
+                                                        x:Name="ValueBox"
+                                                        Text="{Binding Value, Mode=TwoWay,
+                                                               UpdateSourceTrigger=PropertyChanged,
+                                                               ValidatesOnNotifyDataErrors=True}"
+                                                        WatermarkContent="مثال: login-btn"
+                                                        Style="{StaticResource InputSm}"
+                                                        FlowDirection="LeftToRight"
+                                                        HorizontalContentAlignment="Left"
+                                                        Validation.ErrorTemplate="{x:Null}"/>
+                                                    <TextBlock Style="{StaticResource ValidationError}"
+                                                               Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                                                      ElementName=ValueBox}"
+                                                               Visibility="{Binding (Validation.HasError),
+                                                                            ElementName=ValueBox,
+                                                                            Converter={StaticResource BoolToVis}}"/>
+                                                </StackPanel>
+
+                                                <Button Grid.Column="2"
+                                                        Style="{StaticResource BtnIcon}"
+                                                        VerticalAlignment="Center"
+                                                        Command="{Binding DataContext.RemoveSelectorCommand,
+                                                                  RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        CommandParameter="{Binding}">
+                                                    <TextBlock Text="🗑️" FontSize="13"/>
+                                                </Button>
+                                            </Grid>
+
+                                            <!-- Row 2: ContentType + Type -->
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="12"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!-- Content Type -->
+                                                <StackPanel Grid.Column="0">
+                                                    <TextBlock Text="نوع المحتوى"
+                                                               Style="{StaticResource RowLabel}"/>
+                                                    <telerik:RadComboBox
+                                                        x:Name="ContentTypeBox"
+                                                        SelectedItem="{Binding ContentType,
+                                                                       Mode=TwoWay,
+                                                                       ValidatesOnNotifyDataErrors=True}"
+                                                        ItemsSource="{Binding DataContext.ContentTypes,
+                                                                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        Style="{StaticResource ModernComboBoxStyle}"
+                                                        Validation.ErrorTemplate="{x:Null}">
+                                                        <telerik:RadComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock>
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="TextBlock">
+                                                                            <Setter Property="Text" Value="{Binding}"/>
+                                                                            <Style.Triggers>
+                                                                                <DataTrigger Binding="{Binding}" Value="Data">
+                                                                                    <Setter Property="Text" Value="بيانات (Data)"/>
+                                                                                </DataTrigger>
+                                                                                <DataTrigger Binding="{Binding}" Value="Action">
+                                                                                    <Setter Property="Text" Value="إجراء (Action)"/>
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </TextBlock.Style>
+                                                                </TextBlock>
+                                                            </DataTemplate>
+                                                        </telerik:RadComboBox.ItemTemplate>
+                                                    </telerik:RadComboBox>
+                                                    <TextBlock Style="{StaticResource ValidationError}"
+                                                               Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                                                      ElementName=ContentTypeBox}"
+                                                               Visibility="{Binding (Validation.HasError),
+                                                                            ElementName=ContentTypeBox,
+                                                                            Converter={StaticResource BoolToVis}}"/>
+                                                </StackPanel>
+
+                                                <!-- Selector Type -->
+                                                <StackPanel Grid.Column="2">
+                                                    <TextBlock Text="نوع المحدد"
+                                                               Style="{StaticResource RowLabel}"/>
+                                                    <telerik:RadComboBox
+                                                        x:Name="TypeBox"
+                                                        SelectedItem="{Binding Type,
+                                                                       Mode=TwoWay,
+                                                                       ValidatesOnNotifyDataErrors=True}"
+                                                        ItemsSource="{Binding DataContext.SelectorTypes,
+                                                                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                        Style="{StaticResource ModernComboBoxStyle}"
+                                                        Validation.ErrorTemplate="{x:Null}">
+                                                        <telerik:RadComboBox.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <TextBlock>
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="TextBlock">
+                                                                            <Setter Property="Text" Value="{Binding}"/>
+                                                                            <Style.Triggers>
+                                                                                <DataTrigger Binding="{Binding}" Value="Id">
+                                                                                    <Setter Property="Text" Value="Id"/>
+                                                                                </DataTrigger>
+                                                                                <DataTrigger Binding="{Binding}" Value="Name">
+                                                                                    <Setter Property="Text" Value="Name"/>
+                                                                                </DataTrigger>
+                                                                                <DataTrigger Binding="{Binding}" Value="Class">
+                                                                                    <Setter Property="Text" Value="Class"/>
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </TextBlock.Style>
+                                                                </TextBlock>
+                                                            </DataTemplate>
+                                                        </telerik:RadComboBox.ItemTemplate>
+                                                    </telerik:RadComboBox>
+                                                    <TextBlock Style="{StaticResource ValidationError}"
+                                                               Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                                                      ElementName=TypeBox}"
+                                                               Visibility="{Binding (Validation.HasError),
+                                                                            ElementName=TypeBox,
+                                                                            Converter={StaticResource BoolToVis}}"/>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Empty State -->
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="Border" BasedOn="{StaticResource EmptyStateCard}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Selectors.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="🎯" FontSize="24"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,0,0,7"/>
+                            <TextBlock Text="لا توجد محددات حتى الآن"
+                                       FontSize="{StaticResource FontSizeMd}"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextSecondaryBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="اضغط &quot;+ إضافة محدد&quot; للبدء"
+                                       FontSize="{StaticResource FontSizeSm}"
+                                       Foreground="{StaticResource TextPlaceholderBrush}"
+                                       HorizontalAlignment="Center"
+                                       Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ══════ Action Buttons ══════ -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,6,0,0">
+
+                <Button Style="{StaticResource BtnOutline}"
+                        Width="100" Margin="0,0,10,0"
+                        Command="{Binding CancelCommand}">
+                    <TextBlock Text="إلغاء"
+                               FontSize="{StaticResource FontSizeMd}"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                </Button>
+
+                <telerik:RadButton Style="{StaticResource RadBtnPrimary}"
+                                   MinWidth="130" Height="34"
+                                   Command="{Binding SaveCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="✓" FontSize="13" Foreground="White"
+                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="حفظ المنصة"
+                                   FontSize="{StaticResource FontSizeMd}"
+                                   FontWeight="SemiBold" Foreground="White"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </telerik:RadButton>
+
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

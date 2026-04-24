@@ -1,58 +1,12 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|f:\\sa.accounting\\sa-accounting-front-end\\sa.accounting.wpf\\state\\authenticators\\authenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:state\\authenticators\\authenticator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|f:\\sa.accounting\\sa-accounting-front-end\\sa.accounting.wpf\\state\\navigators\\navigator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:state\\navigators\\navigator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "WorkspaceRootPath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\",
+  "Documents": [],
   "DocumentGroupContainers": [
     {
-      "Orientation": 0,
+      "Orientation": 1,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Authenticator.cs",
-              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\State\\Authenticators\\Authenticator.cs",
-              "RelativeDocumentMoniker": "State\\Authenticators\\Authenticator.cs",
-              "ToolTip": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\State\\Authenticators\\Authenticator.cs",
-              "RelativeToolTip": "State\\Authenticators\\Authenticator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T03:02:04.685Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Navigator.cs",
-              "DocumentMoniker": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\State\\Navigators\\Navigator.cs",
-              "RelativeDocumentMoniker": "State\\Navigators\\Navigator.cs",
-              "ToolTip": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.WPF\\State\\Navigators\\Navigator.cs",
-              "RelativeToolTip": "State\\Navigators\\Navigator.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-12T03:01:47.377Z",
-              "EditorCaption": ""
-            }
-          ]
-        }
-      ]
+      "DocumentGroups": []
     }
   ]
 }

@@ -1,35 +1,38 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SA.Accounting.Core.Contracts.Owner.Requests;
-using SA.Accounting.Core.Contracts.Owner.Validators;
-using SA.Accounting.Core;
-using System.Xml.Linq;
+﻿using SA.Accounting.Core.Contracts.Owner.Requests;
+using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.ViewModels.Base;
 
 namespace SA.Accounting.WPF.ViewModels.Owner;
 
-public sealed partial class UpdateOwnerViewModel
-    : ValidatableModel<UpdateOwnerRequest>
+public class UpdateOwnerViewModel : ValidatableViewModel<UpdateOwnerViewModel>
 {
-    // ─── Properties ──────────────────────────────
-    [ObservableProperty] private int _id;
-    [ObservableProperty] private string _name = string.Empty;
-    [ObservableProperty] private string _ssn = string.Empty;
+    private readonly IValidator<UpdateOwnerViewModel> _validator;
+    protected override IValidator<UpdateOwnerViewModel> Validator => _validator;
 
-    // ─── Constructor ─────────────────────────────
-    public UpdateOwnerViewModel()
-        : base(new UpdateOwnerRequestValidator()) { }
-
-    // ─── Validation hooks ────────────────────────
-    partial void OnNameChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Name));
-
-    partial void OnSsnChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Ssn));
-
-    // ─── Map to Request ──────────────────────────
-    public UpdateOwnerRequest ToRequest() => new()
+    public UpdateOwnerViewModel(IValidator<UpdateOwnerViewModel> validator)
     {
-        Id = Id,
-        Name = Name,
-        SSN = Ssn,
-    };
+        _validator = validator;
+    }
+
+    // ══════ Properties ══════
+    private int _id;
+    public int Id
+    {
+        get => _id;
+        set { _id = value; OnPropertyChanged(); }
+    }
+
+    private string _name = string.Empty;
+    public string Name
+    {
+        get => _name;
+        set { _name = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    private string _ssn = string.Empty;
+    public string SSN
+    {
+        get => _ssn;
+        set { _ssn = value; OnPropertyChanged(); ValidateProperty(); }
+    }
 }

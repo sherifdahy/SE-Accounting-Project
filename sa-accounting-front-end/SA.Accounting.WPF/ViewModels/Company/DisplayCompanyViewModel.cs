@@ -1,81 +1,127 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using Mapster;
 using SA.Accounting.Core.Contracts.Account.Responses;
 using SA.Accounting.Core.Contracts.Owner.Responses;
-using SA.Accounting.Infrastructure.Handlers;
-using SA.Accounting.Core.Interfaces;
+using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.Commands.Base;
+using SA.Accounting.WPF.Interfaces;
+using SA.Accounting.WPF.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Windows;
+using System.Windows.Input;
 
-namespace SA.Accounting.WPF.ViewModels.Company;
+namespace SA.Accounting.WPF.ViewModels;
 
-public sealed partial class DisplayCompanyViewModel : ObservableObject
+public class DisplayCompanyViewModel : ViewModelBase, IAsyncInitializable<int>
 {
-    // ─── Services ────────────────────────────────
     private readonly ICompanyService _companyService;
+    private readonly IDialogService _dialogService;
+    private readonly INavigator _navigator;
+    private readonly IViewModelAbstractFactory _viewModelAbstractFactory;
 
-    // ─── Properties ──────────────────────────────
-    [ObservableProperty] private int _companyId;
-    [ObservableProperty] private string _name = string.Empty;
-    [ObservableProperty] private string _taxRegistrationNumber = string.Empty;
-    [ObservableProperty] private string _taxFileNumber = string.Empty;
-    [ObservableProperty] private string _address = string.Empty;
-    [ObservableProperty] private bool _isDeleted;
-    [ObservableProperty] private bool _isBusy;
+    public override ViewType Section => ViewType.Companies;
 
-    // ─── Collections ─────────────────────────────
+    // ══════ Properties ══════
+    private string _name = string.Empty;
+    public string Name
+    {
+        get => _name;
+        set { _name = value; OnPropertyChanged(); }
+    }
+
+    private string _taxRegistrationNumber = string.Empty;
+    public string TaxRegistrationNumber
+    {
+        get => _taxRegistrationNumber;
+        set { _taxRegistrationNumber = value; OnPropertyChanged(); }
+    }
+
+    private string _taxFileNumber = string.Empty;
+    public string TaxFileNumber
+    {
+        get => _taxFileNumber;
+        set { _taxFileNumber = value; OnPropertyChanged(); }
+    }
+
+    private string _address = string.Empty;
+    public string Address
+    {
+        get => _address;
+        set { _address = value; OnPropertyChanged(); }
+    }
+
+    private bool _isDeleted;
+    public bool IsDeleted
+    {
+        get => _isDeleted;
+        set { _isDeleted = value; OnPropertyChanged(); }
+    }
+
+    // ══════ Collections ══════
     public ObservableCollection<OwnerResponse> Owners { get; } = [];
     public ObservableCollection<AccountResponse> Accounts { get; } = [];
 
-    // ─── Constructor ─────────────────────────────
-    public DisplayCompanyViewModel(ICompanyService companyService)
+    // ══════ Commands ══════
+    public ICommand OpenPlatformCommand { get; }
+    public ICommand CopyToClipboardCommand { get; }
+    public ICommand BackCommand { get; }
+
+    public DisplayCompanyViewModel(
+        ICompanyService companyService,
+        IDialogService dialogService,
+        INavigator navigator,
+        IViewModelAbstractFactory viewModelAbstractFactory)
     {
         _companyService = companyService;
+        _dialogService = dialogService;
+        _navigator = navigator;
+        _viewModelAbstractFactory = viewModelAbstractFactory;
+
+        OpenPlatformCommand = new RelayCommand(
+            execute: p =>
+            {
+                if (p is AccountResponse account && !string.IsNullOrWhiteSpace(account.Platform?.Url))
+                {
+                    try { Process.Start(new ProcessStartInfo { FileName = account.Platform.Url, UseShellExecute = true }); }
+                    catch { }
+                }
+            },
+            canExecute: p => p is AccountResponse a && !string.IsNullOrWhiteSpace(a.Platform?.Url));
+
+        CopyToClipboardCommand = new RelayCommand(p =>
+        {
+            if (p is string text && !string.IsNullOrEmpty(text))
+                Clipboard.SetText(text);
+        });
+
+        BackCommand = new AsyncRelayCommand(async (_) => await NavigateBackAsync());
     }
 
-    // ─── Load Company ────────────────────────────
-    [RelayCommand]
-    private async Task LoadCompanyAsync(int companyId)
+    // ══════ Initialize ══════
+    public async Task InitializeAsync(int companyId)
     {
-        IsBusy = true;
         try
         {
             var company = await _companyService.GetByIdAsync(companyId);
-            if (company is null) return;
-
-            CompanyId = company.Id;
-            Name = company.Name;
-            TaxRegistrationNumber = company.TaxRegistrationNumber;
-            TaxFileNumber = company.TaxFileNumber;
-            Address = company.Address;
-            IsDeleted = company.IsDeleted;
+            company.Adapt(this);
 
             Owners.Clear();
-            foreach (var o in company.Owners ?? [])
-                Owners.Add(o);
+            foreach (var o in company.Owners ?? []) Owners.Add(o);
 
             Accounts.Clear();
-            foreach (var a in company.Accounts ?? [])
-                Accounts.Add(a);
+            foreach (var a in company.Accounts ?? []) Accounts.Add(a);
         }
-        catch (Exception ex) {  }
-        finally { IsBusy = false; }
+        catch (Exception ex)
+        {
+            await _dialogService.ShowErrorAsync(ex.Message, "خطأ في تحميل بيانات الشركة");
+        }
     }
 
-    // ─── Open Platform ───────────────────────────
-    [RelayCommand]
-    private void OpenPlatform(AccountResponse account)
+    // ══════ Navigate Back ══════
+    private async Task NavigateBackAsync()
     {
-        if (string.IsNullOrWhiteSpace(account.Platform?.Url)) return;
-
-        try
-        {
-            Process.Start(new ProcessStartInfo
-            {
-                FileName = account.Platform.Url,
-                UseShellExecute = true
-            });
-        }
-        catch (Exception ex) {  }
+        var vm = _viewModelAbstractFactory.CreateViewModel(ViewType.Companies);
+        if (vm is IAsyncInitializable init) await init.InitializeAsync();
+        _navigator.CurrentViewModel = vm;
     }
 }

@@ -1,29 +1,30 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SA.Accounting.Core.Contracts.Owner.Requests;
-using SA.Accounting.Core.Contracts.Owner.Validators;
-using SA.Accounting.Core;
-using System.Xml.Linq;
+﻿using SA.Accounting.Core.Contracts.Owner.Requests;
+using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.ViewModels.Base;
 
 namespace SA.Accounting.WPF.ViewModels.Owner;
 
-public sealed partial class CreateOwnerViewModel
-    : ValidatableModel<CreateOwnerRequest>
+public class CreateOwnerViewModel : ValidatableViewModel<CreateOwnerViewModel>
 {
-    [ObservableProperty] private string _name = string.Empty;
-    [ObservableProperty] private string _ssn = string.Empty;
+    private readonly IValidator<CreateOwnerViewModel> _validator;
+    protected override IValidator<CreateOwnerViewModel> Validator => _validator;
 
-    public CreateOwnerViewModel()
-        : base(new CreateOwnerRequestValidator()) { }
-
-    partial void OnNameChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Name));
-
-    partial void OnSsnChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Ssn));
-
-    public CreateOwnerRequest ToRequest() => new()
+    public CreateOwnerViewModel(IValidator<CreateOwnerViewModel> validator)
     {
-        Name = Name,
-        SSN = Ssn,
-    };
+        _validator = validator;
+    }
+
+    private string _name = string.Empty;
+    public string Name
+    {
+        get => _name;
+        set { _name = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    private string _ssn = string.Empty;
+    public string SSN
+    {
+        get => _ssn;
+        set { _ssn = value; OnPropertyChanged(); ValidateProperty(); }
+    }
 }

@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HzUaipFHa9U=",
+  "dgSpecHash": "Er93D9EOBvc=",
   "success": true,
-  "projectFilePath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
+  "projectFilePath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\shrif\\.nuget\\packages\\communitytoolkit.mvvm\\8.3.2\\communitytoolkit.mvvm.8.3.2.nupkg.sha512",
-    "C:\\Users\\shrif\\.nuget\\packages\\fluentvalidation\\12.1.0\\fluentvalidation.12.1.0.nupkg.sha512"
+    "C:\\Users\\Sherif Dahy\\.nuget\\packages\\fluentvalidation\\12.1.0\\fluentvalidation.12.1.0.nupkg.sha512"
   ],
   "logs": []
 }

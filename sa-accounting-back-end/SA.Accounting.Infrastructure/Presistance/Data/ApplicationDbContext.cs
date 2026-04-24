@@ -25,18 +25,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser,Applicatio
     public virtual DbSet<TransactionCategory> TransactionCategories { get; set; }
     public virtual DbSet<TransactionItem> TransactionItems { get; set; }
     public virtual DbSet<UserCompany> UserCompanies { get; set; }
-    public virtual DbSet<CompanyUserTransaction> CompanyUserTransactions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
 
         modelBuilder.Model.GetEntityTypes().SelectMany(x => x.GetForeignKeys())
             .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade)
             .ToList()
             .ForEach(fk => fk.DeleteBehavior = DeleteBehavior.Restrict);
-
-        base.OnModelCreating(modelBuilder);
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

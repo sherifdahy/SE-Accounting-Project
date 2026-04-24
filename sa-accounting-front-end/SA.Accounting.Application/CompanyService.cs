@@ -15,9 +15,9 @@ public class CompanyService(ICompanyClient client) : ICompanyService
     {
         return await _client.CreateAsync(request);
     }
-    public async Task<PaginatedList<CompanyResponse>> GetAllAsync(RequestFilters filters)
+    public async Task<PaginatedList<CompanyResponse>> GetAllAsync(RequestFilters filters, bool IncludeDisabled = false)
     {
-        return await _client.GetAllAsync(filters);
+        return await _client.GetAllAsync(filters,IncludeDisabled);
     }
     public async Task<CompanyDetailResponse> GetByIdAsync(int id)
     {

@@ -22,9 +22,7 @@ public class UpdateProfileHandler(IUserServices userServices, IHttpContextAccess
         var result = await _userServices.UpdateProfileAsync(applicationUser,cancellationToken);
 
         if (result.Succeeded)
-        {
             return Result.Success();
-        }
 
         var error = result.Errors.First();
 

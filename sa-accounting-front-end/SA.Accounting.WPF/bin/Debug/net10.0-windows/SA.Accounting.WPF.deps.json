@@ -8,7 +8,6 @@
     ".NETCoreApp,Version=v10.0": {
       "SA.Accounting.WPF/1.0.0": {
         "dependencies": {
-          "CommunityToolkit.Mvvm": "8.3.2",
           "Mapster": "7.4.0",
           "Mapster.DependencyInjection": "1.0.1",
           "Microsoft.Extensions.Configuration.Json": "10.0.0",
@@ -16,18 +15,10 @@
           "Microsoft.Extensions.Hosting": "10.0.0",
           "Microsoft.Xaml.Behaviors.Wpf": "1.1.135",
           "SA.Accounting.Application": "1.0.0",
-          "Telerik.UI.for.Wpf.70.Xaml": "2023.1.117"
+          "Telerik.UI.for.Wpf.NetCore.Xaml": "2023.1.117"
         },
         "runtime": {
           "SA.Accounting.WPF.dll": {}
-        }
-      },
-      "CommunityToolkit.Mvvm/8.3.2": {
-        "runtime": {
-          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "assemblyVersion": "8.3.0.0",
-            "fileVersion": "8.3.2.1"
-          }
         }
       },
       "FluentValidation/12.1.0": {
@@ -69,25 +60,43 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/7.0.0": {
+      "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+        "runtime": {
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "4.700.20.21406"
+          }
+        }
+      },
+      "Microsoft.Bcl.HashCode/1.1.0": {
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.Bcl.HashCode.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "4.700.19.56404"
+          }
+        }
+      },
+      "Microsoft.EntityFrameworkCore/3.1.5": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "7.0.0",
-          "Microsoft.Extensions.Caching.Memory": "7.0.0",
+          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "Microsoft.Bcl.HashCode": "1.1.0",
+          "Microsoft.EntityFrameworkCore.Abstractions": "3.1.5",
+          "Microsoft.Extensions.Caching.Memory": "3.1.5",
           "Microsoft.Extensions.DependencyInjection": "10.0.0",
           "Microsoft.Extensions.Logging": "10.0.0"
         },
         "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.22.51807"
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.dll": {
+            "assemblyVersion": "3.1.5.0",
+            "fileVersion": "3.100.520.27007"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/7.0.0": {
+      "Microsoft.EntityFrameworkCore.Abstractions/3.1.5": {
         "runtime": {
-          "lib/net6.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.22.51807"
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
+            "assemblyVersion": "3.1.5.0",
+            "fileVersion": "3.100.520.27007"
           }
         }
       },
@@ -102,18 +111,17 @@
           }
         }
       },
-      "Microsoft.Extensions.Caching.Memory/7.0.0": {
+      "Microsoft.Extensions.Caching.Memory/3.1.5": {
         "dependencies": {
           "Microsoft.Extensions.Caching.Abstractions": "10.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "10.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "10.0.0",
-          "Microsoft.Extensions.Options": "10.0.0",
-          "Microsoft.Extensions.Primitives": "10.0.0"
+          "Microsoft.Extensions.Options": "10.0.0"
         },
         "runtime": {
-          "lib/net7.0/Microsoft.Extensions.Caching.Memory.dll": {
-            "assemblyVersion": "7.0.0.0",
-            "fileVersion": "7.0.22.51805"
+          "lib/netcoreapp3.1/Microsoft.Extensions.Caching.Memory.dll": {
+            "assemblyVersion": "3.1.5.0",
+            "fileVersion": "3.100.520.27009"
           }
         }
       },
@@ -710,9 +718,9 @@
           }
         }
       },
-      "Telerik.UI.for.Wpf.70.Xaml/2023.1.117": {
+      "Telerik.UI.for.Wpf.NetCore.Xaml/2023.1.117": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "7.0.0",
+          "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.OData.Client": "7.8.3",
           "SharpDX": "4.2.0",
           "SharpDX.DXGI": "4.2.0",
@@ -722,272 +730,272 @@
           "SharpDX.Mathematics": "4.2.0"
         },
         "runtime": {
-          "lib/net7.0-windows/MediaFoundation.dll": {
+          "lib/netcoreapp3.1/MediaFoundation.dll": {
             "assemblyVersion": "3.1.0.32450",
             "fileVersion": "3.1.0.0"
           },
-          "lib/net7.0-windows/Telerik.Documents.SpreadsheetStreaming.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Documents.SpreadsheetStreaming.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Pivot.Core.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Pivot.Core.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Adomd.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Adomd.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Queryable.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Queryable.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Pivot.DataProviders.Xmla.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Pivot.DataProviders.Xmla.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Cloud.Controls.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Cloud.Controls.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Cloud.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Cloud.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Chart.Direct2D.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.Direct2D.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Chart.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Chart.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Charting.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Charting.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ConversationalUI.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ConversationalUI.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Data.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Data.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.DataServices.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.DataServices.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.DataVisualization.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.DataVisualization.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Extensions.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Extensions.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.Ribbon.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.Ribbon.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Diagrams.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Diagrams.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Docking.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Docking.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.EntityFrameworkCore.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.EntityFrameworkCore.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Expressions.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Expressions.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FileDialogs.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FileDialogs.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewers.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewers.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.FixedDocumentViewersUI.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.FixedDocumentViewersUI.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GanttView.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GanttView.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.Export.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.Export.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.SpreadsheetStreamingExport.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.GridView.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.GridView.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ImageEditor.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ImageEditor.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Input.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Input.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Media.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Media.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Navigation.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Navigation.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Pivot.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Pivot.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.PivotFieldList.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.PivotFieldList.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.RibbonView.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.RibbonView.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.RichTextBox.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.RichTextBox.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.ScheduleView.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.ScheduleView.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.Spreadsheet.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.Spreadsheet.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.SpreadsheetUI.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.SpreadsheetUI.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.SyntaxEditor.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.SyntaxEditor.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.VirtualGrid.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.VirtualGrid.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Controls.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Controls.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Data.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Data.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Diagrams.Core.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Diagrams.Core.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.CMapUtils.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.CMapUtils.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Core.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Core.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.DrawingML.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.DrawingML.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Fixed.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Fixed.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Doc.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.FormatProviders.Pdf.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Flow.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Flow.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Proofing.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Proofing.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Pdf.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.FormatProviders.Xls.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Documents.Spreadsheet.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Documents.Spreadsheet.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.MediaFoundation.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.MediaFoundation.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.PersistenceFramework.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.PersistenceFramework.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Scheduling.Core.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Scheduling.Core.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.SyntaxEditor.Core.dll": {
-            "assemblyVersion": "2023.1.117.70",
-            "fileVersion": "2023.1.117.70"
+          "lib/netcoreapp3.1/Telerik.Windows.SyntaxEditor.Core.dll": {
+            "assemblyVersion": "2023.1.117.310",
+            "fileVersion": "2023.1.117.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Zip.Extensions.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Zip.Extensions.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           },
-          "lib/net7.0-windows/Telerik.Windows.Zip.dll": {
-            "assemblyVersion": "2023.1.104.70",
-            "fileVersion": "2023.1.104.70"
+          "lib/netcoreapp3.1/Telerik.Windows.Zip.dll": {
+            "assemblyVersion": "2023.1.104.310",
+            "fileVersion": "2023.1.104.310"
           }
         },
         "resources": {
-          "lib/net7.0-windows/de/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/de/Telerik.Windows.Controls.resources.dll": {
             "locale": "de"
           },
-          "lib/net7.0-windows/es/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/es/Telerik.Windows.Controls.resources.dll": {
             "locale": "es"
           },
-          "lib/net7.0-windows/fr/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/fr/Telerik.Windows.Controls.resources.dll": {
             "locale": "fr"
           },
-          "lib/net7.0-windows/it/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/it/Telerik.Windows.Controls.resources.dll": {
             "locale": "it"
           },
-          "lib/net7.0-windows/nl/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/nl/Telerik.Windows.Controls.resources.dll": {
             "locale": "nl"
           },
-          "lib/net7.0-windows/tr/Telerik.Windows.Controls.resources.dll": {
+          "lib/netcoreapp3.1/tr/Telerik.Windows.Controls.resources.dll": {
             "locale": "tr"
           }
         }
@@ -1007,7 +1015,6 @@
       },
       "SA.Accounting.Core/1.0.0": {
         "dependencies": {
-          "CommunityToolkit.Mvvm": "8.3.2",
           "FluentValidation": "12.1.0"
         },
         "runtime": {
@@ -1042,13 +1049,6 @@
       "serviceable": false,
       "sha512": ""
     },
-    "CommunityToolkit.Mvvm/8.3.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-m8EolE1A0Updj68WTsZSGI6VWb6mUqHPh7QFo0kt7+JPhYMNXRS1ch8TS/oITAdcxTLrwMOp3ku1KjeG1/Zdpg==",
-      "path": "communitytoolkit.mvvm/8.3.2",
-      "hashPath": "communitytoolkit.mvvm.8.3.2.nupkg.sha512"
-    },
     "FluentValidation/12.1.0": {
       "type": "package",
       "serviceable": true,
@@ -1077,19 +1077,33 @@
       "path": "mapster.dependencyinjection/1.0.1",
       "hashPath": "mapster.dependencyinjection.1.0.1.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore/7.0.0": {
+    "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-9W+IfmAzMrp2ZpKZLhgTlWljSBM9Erldis1us61DAGi+L7Q6vilTbe1G2zDxtYO8F2H0I0Qnupdx5Cp4s2xoZw==",
-      "path": "microsoft.entityframeworkcore/7.0.0",
-      "hashPath": "microsoft.entityframeworkcore.7.0.0.nupkg.sha512"
+      "sha512": "sha512-yuvf07qFWFqtK3P/MRkEKLhn5r2UbSpVueRziSqj0yJQIKFwG1pq9mOayK3zE5qZCTs0CbrwL9M6R8VwqyGy2w==",
+      "path": "microsoft.bcl.asyncinterfaces/1.1.1",
+      "hashPath": "microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/7.0.0": {
+    "Microsoft.Bcl.HashCode/1.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Pfu3Zjj5+d2Gt27oE9dpGiF/VobBB+s5ogrfI9sBsXQE1SG49RqVz5+IyeNnzhyejFrPIQsPDRMchhcojy4Hbw==",
-      "path": "microsoft.entityframeworkcore.abstractions/7.0.0",
-      "hashPath": "microsoft.entityframeworkcore.abstractions.7.0.0.nupkg.sha512"
+      "sha512": "sha512-J2G1k+u5unBV+aYcwxo94ip16Rkp65pgWFb0R6zwJipzWNMgvqlWeuI7/+R+e8bob66LnSG+llLJ+z8wI94cHg==",
+      "path": "microsoft.bcl.hashcode/1.1.0",
+      "hashPath": "microsoft.bcl.hashcode.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore/3.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1jYVmK8dMKGhtMMrtw0hicRjAJq8hnFSuXHdJTIGa04UVWFvsMFwWsdO3Y1ziCLgR2xM7u5AgUcFLGbV0t9cOg==",
+      "path": "microsoft.entityframeworkcore/3.1.5",
+      "hashPath": "microsoft.entityframeworkcore.3.1.5.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Abstractions/3.1.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xZ3mUVu22p2h0ZKTWgoyK9YjA2H11cJcZssDcZYs8iLUVHPxMcb+ITOKpMdnV6SkEiQQ5pvjPXQ5J7VxiGSwDw==",
+      "path": "microsoft.entityframeworkcore.abstractions/3.1.5",
+      "hashPath": "microsoft.entityframeworkcore.abstractions.3.1.5.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/10.0.0": {
       "type": "package",
@@ -1098,12 +1112,12 @@
       "path": "microsoft.extensions.caching.abstractions/10.0.0",
       "hashPath": "microsoft.extensions.caching.abstractions.10.0.0.nupkg.sha512"
     },
-    "Microsoft.Extensions.Caching.Memory/7.0.0": {
+    "Microsoft.Extensions.Caching.Memory/3.1.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xpidBs2KCE2gw1JrD0quHE72kvCaI3xFql5/Peb2GRtUuZX+dYPoK/NTdVMiM67Svym0M0Df9A3xyU0FbMQhHw==",
-      "path": "microsoft.extensions.caching.memory/7.0.0",
-      "hashPath": "microsoft.extensions.caching.memory.7.0.0.nupkg.sha512"
+      "sha512": "sha512-tqnVZ/tyXiBAEeLtcTvyb/poVp/gn6bbpdr12SAbO4TcfNkd1eNCEbyyABo0qhiQh6vVwba41aixklElx4grdw==",
+      "path": "microsoft.extensions.caching.memory/3.1.5",
+      "hashPath": "microsoft.extensions.caching.memory.3.1.5.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration/10.0.0": {
       "type": "package",
@@ -1448,12 +1462,12 @@
       "path": "system.identitymodel.tokens.jwt/8.17.0",
       "hashPath": "system.identitymodel.tokens.jwt.8.17.0.nupkg.sha512"
     },
-    "Telerik.UI.for.Wpf.70.Xaml/2023.1.117": {
+    "Telerik.UI.for.Wpf.NetCore.Xaml/2023.1.117": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QqZ9R7chaccgAt06ra1p8+AF7m9GSsWLULmY2vv8Xfg5brqtzvrfgABXaGGj1aDDFfcUdeV1Y9jnoAzAtdEVzw==",
-      "path": "telerik.ui.for.wpf.70.xaml/2023.1.117",
-      "hashPath": "telerik.ui.for.wpf.70.xaml.2023.1.117.nupkg.sha512"
+      "sha512": "sha512-8mXutB5r+IRNWzDqk4uADdAVeZQWzppY9XHZ7sAmA9pcHuDsIN2JtTR7G6Gt7gSTGDCejXMh72txHA0GXWQ0KQ==",
+      "path": "telerik.ui.for.wpf.netcore.xaml/2023.1.117",
+      "hashPath": "telerik.ui.for.wpf.netcore.xaml.2023.1.117.nupkg.sha512"
     },
     "SA.Accounting.Application/1.0.0": {
       "type": "project",

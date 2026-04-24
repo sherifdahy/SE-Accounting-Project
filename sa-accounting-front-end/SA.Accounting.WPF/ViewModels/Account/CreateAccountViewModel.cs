@@ -1,38 +1,39 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Mapster; // <--- 1. إضافة using
+﻿using Mapster;
 using SA.Accounting.Core.Contracts.Account.Requests;
-using SA.Accounting.Core.Contracts.Account.Validators;
-using SA.Accounting.Core;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Telerik.Windows.Controls.DataVisualization.Map.BingRest;
+using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.ViewModels.Base;
 
 namespace SA.Accounting.WPF.ViewModels.Account;
 
-public sealed partial class CreateAccountViewModel
-    : ValidatableModel<CreateAccountRequest>
+public class CreateAccountViewModel : ValidatableViewModel<CreateAccountViewModel>
 {
-    // ─── Properties ──────────────────────────────
-    [ObservableProperty] private string _email = string.Empty;
-    [ObservableProperty] private string _password = string.Empty;
-    [ObservableProperty] private int _platformId;
+    private readonly IValidator<CreateAccountViewModel> _validator;
+    protected override IValidator<CreateAccountViewModel> Validator => _validator;
 
-    // ─── Constructor ─────────────────────────────
-    public CreateAccountViewModel()
-        : base(new CreateAccountRequestValidator()) { }
+    public CreateAccountViewModel(IValidator<CreateAccountViewModel> validator)
+    {
+        _validator = validator;
+    }
 
-    // ─── Validation hooks ────────────────────────
-    partial void OnEmailChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Email));
+    // ══════ Properties ══════
+    private string _email = string.Empty;
+    public string Email
+    {
+        get => _email;
+        set { _email = value; OnPropertyChanged(); ValidateProperty(); }
+    }
 
-    partial void OnPasswordChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Password));
+    private string _password = string.Empty;
+    public string Password
+    {
+        get => _password;
+        set { _password = value; OnPropertyChanged(); ValidateProperty(); }
+    }
 
-    partial void OnPlatformIdChanged(int value)
-        => RunPropertyValidation(ToRequest(), nameof(PlatformId));
-
-    // ─── Map to Request ──────────────────────────
-    // 2. تم استبدال التحويل اليدوي بـ Mapster
-    public CreateAccountRequest ToRequest() => this.Adapt<CreateAccountRequest>();
+    private int _platformId;
+    public int PlatformId
+    {
+        get => _platformId;
+        set { _platformId = value; OnPropertyChanged(); ValidateProperty(); }
+    }
 }

@@ -1,31 +1,45 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Mapster;
+﻿using Mapster;
 using SA.Accounting.Core.Contracts.Account.Requests;
-using SA.Accounting.Core.Contracts.Account.Validators;
-using SA.Accounting.Core;
+using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.ViewModels.Base;
 
 namespace SA.Accounting.WPF.ViewModels.Account;
 
-public sealed partial class UpdateAccountViewModel
-    : ValidatableModel<UpdateAccountRequest>
+public class UpdateAccountViewModel : ValidatableViewModel<UpdateAccountViewModel>
 {
-    [ObservableProperty] private int _id;
-    [ObservableProperty] private string _email = string.Empty;
-    [ObservableProperty] private string _password = string.Empty;
-    [ObservableProperty] private int _platformId;
+    private readonly IValidator<UpdateAccountViewModel> _validator;
+    protected override IValidator<UpdateAccountViewModel> Validator => _validator;
 
-    public UpdateAccountViewModel()
-        : base(new UpdateAccountRequestValidator()) { }
+    public UpdateAccountViewModel(IValidator<UpdateAccountViewModel> validator)
+    {
+        _validator = validator;
+    }
 
-    partial void OnEmailChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Email));
+    private int _id;
+    public int Id
+    {
+        get => _id;
+        set { _id = value; OnPropertyChanged(); }
+    }
 
-    partial void OnPasswordChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Password));
+    private string _email = string.Empty;
+    public string Email
+    {
+        get => _email;
+        set { _email = value; OnPropertyChanged(); ValidateProperty(); }
+    }
 
-    partial void OnPlatformIdChanged(int value)
-        => RunPropertyValidation(ToRequest(), nameof(PlatformId));
+    private string _password = string.Empty;
+    public string Password
+    {
+        get => _password;
+        set { _password = value; OnPropertyChanged(); ValidateProperty(); }
+    }
 
-    public UpdateAccountRequest ToRequest()
-        => this.Adapt<UpdateAccountRequest>();
+    private int _platformId;
+    public int PlatformId
+    {
+        get => _platformId;
+        set { _platformId = value; OnPropertyChanged(); ValidateProperty(); }
+    }
 }

@@ -1,167 +1,160 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using Mapster;
+using Newtonsoft.Json;
+using Refit;
 using SA.Accounting.Core.Contracts.Company.Requests;
-using SA.Accounting.Core.Contracts.Company.Validators;
 using SA.Accounting.Core.Contracts.Platform.Responses;
-using SA.Accounting.Core;
-using SA.Accounting.Infrastructure.Handlers;
-using SA.Accounting.Core.Interfaces;
+using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.Commands.Base;
+using SA.Accounting.WPF.Interfaces;
 using SA.Accounting.WPF.ViewModels.Account;
+using SA.Accounting.WPF.ViewModels.Base;
 using SA.Accounting.WPF.ViewModels.Owner;
 using System.Collections.ObjectModel;
-using System.Xml.Linq;
+using System.Windows.Input;
 
-namespace SA.Accounting.WPF.ViewModels.Company;
+namespace SA.Accounting.WPF.ViewModels;
 
-public sealed partial class CreateCompanyViewModel
-    : ValidatableModel<CreateCompanyRequest>
+public class CreateCompanyViewModel : ValidatableViewModel<CreateCompanyViewModel>, IAsyncInitializable
 {
-    // ─── Services ────────────────────────────────
     private readonly ICompanyService _companyService;
     private readonly IPlatformService _platformService;
     private readonly IDialogService _dialogService;
+    private readonly INavigator _navigator;
+    private readonly IViewModelAbstractFactory _viewModelAbstractFactory;
+    private readonly IValidator<CreateCompanyViewModel> _validator;
 
-    // ─── Properties ──────────────────────────────
-    [ObservableProperty] private string _name = string.Empty;
-    [ObservableProperty] private string _taxRegistrationNumber = string.Empty;
-    [ObservableProperty] private string _taxFileNumber = string.Empty;
-    [ObservableProperty] private string _address = string.Empty;
-    [ObservableProperty] private bool _isBusy;
+    public override ViewType Section => ViewType.Companies;
+    protected override IValidator<CreateCompanyViewModel> Validator => _validator;
+    private readonly IValidator<CreateOwnerViewModel> _ownerValidator;
+    private readonly IValidator<CreateAccountViewModel> _accountValidator;
 
-    // ─── Collections ─────────────────────────────
+    // ══════ Properties ══════
+    private string _name = string.Empty;
+    public string Name
+    {
+        get => _name;
+        set { _name = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    private string _taxRegistrationNumber = string.Empty;
+    public string TaxRegistrationNumber
+    {
+        get => _taxRegistrationNumber;
+        set { _taxRegistrationNumber = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    private string _taxFileNumber = string.Empty;
+    public string TaxFileNumber
+    {
+        get => _taxFileNumber;
+        set { _taxFileNumber = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    private string _address = string.Empty;
+    public string Address
+    {
+        get => _address;
+        set { _address = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    // ══════ Collections ══════
     public ObservableCollection<CreateOwnerViewModel> Owners { get; } = [];
     public ObservableCollection<CreateAccountViewModel> Accounts { get; } = [];
     public ObservableCollection<PlatformResponse> Platforms { get; } = [];
 
-    // ─── Constructor ─────────────────────────────
+    // ══════ Commands ══════
+    public ICommand AddOwnerCommand { get; }
+    public ICommand RemoveOwnerCommand { get; }
+    public ICommand AddAccountCommand { get; }
+    public ICommand RemoveAccountCommand { get; }
+    public ICommand SaveCommand { get; }
+    public ICommand CancelCommand { get; }
+
     public CreateCompanyViewModel(
         ICompanyService companyService,
         IPlatformService platformService,
-        IDialogService dialogService)
-        : base(new CreateCompanyRequestValidator())
+        IDialogService dialogService,
+        INavigator navigator,
+        IViewModelAbstractFactory viewModelAbstractFactory,
+        IValidator<CreateCompanyViewModel> validator,
+        IValidator<CreateOwnerViewModel> ownerValidator,
+        IValidator<CreateAccountViewModel> accountValidator)
     {
         _companyService = companyService;
         _platformService = platformService;
         _dialogService = dialogService;
+        _navigator = navigator;
+        _viewModelAbstractFactory = viewModelAbstractFactory;
+        _validator = validator;
+        _ownerValidator = ownerValidator;
+        _accountValidator = accountValidator;
+
+        AddOwnerCommand = new RelayCommand((_) => Owners.Add(new CreateOwnerViewModel(_ownerValidator)));
+        RemoveOwnerCommand = new RelayCommand((o) => Owners.Remove((CreateOwnerViewModel)o));
+
+        AddAccountCommand = new RelayCommand((_) => Accounts.Add(new CreateAccountViewModel(_accountValidator)));
+        RemoveAccountCommand = new RelayCommand((a) => Accounts.Remove((CreateAccountViewModel)a));
+
+        SaveCommand = new AsyncRelayCommand(async (_) => await SaveAsync());
+        CancelCommand = new AsyncRelayCommand(async (_) => await CancelAsync());
     }
 
-    // ─── Validation hooks ────────────────────────
-    partial void OnNameChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Name));
+    public async Task InitializeAsync() => await LoadPlatformsAsync();
 
-    partial void OnTaxRegistrationNumberChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(TaxRegistrationNumber));
-
-    partial void OnTaxFileNumberChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(TaxFileNumber));
-
-    partial void OnAddressChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Address));
-
-    // ─── Load Platforms ──────────────────────────
-    [RelayCommand]
+    // ══════ Load ══════
     private async Task LoadPlatformsAsync()
     {
-        IsBusy = true;
         try
         {
             var result = await _platformService.GetAllAsync(false);
             Platforms.Clear();
-            foreach (var p in result ?? [])
-                Platforms.Add(p);
+            foreach (var p in result ?? []) Platforms.Add(p);
         }
-        catch (Exception ex) {  }
-        finally { IsBusy = false; }
+        catch (Exception ex)
+        {
+            await _dialogService.ShowErrorAsync(ex.Message, "خطأ في تحميل المنصات");
+        }
     }
 
-    // ─── Owners ──────────────────────────────────
-    [RelayCommand]
-    private void AddOwner() => Owners.Add(new CreateOwnerViewModel());
-
-    [RelayCommand]
-    private void RemoveOwner(CreateOwnerViewModel owner) => Owners.Remove(owner);
-
-    // ─── Accounts ────────────────────────────────
-    [RelayCommand]
-    private void AddAccount() => Accounts.Add(new CreateAccountViewModel());
-
-    [RelayCommand]
-    private void RemoveAccount(CreateAccountViewModel account) => Accounts.Remove(account);
-
-    // ─── Save ────────────────────────────────────
-    [RelayCommand]
+    // ══════ Save ══════
     private async Task SaveAsync()
     {
-        // Validate الكل
-        var request = ToRequest();
-        ValidateAll(request);
-        foreach (var o in Owners) o.ValidateAll(o.ToRequest());
-        foreach (var a in Accounts) a.ValidateAll(a.ToRequest());
-
-        bool allValid = IsValid
-                     && Owners.All(o => o.IsValid)
-                     && Accounts.All(a => a.IsValid);
-
-        if (!allValid)
-        {
-            await _dialogService.ShowWarningAsync(
-                "يرجى تصحيح الأخطاء قبل الحفظ", "تحقق من البيانات");
-            return;
-        }
-
-        IsBusy = true;
         try
         {
-            var result = await _companyService.CreateAsync(request);
+            ValidateAll();
+            if (HasErrors) return;
 
-            if (result is not null)
-            {
-                await _dialogService.ShowInfoAsync("تم إنشاء الشركة بنجاح ✓", "نجح الحفظ");
-                ResetForm();
-            }
-            else
-            {
-                await _dialogService.ShowErrorAsync(
-                    "حدث خطأ أثناء الحفظ، يرجى المحاولة مرة أخرى", "خطأ");
-            }
+            var request = this.Adapt<CreateCompanyRequest>();
+            await _companyService.CreateAsync(request);
+
+            await _dialogService.ShowInfoAsync("تم إنشاء الشركة بنجاح ✓", "نجح الحفظ");
+            NavigateBack();
         }
-        catch (Exception ex) {  }
-        finally { IsBusy = false; }
+        catch(ApiException apiEx)
+        {
+            var errors = JsonConvert.DeserializeObject<ProblemDetails>(apiEx.Content!);
+            await _dialogService.ShowErrorAsync(errors!.Errors.First().Value.First()!, "خطأ أثناء الحفظ");
+        }
+        catch (Exception ex)
+        {
+            await _dialogService.ShowErrorAsync(ex.Message, "خطأ أثناء الحفظ");
+        }
     }
 
-    // ─── Cancel ──────────────────────────────────
-    [RelayCommand]
+    // ══════ Cancel ══════
     private async Task CancelAsync()
     {
-        var confirmed = await _dialogService.ShowConfirmAsync(
-            "هل تريد إلغاء العملية؟ سيتم فقدان جميع البيانات المدخلة.",
-            "تأكيد الإلغاء");
+        if (!await _dialogService.ShowConfirmAsync(
+            "هل تريد إلغاء العملية؟ سيتم فقدان جميع البيانات المدخلة.", "تأكيد الإلغاء"))
+            return;
 
-        if (confirmed) ResetForm();
+        NavigateBack();
     }
 
-    // ─── Reset ───────────────────────────────────
-    private void ResetForm()
+    private void NavigateBack()
     {
-        SuppressValidation = true;
-        Name = string.Empty;
-        TaxRegistrationNumber = string.Empty;
-        TaxFileNumber = string.Empty;
-        Address = string.Empty;
-        Owners.Clear();
-        Accounts.Clear();
-        SuppressValidation = false;
-        ClearAllErrors();
+        var vm = _viewModelAbstractFactory.CreateViewModel(ViewType.Companies);
+        if (vm is IAsyncInitializable init) _ = init.InitializeAsync();
+        _navigator.CurrentViewModel = vm;
     }
-
-    // ─── Map to Request ──────────────────────────
-    private CreateCompanyRequest ToRequest() => new()
-    {
-        Name = Name,
-        TaxRegistrationNumber = TaxRegistrationNumber,
-        TaxFileNumber = TaxFileNumber,
-        Address = Address,
-        Owners = Owners.Select(o => o.ToRequest()).ToList(),
-        Accounts = Accounts.Select(a => a.ToRequest()).ToList(),
-    };
 }

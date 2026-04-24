@@ -1,18 +1,8 @@
-﻿F:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net10.0-windows\GeneratedInternalTypeHelper.g.i.cs
-
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Contols\SidebarControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\MainWindow.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Styles\DataTemplates.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\Home\HomeView.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Companies\CompaniesControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Companies\CreateCompanyControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Companies\DisplayCompanyControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Companies\UpdateCompanyControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Platforms\CreatePlatformControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Platforms\PlatformsControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Platforms\UpdatePlatformControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Users\CreateUserControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Users\UpdateUserControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\UserControls\Users\UsersControl.xaml;;
-FF:\SA.Accounting\sa-accounting-front-end\SA.Accounting.WPF\Views\Windows\MainWindow.xaml;;
+﻿D:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net10.0-windows\GeneratedInternalTypeHelper.g.i.cs
+FD:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\App.xaml;;
+FD:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\Contols\SidebarControl.xaml;;
+FD:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\Styles\DataTemplates.xaml;;
+FD:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\Views\Home\HomeView.xaml;;
+FD:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\Views\Users\UserCompaniesView.xaml;;
+FD:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\Windows\MainWindow.xaml;;
 

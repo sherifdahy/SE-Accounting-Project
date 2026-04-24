@@ -18,4 +18,7 @@ public static class Permissions
     public const string PlatformsRead = "platforms:read";
 
     public const string SettingsRead = "settings:read";
+
+    public const string FundsRead = "funds:read";
+
 }

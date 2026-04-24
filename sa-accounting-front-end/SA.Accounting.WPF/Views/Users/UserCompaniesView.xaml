@@ -1,0 +1,468 @@
+﻿<UserControl x:Class="SA.Accounting.WPF.Views.UserCompaniesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             xmlns:behaviors="clr-namespace:SA.Accounting.WPF.Behaviors"
+             mc:Ignorable="d"
+             d:DesignHeight="700" d:DesignWidth="860"
+             Background="Transparent"
+             FlowDirection="RightToLeft">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+
+        <!-- ═══ Assigned Company Row ═══ -->
+        <DataTemplate x:Key="AssignedItemTemplate">
+            <Border x:Name="Row" Style="{StaticResource CompanyRow}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="14"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Grid.Column="0"
+                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                              Style="{StaticResource TransferCheckBox}"
+                              VerticalAlignment="Center"/>
+
+                    <Border Grid.Column="2"
+                            Style="{StaticResource CompanyIcon}"
+                            Background="#FEF3C7">
+                        <TextBlock Text="🏢" FontSize="16"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+
+                    <StackPanel Grid.Column="4" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Name}"
+                                   FontSize="{StaticResource FontSizeLg}"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                   TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Text="{Binding TaxRegistrationNumber}"
+                                   FontSize="{StaticResource FontSizeXs}"
+                                   Foreground="{StaticResource TextPlaceholderBrush}"
+                                   FontFamily="Consolas"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
+
+                    <!-- Active Badge -->
+                    <Border Grid.Column="5"
+                            Background="{StaticResource SuccessLightBrush}"
+                            CornerRadius="{StaticResource RadiusXl}"
+                            Padding="8,3"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="مسند"
+                                   FontSize="{StaticResource FontSizeXs}"
+                                   FontWeight="SemiBold"
+                                   Foreground="#065F46"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter TargetName="Row" Property="Background" Value="#FFF7ED"/>
+                </DataTrigger>
+                <Trigger SourceName="Row" Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Row" Property="Background"
+                            Value="{StaticResource SurfaceHoverBrush}"/>
+                </Trigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+
+        <!-- ═══ Available Company Row ═══ -->
+        <DataTemplate x:Key="AvailableItemTemplate">
+            <Border x:Name="Row" Style="{StaticResource CompanyRow}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="14"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <CheckBox Grid.Column="0"
+                              IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                              Style="{StaticResource TransferCheckBox}"
+                              VerticalAlignment="Center"/>
+
+                    <Border Grid.Column="2"
+                            Style="{StaticResource CompanyIcon}"
+                            Background="{StaticResource SurfaceAltBrush}">
+                        <TextBlock Text="🏢" FontSize="16"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Opacity="0.6"/>
+                    </Border>
+
+                    <StackPanel Grid.Column="4" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Name}"
+                                   FontSize="{StaticResource FontSizeLg}"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                   TextTrimming="CharacterEllipsis"/>
+                        <TextBlock Text="{Binding TaxRegistrationNumber}"
+                                   FontSize="{StaticResource FontSizeXs}"
+                                   Foreground="{StaticResource TextPlaceholderBrush}"
+                                   FontFamily="Consolas"
+                                   Margin="0,2,0,0"/>
+                    </StackPanel>
+
+                    <Border Grid.Column="5"
+                            Background="{StaticResource SurfaceAltBrush}"
+                            CornerRadius="{StaticResource RadiusXl}"
+                            Padding="8,3"
+                            VerticalAlignment="Center">
+                        <TextBlock Text="غير مسند"
+                                   FontSize="{StaticResource FontSizeXs}"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextMutedBrush}"/>
+                    </Border>
+                </Grid>
+            </Border>
+
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter TargetName="Row" Property="Background" Value="{StaticResource InfoLightBrush}"/>
+                </DataTrigger>
+                <Trigger SourceName="Row" Property="IsMouseOver" Value="True">
+                    <Setter TargetName="Row" Property="Background"
+                            Value="{StaticResource SurfaceHoverBrush}"/>
+                </Trigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <!-- ═══ Busy Overlay ═══ -->
+        <Border Background="#90FFFFFF"
+                CornerRadius="{StaticResource Radius2Xl}"
+                Panel.ZIndex="10"
+                Visibility="{Binding IsBusy, Converter={StaticResource BoolToVis}}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <telerik:RadBusyIndicator IsBusy="True" BusyContent=""
+                    IsIndeterminate="True" Width="45" Height="45"/>
+                <TextBlock Text="جارٍ المعالجة..."
+                           FontSize="{StaticResource FontSizeMd}"
+                           FontWeight="SemiBold"
+                           Foreground="{StaticResource PrimaryBrush}"
+                           HorizontalAlignment="Center" Margin="0,10,0,0"/>
+            </StackPanel>
+        </Border>
+
+        <!-- ═══ Main Content ═══ -->
+        <ScrollViewer Panel.ZIndex="1"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="24,16,24,24">
+
+                <!-- ══════════════════════════════════════════════════
+                     SECTION 1: الشركات المسندة
+                ══════════════════════════════════════════════════ -->
+                <Border Style="{StaticResource SectionCard}">
+                    <StackPanel>
+
+                        <!-- Header -->
+                        <Grid Margin="0,0,0,14">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Title -->
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Border Style="{StaticResource SectionIndicator}"
+                                        Background="{StaticResource AccentBrush}"/>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="الشركات المسندة"
+                                                   Style="{StaticResource SectionLabel}"/>
+                                        <Border Style="{StaticResource BadgeDark}">
+                                            <TextBlock Text="{Binding AssignedCount}"
+                                                       FontSize="{StaticResource FontSizeSm}"
+                                                       FontWeight="Bold" Foreground="White"/>
+                                        </Border>
+                                        <!-- Selection count -->
+                                        <Border Style="{StaticResource BadgeWarning}"
+                                                Visibility="{Binding HasAssignedSelection,
+                                                             Converter={StaticResource BoolToVis}}">
+                                            <TextBlock Text="{Binding AssignedSelectionText}"
+                                                       FontSize="{StaticResource FontSizeXs}"
+                                                       FontWeight="Bold" Foreground="#92400E"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <TextBlock Text="الشركات المرتبطة بهذا المستخدم"
+                                               Style="{StaticResource SectionSubtext}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- Actions -->
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Button Style="{StaticResource TransferActionBtnPrimary}"
+                                        Command="{Binding RemoveSelectedCommand}"
+                                        Margin="0,0,6,0"
+                                        Visibility="{Binding HasAssignedSelection,
+                                                     Converter={StaticResource BoolToVis}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="✕" FontSize="11"
+                                                   Foreground="White" Margin="0,0,5,0"
+                                                   VerticalAlignment="Center"/>
+                                        <TextBlock Text="إزالة المحدد"
+                                                   FontSize="{StaticResource FontSizeSm}"
+                                                   FontWeight="SemiBold" Foreground="White"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Style="{StaticResource TransferActionBtn}"
+                                        Command="{Binding RemoveAllCommand}">
+                                    <TextBlock Text="إزالة الكل"
+                                               FontSize="{StaticResource FontSizeSm}"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextMutedBrush}"/>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Search -->
+                        <TextBox Style="{StaticResource TransferSearchBox}"
+                                 Text="{Binding AssignedSearch, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,0,0,12"/>
+
+                        <!-- List -->
+                        <Grid>
+                            <!-- Loading -->
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Margin="0,20"
+                                        Visibility="{Binding IsLoadingAssigned,
+                                                     Converter={StaticResource BoolToVis}}">
+                                <telerik:RadBusyIndicator IsBusy="True" BusyContent=""
+                                    IsIndeterminate="True" Width="35" Height="35"/>
+                                <TextBlock Text="جارٍ التحميل..."
+                                           FontSize="{StaticResource FontSizeSm}"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            </StackPanel>
+
+                            <!-- Items -->
+                            <Border Style="{StaticResource CompanyListBorder}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <ScrollViewer Grid.Row="0"
+                                                  x:Name="AssignedScrollViewer"
+                                                  Style="{StaticResource SlimScrollViewer}"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  behaviors:ScrollViewerBehavior.LoadMoreCommand="{Binding LoadMoreAssignedCommand}">
+                                        <ItemsControl ItemsSource="{Binding FilteredAssigned}"
+                                                      ItemTemplate="{StaticResource AssignedItemTemplate}"/>
+                                    </ScrollViewer>
+
+                                    <!-- Load More Footer -->
+                                    <Border Grid.Row="1"
+                                            Background="Transparent" Padding="0,8"
+                                            BorderThickness="0,1,0,0"
+                                            BorderBrush="{StaticResource BorderDefaultBrush}"
+                                            Visibility="{Binding HasMoreAssigned,
+                                                         Converter={StaticResource BoolToVis}}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <telerik:RadBusyIndicator IsBusy="True" BusyContent=""
+                                                IsIndeterminate="True" Width="16" Height="16" Margin="0,0,6,0"/>
+                                            <TextBlock Text="تحميل المزيد..."
+                                                       FontSize="{StaticResource FontSizeSm}"
+                                                       Foreground="{StaticResource TextMutedBrush}"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </Border>
+
+                            <!-- Empty -->
+                            <Border CornerRadius="{StaticResource RadiusXl}"
+                                    Background="{StaticResource SurfaceHoverBrush}"
+                                    Padding="20,30"
+                                    Visibility="{Binding IsAssignedEmpty, Converter={StaticResource BoolToVis}}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="📋" FontSize="28"
+                                               HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                    <TextBlock Text="لا توجد شركات مسندة لهذا المستخدم"
+                                               FontSize="{StaticResource FontSizeMd}"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextMutedBrush}"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="أضف شركات من القائمة أدناه"
+                                               FontSize="{StaticResource FontSizeSm}"
+                                               Foreground="{StaticResource TextPlaceholderBrush}"
+                                               HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                    </StackPanel>
+                </Border>
+
+                <!-- ══════════════════════════════════════════════════
+                     SECTION 2: إضافة شركات
+                ══════════════════════════════════════════════════ -->
+                <Border Style="{StaticResource SectionCard}">
+                    <StackPanel>
+
+                        <!-- Header -->
+                        <Grid Margin="0,0,0,14">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Title -->
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Border Style="{StaticResource SectionIndicator}"
+                                        Background="{StaticResource InfoBrush}"/>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="الشركات المتاحة"
+                                                   Style="{StaticResource SectionLabel}"/>
+                                        <Border Style="{StaticResource BadgeWarning}">
+                                            <TextBlock Text="{Binding AvailableCount}"
+                                                       FontSize="{StaticResource FontSizeSm}"
+                                                       FontWeight="Bold" Foreground="#92400E"/>
+                                        </Border>
+                                        <Border Style="{StaticResource BadgeDark}"
+                                                Visibility="{Binding HasAvailableSelection,
+                                                             Converter={StaticResource BoolToVis}}">
+                                            <TextBlock Text="{Binding AvailableSelectionText}"
+                                                       FontSize="{StaticResource FontSizeXs}"
+                                                       FontWeight="Bold" Foreground="White"/>
+                                        </Border>
+                                    </StackPanel>
+                                    <TextBlock Text="اختر الشركات التي تريد إسنادها للمستخدم"
+                                               Style="{StaticResource SectionSubtext}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- Actions -->
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Button Style="{StaticResource TransferActionBtnAccent}"
+                                        Command="{Binding AddSelectedCommand}"
+                                        Margin="0,0,6,0"
+                                        Visibility="{Binding HasAvailableSelection,
+                                                     Converter={StaticResource BoolToVis}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="+" FontSize="13" FontWeight="Bold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                                   Margin="0,0,5,0" VerticalAlignment="Center"/>
+                                        <TextBlock Text="إضافة المحدد"
+                                                   FontSize="{StaticResource FontSizeSm}"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextPrimaryBrush}"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Style="{StaticResource TransferActionBtn}"
+                                        Command="{Binding AddAllCommand}">
+                                    <TextBlock Text="إضافة الكل"
+                                               FontSize="{StaticResource FontSizeSm}"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextMutedBrush}"/>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Search -->
+                        <TextBox Style="{StaticResource TransferSearchBox}"
+                                 Text="{Binding AvailableSearch, UpdateSourceTrigger=PropertyChanged}"
+                                 Margin="0,0,0,12"/>
+
+                        <!-- List -->
+                        <Grid>
+                            <!-- Loading -->
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Margin="0,20"
+                                        Visibility="{Binding IsLoadingAvailable,
+                                                     Converter={StaticResource BoolToVis}}">
+                                <telerik:RadBusyIndicator IsBusy="True" BusyContent=""
+                                    IsIndeterminate="True" Width="35" Height="35"/>
+                                <TextBlock Text="جارٍ التحميل..."
+                                           FontSize="{StaticResource FontSizeSm}"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                            </StackPanel>
+
+                            <!-- Items -->
+                            <Border Style="{StaticResource CompanyListBorder}">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <ScrollViewer Grid.Row="0"
+                                                  x:Name="AvailableScrollViewer"
+                                                  Style="{StaticResource SlimScrollViewer}"
+                                                  VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled"
+                                                  behaviors:ScrollViewerBehavior.LoadMoreCommand="{Binding LoadMoreAvailableCommand}">
+                                        <ItemsControl ItemsSource="{Binding FilteredAvailable}"
+                                                      ItemTemplate="{StaticResource AvailableItemTemplate}"/>
+                                    </ScrollViewer>
+
+                                    <!-- Load More -->
+                                    <Border Grid.Row="1"
+                                            Background="Transparent" Padding="0,8"
+                                            BorderThickness="0,1,0,0"
+                                            BorderBrush="{StaticResource BorderDefaultBrush}"
+                                            Visibility="{Binding HasMoreAvailable,
+                                                         Converter={StaticResource BoolToVis}}">
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                            <telerik:RadBusyIndicator IsBusy="True" BusyContent=""
+                                                IsIndeterminate="True" Width="16" Height="16" Margin="0,0,6,0"/>
+                                            <TextBlock Text="تحميل المزيد..."
+                                                       FontSize="{StaticResource FontSizeSm}"
+                                                       Foreground="{StaticResource TextMutedBrush}"
+                                                       VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </Border>
+
+                            <!-- Empty -->
+                            <Border CornerRadius="{StaticResource RadiusXl}"
+                                    Background="{StaticResource SurfaceHoverBrush}"
+                                    Padding="20,30"
+                                    Visibility="{Binding IsAvailableEmpty, Converter={StaticResource BoolToVis}}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <TextBlock Text="✅" FontSize="28"
+                                               HorizontalAlignment="Center" Margin="0,0,0,10"/>
+                                    <TextBlock Text="تم إسناد كل الشركات"
+                                               FontSize="{StaticResource FontSizeMd}"
+                                               FontWeight="SemiBold"
+                                               Foreground="{StaticResource TextMutedBrush}"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="كل الشركات مرتبطة بهذا المستخدم بالفعل"
+                                               FontSize="{StaticResource FontSizeSm}"
+                                               Foreground="{StaticResource TextPlaceholderBrush}"
+                                               HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

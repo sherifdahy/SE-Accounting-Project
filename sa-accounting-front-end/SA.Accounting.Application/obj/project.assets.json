@@ -2,22 +2,6 @@
   "version": 3,
   "targets": {
     "net10.0": {
-      "CommunityToolkit.Mvvm/8.3.2": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/CommunityToolkit.Mvvm.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "build": {
-          "buildTransitive/CommunityToolkit.Mvvm.targets": {}
-        }
-      },
       "FluentValidation/12.1.0": {
         "type": "package",
         "compile": {
@@ -455,7 +439,6 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "CommunityToolkit.Mvvm": "8.3.2",
           "FluentValidation": "12.1.0"
         },
         "compile": {
@@ -487,47 +470,6 @@
     }
   },
   "libraries": {
-    "CommunityToolkit.Mvvm/8.3.2": {
-      "sha512": "m8EolE1A0Updj68WTsZSGI6VWb6mUqHPh7QFo0kt7+JPhYMNXRS1ch8TS/oITAdcxTLrwMOp3ku1KjeG1/Zdpg==",
-      "type": "package",
-      "path": "communitytoolkit.mvvm/8.3.2",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "License.md",
-        "ThirdPartyNotices.txt",
-        "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
-        "analyzers/dotnet/roslyn4.0/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
-        "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.CodeFixers.dll",
-        "analyzers/dotnet/roslyn4.3/cs/CommunityToolkit.Mvvm.SourceGenerators.dll",
-        "build/CommunityToolkit.Mvvm.FeatureSwitches.targets",
-        "build/CommunityToolkit.Mvvm.SourceGenerators.targets",
-        "build/CommunityToolkit.Mvvm.WindowsSdk.targets",
-        "build/CommunityToolkit.Mvvm.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.FeatureSwitches.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.SourceGenerators.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.WindowsSdk.targets",
-        "buildTransitive/CommunityToolkit.Mvvm.targets",
-        "communitytoolkit.mvvm.8.3.2.nupkg.sha512",
-        "communitytoolkit.mvvm.nuspec",
-        "lib/net6.0/CommunityToolkit.Mvvm.dll",
-        "lib/net6.0/CommunityToolkit.Mvvm.pdb",
-        "lib/net6.0/CommunityToolkit.Mvvm.xml",
-        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.dll",
-        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.pdb",
-        "lib/net8.0-windows10.0.17763/CommunityToolkit.Mvvm.xml",
-        "lib/net8.0/CommunityToolkit.Mvvm.dll",
-        "lib/net8.0/CommunityToolkit.Mvvm.pdb",
-        "lib/net8.0/CommunityToolkit.Mvvm.xml",
-        "lib/netstandard2.0/CommunityToolkit.Mvvm.dll",
-        "lib/netstandard2.0/CommunityToolkit.Mvvm.pdb",
-        "lib/netstandard2.0/CommunityToolkit.Mvvm.xml",
-        "lib/netstandard2.1/CommunityToolkit.Mvvm.dll",
-        "lib/netstandard2.1/CommunityToolkit.Mvvm.pdb",
-        "lib/netstandard2.1/CommunityToolkit.Mvvm.xml"
-      ]
-    },
     "FluentValidation/12.1.0": {
       "sha512": "FqWEn8BdbbFEHGanj9K8SVo+LyBeFWy2rolaE+e1TNUbifr8M7Iss+I1AqTSc8kjKtvjl/WN4XIHiRpslh42bA==",
       "type": "package",
@@ -1280,25 +1222,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\shrif\\.nuget\\packages\\": {},
+    "C:\\Users\\Sherif Dahy\\.nuget\\packages\\": {},
+    "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
+      "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
       "projectName": "SA.Accounting.Application",
-      "projectPath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
-      "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-      "outputPath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Application\\obj\\",
+      "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
+      "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+      "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -1308,6 +1253,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+        "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1315,8 +1262,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj": {
-              "projectPath": "F:\\SA.Accounting\\sa-accounting-front-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj"
+            "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj": {
+              "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj"
             }
           }
         }
@@ -1363,7 +1310,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

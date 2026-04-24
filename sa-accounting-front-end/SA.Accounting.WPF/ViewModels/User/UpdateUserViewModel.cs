@@ -1,146 +1,92 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using SA.Accounting.Core.Contracts.User.Requests;
-using SA.Accounting.Core.Interfaces;
-using SA.Accounting.Infrastructure.Handlers;
-using System;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-using Telerik.Windows.Controls.DataVisualization.Map.BingRest;
-using Telerik.Windows.Documents.Spreadsheet.Expressions.Functions;
+﻿using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.Commands.Base;
+using SA.Accounting.WPF.Interfaces;
+using SA.Accounting.WPF.ViewModels.Base;
+using System.Windows.Input;
 
-namespace SA.Accounting.WPF.ViewModels.User;
+namespace SA.Accounting.WPF.ViewModels;
 
-public sealed partial class UpdateUserViewModel : ObservableObject
+public sealed class UpdateUserViewModel : ViewModelBase, IAsyncInitializable<int>
 {
-    private readonly int _userId;
-    private readonly IUserService _userService;
+    private int _userId;
+    private readonly IViewModelAbstractFactory _viewModelFactory;
+    private readonly INavigator _navigator;
     private readonly IDialogService _dialogService;
 
-    // ─── State ───────────────────────────────────
-    [ObservableProperty] private bool _isBusy;
-    [ObservableProperty] private bool _isLoading = true;
+    public override ViewType Section => ViewType.Users;
 
-    // ─── Form Fields ─────────────────────────────
-    [ObservableProperty] private string _name = string.Empty;
-    [ObservableProperty] private string _email = string.Empty;
-    [ObservableProperty] private string _password = string.Empty;
-    [ObservableProperty] private string _ssn = string.Empty;
-    [ObservableProperty] private string _phoneNumber = string.Empty;
-    [ObservableProperty] private string _role = string.Empty;
+    // ══════ Current Tab Content ══════
+    private ViewModelBase _currentViewModel;
+    public ViewModelBase CurrentViewModel
+    {
+        get => _currentViewModel;
+        private set { _currentViewModel = value; OnPropertyChanged(); }
+    }
 
-    // ─── Validation ──────────────────────────────
-    [ObservableProperty] private string _nameError = string.Empty;
-    [ObservableProperty] private string _emailError = string.Empty;
-    [ObservableProperty] private string _passwordError = string.Empty;
-    [ObservableProperty] private string _ssnError = string.Empty;
-    [ObservableProperty] private string _phoneNumberError = string.Empty;
-    [ObservableProperty] private string _roleError = string.Empty;
+    // ══════ Tab State ══════
+    private string _currentSection = "BasicInfo";
+    public string CurrentSection
+    {
+        get => _currentSection;
+        set { _currentSection = value; OnPropertyChanged(); }
+    }
 
-    // ─── Events ──────────────────────────────────
-    public event Action? OnSaved;
-    public event Action? OnCancelled;
+    // ══════ Commands ══════
+    public ICommand ShowBasicInfoCommand { get; }
+    public ICommand ShowCompaniesCommand { get; }
+    public ICommand ShowCustodiesCommand { get; }
+    public ICommand GoBackCommand { get; }
 
-    // ─── Constructor ─────────────────────────────
     public UpdateUserViewModel(
-        int userId,
-        IUserService userService,
+        IViewModelAbstractFactory viewModelFactory,
+        INavigator navigator,
         IDialogService dialogService)
     {
-        _userId = userId;
-        _userService = userService;
+        _viewModelFactory = viewModelFactory;
+        _navigator = navigator;
         _dialogService = dialogService;
 
-        _ = LoadUserAsync();
+        ShowBasicInfoCommand = new AsyncRelayCommand(async _ =>
+            await NavigateToTabAsync("BasicInfo", ViewType.UserBasicInfo));
+        ShowCompaniesCommand = new AsyncRelayCommand(async _ =>
+            await NavigateToTabAsync("Companies", ViewType.UserCompanies));
+        ShowCustodiesCommand = new AsyncRelayCommand(async _ =>
+            await NavigateToTabAsync("Custodies", ViewType.UserCustodies));
+        GoBackCommand = new RelayCommand(_ => GoBack());
     }
 
-    // ─── Load Existing Data ──────────────────────
-    private async Task LoadUserAsync()
+    public async Task InitializeAsync(int userId)
     {
-        IsLoading = true;
+        _userId = userId;
+        await NavigateToTabAsync("BasicInfo", ViewType.UserBasicInfo);
+    }
+
+    private async Task NavigateToTabAsync(string section, ViewType viewType)
+    {
+        if (CurrentSection == section && CurrentViewModel != null)
+            return;
+
         try
         {
-            var user = await _userService.GetUserByIdAsync(_userId);
-            if (user is null) return;
+            CurrentSection = section;
 
-            Name = user.Name;
-            Email = user.Email;
-            Ssn = user.SSN;
-            PhoneNumber = user.PhoneNumber;
-            Role = user.Role;
-            Password = string.Empty; // لا نحمّل كلمة المرور
+            var vm = _viewModelFactory.CreateViewModel(viewType);
+
+            if (vm is IAsyncInitializable<int> init)
+                await init.InitializeAsync(_userId);
+
+            CurrentViewModel = vm;  // ✅ ده دلوقتي بيعمل OnPropertyChanged
         }
         catch (Exception ex)
         {
+            await _dialogService.ShowErrorAsync(ex.Message, "خطأ في تحميل البيانات");
         }
-        finally { IsLoading = false; }
     }
 
-    // ─── Validation ──────────────────────────────
-    private bool Validate()
+    private void GoBack()
     {
-        bool isValid = true;
-
-        if (string.IsNullOrWhiteSpace(Name))
-        { NameError = "اسم المستخدم مطلوب"; isValid = false; }
-        else NameError = string.Empty;
-
-        if (string.IsNullOrWhiteSpace(Email))
-        { EmailError = "البريد الإلكتروني مطلوب"; isValid = false; }
-        else EmailError = string.Empty;
-
-        // كلمة المرور اختيارية في التعديل
-        if (!string.IsNullOrEmpty(Password) && Password.Length < 6)
-        { PasswordError = "كلمة المرور يجب أن تكون 6 أحرف على الأقل"; isValid = false; }
-        else PasswordError = string.Empty;
-
-        if (string.IsNullOrWhiteSpace(Ssn))
-        { SsnError = "الرقم القومي مطلوب"; isValid = false; }
-        else SsnError = string.Empty;
-
-        if (string.IsNullOrWhiteSpace(PhoneNumber))
-        { PhoneNumberError = "رقم الهاتف مطلوب"; isValid = false; }
-        else PhoneNumberError = string.Empty;
-
-        if (string.IsNullOrWhiteSpace(Role))
-        { RoleError = "الدور مطلوب"; isValid = false; }
-        else RoleError = string.Empty;
-
-        return isValid;
-    }
-
-    // ─── Commands ────────────────────────────────
-
-    [RelayCommand]
-    private async Task SaveAsync()
-    {
-        if (!Validate()) return;
-
-        IsBusy = true;
-        try
-        {
-            var request = new UpdateUserRequest
-            {
-                Name = Name.Trim(),
-                Email = Email.Trim(),
-                Password = string.IsNullOrWhiteSpace(Password) ? null : Password,
-                SSN = Ssn.Trim(),
-                PhoneNumber = PhoneNumber.Trim(),
-                Role = Role.Trim()
-            };
-
-            await _userService.UpdateUserAsync(_userId, request);
-            OnSaved?.Invoke();
-        }
-        catch (Exception ex)
-        {
-        }
-        finally { IsBusy = false; }
-    }
-
-    [RelayCommand]
-    private void Cancel()
-    {
-        OnCancelled?.Invoke();
+        var vm = _viewModelFactory.CreateViewModel(ViewType.Users);
+        if (vm is IAsyncInitializable init) _ = init.InitializeAsync();
+        _navigator.CurrentViewModel = vm;
     }
 }

@@ -1,0 +1,35 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- ══════ Corner Radius ══════ -->
+    <CornerRadius x:Key="RadiusSm">4</CornerRadius>
+    <CornerRadius x:Key="RadiusMd">6</CornerRadius>
+    <CornerRadius x:Key="RadiusLg">7</CornerRadius>
+    <CornerRadius x:Key="RadiusXl">10</CornerRadius>
+    <CornerRadius x:Key="Radius2Xl">12</CornerRadius>
+
+    <!-- ══════ Heights ══════ -->
+    <sys:Double x:Key="InputHeightSm">28</sys:Double>
+    <sys:Double x:Key="InputHeightMd">32</sys:Double>
+    <sys:Double x:Key="InputHeightLg">34</sys:Double>
+    <sys:Double x:Key="InputHeightXl">36</sys:Double>
+    <sys:Double x:Key="RowHeight">48</sys:Double>
+    <sys:Double x:Key="IconButtonSize">30</sys:Double>
+
+    <!-- ══════ Font Sizes ══════ -->
+    <sys:Double x:Key="FontSizeXs">10</sys:Double>
+    <sys:Double x:Key="FontSizeSm">11</sys:Double>
+    <sys:Double x:Key="FontSizeMd">12</sys:Double>
+    <sys:Double x:Key="FontSizeLg">13</sys:Double>
+    <sys:Double x:Key="FontSizeXl">14</sys:Double>
+
+    <!-- ══════ Padding ══════ -->
+    <Thickness x:Key="InputPadding">10,0</Thickness>
+    <Thickness x:Key="InputPaddingSm">8,0</Thickness>
+    <Thickness x:Key="ButtonPadding">16,0</Thickness>
+    <Thickness x:Key="ButtonPaddingSm">12,0</Thickness>
+    <Thickness x:Key="CardPadding">18</Thickness>
+    <Thickness x:Key="BadgePadding">7,1</Thickness>
+
+</ResourceDictionary>

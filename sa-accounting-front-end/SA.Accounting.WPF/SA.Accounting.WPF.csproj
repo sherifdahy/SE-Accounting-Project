@@ -22,14 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
-	<PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
 	<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
 	<PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Mapster.DependencyInjection" Version="1.0.1" />
 	<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
 	<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.0" />
 	<PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
-	<PackageReference Include="Telerik.UI.for.Wpf.70.Xaml" Version="2023.1.117" />
+	<PackageReference Include="Telerik.UI.for.Wpf.NetCore.Xaml" Version="2023.1.117" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,18 +46,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\UserControls\Companies\CompaniesControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Windows\LoginWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="appsettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Companies\" />
+    <Folder Include="Models\Users\" />
+    <Folder Include="Validators\Users\" />
+    <Folder Include="ViewModels\NewFolder\" />
+    <Folder Include="Views\Funds\" />
   </ItemGroup>
 
 </Project>

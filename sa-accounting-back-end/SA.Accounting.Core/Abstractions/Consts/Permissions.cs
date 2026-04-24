@@ -33,6 +33,19 @@ public static class Permissions
     public const string ToggleStatusUsers = "users:toggleStatus";
     #endregion
 
+    #region Funds
+    public const string GetFunds = "funds:read";
+    public const string CreateFunds = "funds:create";
+    public const string UpdateFunds = "funds:update";
+    public const string RemoveFunds = "funds:remove";
+    #endregion
+
+    #region Transactions
+    public const string GetTransactions = "transactions:read";
+    public const string CreateTransactions = "transactions:create";
+    public const string UpdateTransactions = "transactions:update";
+    public const string RemoveTransactions = "transactions:remove";
+    #endregion
     public static IList<string> GetAllPermissions()
     {
         return typeof(Permissions).GetFields().Select(x => x.GetValue(x) as string).ToList()!;

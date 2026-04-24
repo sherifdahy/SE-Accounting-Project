@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SA.Accounting.WPF.HostBuilders;
 using SA.Accounting.WPF.Interfaces;
-using System.IO;
+using System.Globalization;
 using System.Windows;
 
 namespace SA.Accounting.WPF;
@@ -11,52 +12,43 @@ public partial class App : Application
 {
     private readonly IHost _host;
 
-    public static IServiceProvider Services { get; private set; } = null!;
-
     public App()
     {
-        _host = Host.CreateDefaultBuilder()
-            .ConfigureAppConfiguration(ConfigureAppConfiguration)
-            .ConfigureServices(ConfigureServices)
-            .Build();
+        _host = CreateHostBuilder().Build();
 
-        Services = _host.Services;
+        ValidatorOptions.Global.LanguageManager.Culture = new CultureInfo("ar");
     }
 
-    private void ConfigureAppConfiguration(HostBuilderContext context, IConfigurationBuilder config)
+    public static IHostBuilder CreateHostBuilder(string[] args = null!)
     {
-        var env = context.HostingEnvironment;
 
-        config.SetBasePath(Directory.GetCurrentDirectory())
-              .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-              .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
-              .AddEnvironmentVariables();
-    }
-
-    private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
-    {
-        var configuration = context.Configuration;
-        services.AddCustomServices(configuration);
+        return Host.CreateDefaultBuilder(args)
+            .AddConfiguration()
+                .AddMapster()
+                .AddRefit()
+                .AddState()
+                .AddViewModels()
+                .AddFactories()
+                .AddServices()
+                .AddViews()
+                .AddValidators();
     }
 
     protected override async void OnStartup(StartupEventArgs e)
     {
-        base.OnStartup(e);
-
-        ShutdownMode = ShutdownMode.OnExplicitShutdown;
-
         await _host.StartAsync();
 
-        var appNavigationService = Services.GetRequiredService<IAppNavigationService>();
+        var appNavigationService = _host.Services.GetRequiredService<IAppNavigationService>();
         appNavigationService.Start();
+
+        base.OnStartup(e);
     }
 
     protected override async void OnExit(ExitEventArgs e)
     {
-        using (_host)
-        {
-            await _host.StopAsync(TimeSpan.FromSeconds(5));
-        }
+        await _host.StopAsync();
+
+        _host.Dispose();
 
         base.OnExit(e);
     }

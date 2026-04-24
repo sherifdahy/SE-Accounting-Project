@@ -164,6 +164,62 @@ namespace SA.Accounting.Infrastructure.Migrations
                             ClaimType = "permissions",
                             ClaimValue = "users:toggleStatus",
                             RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ClaimType = "permissions",
+                            ClaimValue = "funds:read",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ClaimType = "permissions",
+                            ClaimValue = "funds:create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ClaimType = "permissions",
+                            ClaimValue = "funds:update",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ClaimType = "permissions",
+                            ClaimValue = "funds:remove",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ClaimType = "permissions",
+                            ClaimValue = "transactions:read",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ClaimType = "permissions",
+                            ClaimValue = "transactions:create",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ClaimType = "permissions",
+                            ClaimValue = "transactions:update",
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ClaimType = "permissions",
+                            ClaimValue = "transactions:remove",
+                            RoleId = 1
                         });
                 });
 
@@ -666,26 +722,6 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.ToTable("Selectors");
                 });
 
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Relations.CompanyUserTransaction", b =>
-                {
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransactionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CompanyId", "UserId", "TransactionId");
-
-                    b.HasIndex("TransactionId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("CompanyUserTransactions");
-                });
-
             modelBuilder.Entity("SA.Accounting.Core.Entities.Relations.UserCompany", b =>
                 {
                     b.Property<int>("UserId")
@@ -715,14 +751,19 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Property<int>("CreatedById")
                         .HasColumnType("int");
 
+                    b.Property<byte>("CurrentState")
+                        .HasColumnType("tinyint");
+
                     b.Property<DateTime>("DateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte>("State")
-                        .HasColumnType("tinyint");
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -730,11 +771,16 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Property<int?>("UpdatedById")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("UpdatedById");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Transactions");
                 });
@@ -781,6 +827,49 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.ToTable("TransactionCategories");
                 });
 
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<byte>("FromState")
+                        .HasColumnType("tinyint");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("ToState")
+                        .HasColumnType("tinyint");
+
+                    b.Property<int>("TransactionId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("TransactionId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("TransactionHistory");
+                });
+
             modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionItem", b =>
                 {
                     b.Property<int>("Id")
@@ -792,22 +881,18 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CreatedById")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("FileUrl")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Note")
                         .IsRequired()
@@ -828,6 +913,8 @@ namespace SA.Accounting.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CompanyId");
+
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("TransactionCategoryId");
@@ -844,7 +931,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -853,7 +940,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -862,7 +949,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -871,13 +958,13 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -886,7 +973,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 
@@ -1007,33 +1094,6 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Relations.CompanyUserTransaction", b =>
-                {
-                    b.HasOne("SA.Accounting.Core.Entities.Companies.Company", "Company")
-                        .WithMany("CompanyUserTransaction")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Transactions.Transaction", "Transaction")
-                        .WithMany("CompanyUserTransaction")
-                        .HasForeignKey("TransactionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "User")
-                        .WithMany("CompanyUserTransaction")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-
-                    b.Navigation("Transaction");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("SA.Accounting.Core.Entities.Relations.UserCompany", b =>
                 {
                     b.HasOne("SA.Accounting.Core.Entities.Companies.Company", "Company")
@@ -1065,9 +1125,17 @@ namespace SA.Accounting.Infrastructure.Migrations
                         .WithMany()
                         .HasForeignKey("UpdatedById");
 
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "User")
+                        .WithMany("Transactions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.Navigation("CreatedBy");
 
                     b.Navigation("UpdatedBy");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionCategory", b =>
@@ -1087,8 +1155,39 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionHistory", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Transactions.Transaction", "Transaction")
+                        .WithMany("Histories")
+                        .HasForeignKey("TransactionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("Transaction");
+
+                    b.Navigation("UpdatedBy");
+                });
+
             modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionItem", b =>
                 {
+                    b.HasOne("SA.Accounting.Core.Entities.Companies.Company", "Company")
+                        .WithMany("TransactionItems")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
@@ -1102,7 +1201,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("SA.Accounting.Core.Entities.Transactions.Transaction", "Transaction")
-                        .WithMany("TransactionItems")
+                        .WithMany("Items")
                         .HasForeignKey("TransactionId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1110,6 +1209,8 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedById");
+
+                    b.Navigation("Company");
 
                     b.Navigation("CreatedBy");
 
@@ -1124,16 +1225,16 @@ namespace SA.Accounting.Infrastructure.Migrations
                 {
                     b.Navigation("Accounts");
 
-                    b.Navigation("CompanyUserTransaction");
-
                     b.Navigation("Owners");
+
+                    b.Navigation("TransactionItems");
 
                     b.Navigation("UserCompanies");
                 });
 
             modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.ApplicationUser", b =>
                 {
-                    b.Navigation("CompanyUserTransaction");
+                    b.Navigation("Transactions");
 
                     b.Navigation("UserCompanies");
                 });
@@ -1147,9 +1248,9 @@ namespace SA.Accounting.Infrastructure.Migrations
 
             modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.Transaction", b =>
                 {
-                    b.Navigation("CompanyUserTransaction");
+                    b.Navigation("Histories");
 
-                    b.Navigation("TransactionItems");
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionCategory", b =>

@@ -2917,25 +2917,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\shrif\\.nuget\\packages\\": {},
+    "C:\\Users\\Sherif Dahy\\.nuget\\packages\\": {},
+    "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
+      "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
       "projectName": "SA.Accounting.Core",
-      "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
-      "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-      "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Core\\obj\\",
+      "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\SA.Accounting.Core.csproj",
+      "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+      "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -2945,6 +2948,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+        "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2999,7 +3004,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

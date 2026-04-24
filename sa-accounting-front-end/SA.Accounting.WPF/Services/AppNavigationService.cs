@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SA.Accounting.WPF.Interfaces;
+using System.Drawing.Printing;
 using System.Windows;
 
 namespace SA.Accounting.WPF.Services;
@@ -17,54 +18,43 @@ public class AppNavigationService : IAppNavigationService
 
     public void Start()
     {
-        ShowLoginWindow();
+        ShowAuthWindow();
     }
-
-    public void LoginSucceeded()
+    public void LoginSuccess()
     {
-        CloseAuthWindow();
+        HideAuthWindow();
         ShowMainWindow();
     }
 
     public void Logout()
     {
-        CloseMainWindow();
-        ShowLoginWindow();
+        HideMainWindow();
+        ShowAuthWindow();
+    }
+    public void CloseApplication()
+    {
+        Application.Current.Shutdown();
     }
 
-    private void ShowLoginWindow()
+    private void HideAuthWindow()
     {
-        Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+        _authWindow!.Hide();
+    }
 
+    private void HideMainWindow()
+    {
+        _mainWindow!.Hide();
+    }
+
+    private void ShowAuthWindow()
+    {
         _authWindow = _serviceProvider.GetRequiredService<AuthWindow>();
         _authWindow.Show();
     }
 
     private void ShowMainWindow()
     {
-        Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
-
         _mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-        Application.Current.MainWindow = _mainWindow;
         _mainWindow.Show();
-    }
-
-    private void CloseAuthWindow()
-    {
-        if (_authWindow != null)
-        {
-            _authWindow.Close();
-            _authWindow = null;
-        }
-    }
-
-    private void CloseMainWindow()
-    {
-        if (_mainWindow != null)
-        {
-            Application.Current.ShutdownMode = ShutdownMode.OnExplicitShutdown;
-            _mainWindow.Close();
-            _mainWindow = null;
-        }
     }
 }

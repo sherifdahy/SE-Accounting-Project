@@ -6,7 +6,7 @@ namespace SA.Accounting.Application.Commands.User;
 
 public record UpdateProfileCommand : IRequest<Result>
 {
-    public const string Route = "info";
-    public string FirstName { get; set; } = string.Empty;
-    public string LastName { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public string PhoneNumber { get; set; } = string.Empty;
+    public string SSN { get; set; } = string.Empty;
 }

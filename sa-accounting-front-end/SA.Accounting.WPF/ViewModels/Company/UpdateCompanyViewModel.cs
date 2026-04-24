@@ -1,92 +1,138 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using Mapster;
+using Newtonsoft.Json;
+using Refit;
+using SA.Accounting.Core.Contracts.Account.Requests;
 using SA.Accounting.Core.Contracts.Company.Requests;
-using SA.Accounting.Core.Contracts.Company.Validators;
+using SA.Accounting.Core.Contracts.Owner.Requests;
 using SA.Accounting.Core.Contracts.Platform.Responses;
-using SA.Accounting.Core;
-using SA.Accounting.Infrastructure.Handlers;
-using SA.Accounting.Core.Interfaces;
+using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.Commands.Base;
+using SA.Accounting.WPF.Interfaces;
 using SA.Accounting.WPF.ViewModels.Account;
+using SA.Accounting.WPF.ViewModels.Base;
 using SA.Accounting.WPF.ViewModels.Owner;
 using System.Collections.ObjectModel;
-using System.Xml.Linq;
+using System.Windows.Input;
 
-namespace SA.Accounting.WPF.ViewModels.Company;
+namespace SA.Accounting.WPF.ViewModels;
 
-public sealed partial class UpdateCompanyViewModel
-    : ValidatableModel<UpdateCompanyRequest>
+public class UpdateCompanyViewModel : ValidatableViewModel<UpdateCompanyViewModel>, IAsyncInitializable<int>
 {
-    // ─── Services ────────────────────────────────
     private readonly ICompanyService _companyService;
     private readonly IPlatformService _platformService;
     private readonly IDialogService _dialogService;
+    private readonly INavigator _navigator;
+    private readonly IViewModelAbstractFactory _viewModelAbstractFactory;
+    private readonly IValidator<UpdateCompanyViewModel> _validator;
+    private readonly IValidator<UpdateOwnerViewModel> _ownerValidator;
+    private readonly IValidator<UpdateAccountViewModel> _accountValidator;
 
-    // ─── Properties ──────────────────────────────
-    [ObservableProperty] private int _companyId;
-    [ObservableProperty] private string _name = string.Empty;
-    [ObservableProperty] private string _taxRegistrationNumber = string.Empty;
-    [ObservableProperty] private string _taxFileNumber = string.Empty;
-    [ObservableProperty] private string _address = string.Empty;
-    [ObservableProperty] private bool _isBusy;
+    public override ViewType Section => ViewType.Companies;
+    protected override IValidator<UpdateCompanyViewModel> Validator => _validator;
 
-    // ─── Collections ─────────────────────────────
+    // ══════ Properties ══════
+    private int _companyId;
+
+    private string _name = string.Empty;
+    public string Name
+    {
+        get => _name;
+        set { _name = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    private string _taxRegistrationNumber = string.Empty;
+    public string TaxRegistrationNumber
+    {
+        get => _taxRegistrationNumber;
+        set { _taxRegistrationNumber = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    private string _taxFileNumber = string.Empty;
+    public string TaxFileNumber
+    {
+        get => _taxFileNumber;
+        set { _taxFileNumber = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    private string _address = string.Empty;
+    public string Address
+    {
+        get => _address;
+        set { _address = value; OnPropertyChanged(); ValidateProperty(); }
+    }
+
+    // ══════ Collections ══════
     public ObservableCollection<UpdateOwnerViewModel> Owners { get; } = [];
     public ObservableCollection<UpdateAccountViewModel> Accounts { get; } = [];
     public ObservableCollection<PlatformResponse> Platforms { get; } = [];
 
-    // ─── Constructor ─────────────────────────────
+    // ══════ Commands ══════
+    public ICommand AddOwnerCommand { get; }
+    public ICommand RemoveOwnerCommand { get; }
+    public ICommand AddAccountCommand { get; }
+    public ICommand RemoveAccountCommand { get; }
+    public ICommand SaveCommand { get; }
+    public ICommand CancelCommand { get; }
+
     public UpdateCompanyViewModel(
         ICompanyService companyService,
         IPlatformService platformService,
-        IDialogService dialogService)
-        : base(new UpdateCompanyRequestValidator())
+        IDialogService dialogService,
+        INavigator navigator,
+        IViewModelAbstractFactory viewModelAbstractFactory,
+        IValidator<UpdateCompanyViewModel> validator,
+        IValidator<UpdateOwnerViewModel> ownerValidator,
+        IValidator<UpdateAccountViewModel> accountValidator)
     {
         _companyService = companyService;
         _platformService = platformService;
         _dialogService = dialogService;
+        _navigator = navigator;
+        _viewModelAbstractFactory = viewModelAbstractFactory;
+        _validator = validator;
+        _ownerValidator = ownerValidator;
+        _accountValidator = accountValidator;
+
+        AddOwnerCommand = new RelayCommand((_) => Owners.Add(new UpdateOwnerViewModel(_ownerValidator)));
+        RemoveOwnerCommand = new RelayCommand((o) => Owners.Remove((UpdateOwnerViewModel)o));
+
+        AddAccountCommand = new RelayCommand((_) => Accounts.Add(new UpdateAccountViewModel(_accountValidator)));
+        RemoveAccountCommand = new RelayCommand((a) => Accounts.Remove((UpdateAccountViewModel)a));
+
+        SaveCommand = new AsyncRelayCommand(async (_) => await SaveAsync());
+        CancelCommand = new AsyncRelayCommand(async (_) => await CancelAsync());
     }
 
-    // ─── Validation hooks ────────────────────────
-    partial void OnNameChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Name));
+    // ══════ Initialize ══════
+    public async Task InitializeAsync(int companyId)
+    {
+        _companyId = companyId;
+        await LoadPlatformsAsync();
+        await LoadCompanyAsync();
+    }
 
-    partial void OnTaxRegistrationNumberChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(TaxRegistrationNumber));
-
-    partial void OnTaxFileNumberChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(TaxFileNumber));
-
-    partial void OnAddressChanged(string value)
-        => RunPropertyValidation(ToRequest(), nameof(Address));
-
-    // ─── Load Platforms ──────────────────────────
-    [RelayCommand]
+    // ══════ Load ══════
     private async Task LoadPlatformsAsync()
     {
-        IsBusy = true;
         try
         {
             var result = await _platformService.GetAllAsync(false);
             Platforms.Clear();
-            foreach (var p in result ?? [])
-                Platforms.Add(p);
+            foreach (var p in result ?? []) Platforms.Add(p);
         }
-        catch (Exception ex) {  }
-        finally { IsBusy = false; }
+        catch (Exception ex)
+        {
+            await _dialogService.ShowErrorAsync(ex.Message, "خطأ في تحميل المنصات");
+        }
     }
 
-    // ─── Load Company ────────────────────────────
-    public async Task LoadCompanyAsync(int companyId)
+    private async Task LoadCompanyAsync()
     {
-        IsBusy = true;
         try
         {
-            var company = await _companyService.GetByIdAsync(companyId);
+            var company = await _companyService.GetByIdAsync(_companyId);
             if (company is null) return;
 
-            SuppressValidation = true;
-
-            CompanyId = company.Id;
             Name = company.Name;
             TaxRegistrationNumber = company.TaxRegistrationNumber;
             TaxFileNumber = company.TaxFileNumber;
@@ -94,94 +140,94 @@ public sealed partial class UpdateCompanyViewModel
 
             Owners.Clear();
             foreach (var o in company.Owners ?? [])
-                Owners.Add(new UpdateOwnerViewModel
+            {
+                var vm = new UpdateOwnerViewModel(_ownerValidator)
                 {
                     Id = o.Id,
                     Name = o.Name,
-                    Ssn = o.SSN,
-                });
+                    SSN = o.SSN
+                };
+                Owners.Add(vm);
+            }
 
             Accounts.Clear();
             foreach (var a in company.Accounts ?? [])
-                Accounts.Add(new UpdateAccountViewModel
+            {
+                var vm = new UpdateAccountViewModel(_accountValidator)
                 {
                     Id = a.Id,
                     Email = a.Email,
                     Password = a.Password,
-                    PlatformId = a.Platform.Id,
-                });
-
-            SuppressValidation = false;
-            ClearAllErrors();
+                    PlatformId = a.Platform.Id
+                };
+                Accounts.Add(vm);
+            }
         }
-        catch (Exception ex) {  }
-        finally { IsBusy = false; }
+        catch (Exception ex)
+        {
+            await _dialogService.ShowErrorAsync(ex.Message, "خطأ في تحميل بيانات الشركة");
+        }
     }
 
-    // ─── Owners ──────────────────────────────────
-    [RelayCommand]
-    private void AddOwner() => Owners.Add(new UpdateOwnerViewModel());
-
-    [RelayCommand]
-    private void RemoveOwner(UpdateOwnerViewModel owner) => Owners.Remove(owner);
-
-    // ─── Accounts ────────────────────────────────
-    [RelayCommand]
-    private void AddAccount() => Accounts.Add(new UpdateAccountViewModel());
-
-    [RelayCommand]
-    private void RemoveAccount(UpdateAccountViewModel account) => Accounts.Remove(account);
-
-    // ─── Save ────────────────────────────────────
-    [RelayCommand]
+    // ══════ Save ══════
     private async Task SaveAsync()
     {
-        var request = ToRequest();
-        ValidateAll(request);
-        foreach (var o in Owners) o.ValidateAll(o.ToRequest());
-        foreach (var a in Accounts) a.ValidateAll(a.ToRequest());
-
-        bool allValid = IsValid
-                     && Owners.All(o => o.IsValid)
-                     && Accounts.All(a => a.IsValid);
-
-        if (!allValid)
-        {
-            await _dialogService.ShowWarningAsync(
-                "يرجى تصحيح الأخطاء قبل الحفظ", "تحقق من البيانات");
-            return;
-        }
-
-        IsBusy = true;
         try
         {
-            await _companyService.UpdateAsync(CompanyId, request);
-            await _dialogService.ShowInfoAsync(
-                "تم تعديل بيانات الشركة بنجاح ✓", "نجح الحفظ");
+            // Validate all
+            ValidateAll();
+            foreach (var o in Owners) o.ValidateAll();
+            foreach (var a in Accounts) a.ValidateAll();
+
+            bool allValid = !HasErrors
+                         && Owners.All(o => !o.HasErrors)
+                         && Accounts.All(a => !a.HasErrors);
+
+            if (!allValid)
+            {
+                await _dialogService.ShowWarningAsync("يرجى تصحيح الأخطاء قبل الحفظ", "تحقق من البيانات");
+                return;
+            }
+
+            var request = new UpdateCompanyRequest
+            {
+                Name = Name,
+                TaxRegistrationNumber = TaxRegistrationNumber,
+                TaxFileNumber = TaxFileNumber,
+                Address = Address,
+                Owners = Owners.Select(o => o.Adapt<UpdateOwnerRequest>()).ToList(),
+                Accounts = Accounts.Select(a => a.Adapt<UpdateAccountRequest>()).ToList()
+            };
+
+            await _companyService.UpdateAsync(_companyId, request);
+            await _dialogService.ShowInfoAsync("تم تعديل بيانات الشركة بنجاح ✓", "نجح الحفظ");
+            NavigateBack();
         }
-        finally { IsBusy = false; }
+        catch(ApiException apiEx)
+        {
+            var errors = JsonConvert.DeserializeObject<ProblemDetails>(apiEx.Content);
+            await _dialogService.ShowErrorAsync(errors.Errors.First().Value.First(),"حدث خطأ اثناء الحفظ");
+        }
+        catch (Exception ex)
+        {
+            await _dialogService.ShowErrorAsync(ex.Message, "خطأ أثناء الحفظ");
+        }
     }
 
-    // ─── Cancel ──────────────────────────────────
-    [RelayCommand]
+    // ══════ Cancel ══════
     private async Task CancelAsync()
     {
-        var confirmed = await _dialogService.ShowConfirmAsync(
-            "هل تريد إلغاء العملية؟ سيتم فقدان جميع التعديلات.",
-            "تأكيد الإلغاء");
+        if (!await _dialogService.ShowConfirmAsync(
+            "هل تريد إلغاء العملية؟ سيتم فقدان جميع التعديلات.", "تأكيد الإلغاء"))
+            return;
 
-        if (confirmed)
-            await LoadCompanyAsync(CompanyId);
+        NavigateBack();
     }
 
-    // ─── Map to Request ──────────────────────────
-    private UpdateCompanyRequest ToRequest() => new()
+    private void NavigateBack()
     {
-        Name = Name,
-        TaxRegistrationNumber = TaxRegistrationNumber,
-        TaxFileNumber = TaxFileNumber,
-        Address = Address,
-        Owners = Owners.Select(o => o.ToRequest()).ToList(),
-        Accounts = Accounts.Select(a => a.ToRequest()).ToList(),
-    };
+        var vm = _viewModelAbstractFactory.CreateViewModel(ViewType.Companies);
+        if (vm is IAsyncInitializable init) _ = init.InitializeAsync();
+        _navigator.CurrentViewModel = vm;
+    }
 }

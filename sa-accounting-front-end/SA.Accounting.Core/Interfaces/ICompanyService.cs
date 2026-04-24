@@ -7,7 +7,7 @@ namespace SA.Accounting.Core.Interfaces;
 
 public interface ICompanyService
 {
-    Task<PaginatedList<CompanyResponse>> GetAllAsync(RequestFilters filters);
+    Task<PaginatedList<CompanyResponse>> GetAllAsync(RequestFilters filters, bool IncludeDisabled = false);
     Task<CompanyResponse> CreateAsync(CreateCompanyRequest request);
     Task<CompanyDetailResponse> GetByIdAsync(int id);
     Task UpdateAsync(int id, UpdateCompanyRequest request);

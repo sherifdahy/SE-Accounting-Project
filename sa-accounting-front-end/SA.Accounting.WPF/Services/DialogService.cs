@@ -1,5 +1,9 @@
 using SA.Accounting.Core.Interfaces;
+using SA.Accounting.Core.WPF;
+using SA.Accounting.WPF.Interfaces;
+using SA.Accounting.WPF.ViewModels.Base;
 using System.Windows;
+using Telerik.Pivot.Core;
 
 namespace SA.Accounting.WPF.Services;
 
@@ -31,5 +35,27 @@ public sealed class DialogService : IDialogService
         var result = MessageBox.Show(message, title,
             MessageBoxButton.YesNo, MessageBoxImage.Question);
         return Task.FromResult(result == MessageBoxResult.Yes);
+    }
+
+    public Task<bool> ShowDialogAsync(ViewModelBase viewModel)
+    {
+        var dialog = new DialogWindow
+        {
+            DataContext = viewModel,
+            Owner = Application.Current.MainWindow
+        };
+
+        if (viewModel is ICloseable closeable)
+        {
+            closeable.CloseRequested += () =>
+            {
+                dialog.DialogResult = closeable.DialogResult;
+                dialog.Close();
+            };
+        }
+
+        var result = dialog.ShowDialog();
+
+        return Task.FromResult(result == true);
     }
 }

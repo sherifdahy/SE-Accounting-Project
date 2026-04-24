@@ -1,4 +1,4 @@
-﻿using SA.Accounting.WPF.ViewModels;
+﻿using SA.Accounting.WPF.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +9,7 @@ namespace SA.Accounting.WPF.Interfaces;
 public interface INavigator
 {
     ViewModelBase CurrentViewModel { get; set; }
-    ICommand UpdateCurrentViewModelCommand { get; }
+
+    event Action StateChanged;
 }
 

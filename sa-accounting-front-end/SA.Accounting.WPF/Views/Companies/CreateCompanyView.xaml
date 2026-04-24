@@ -1,0 +1,472 @@
+﻿<UserControl x:Class="SA.Accounting.WPF.Views.CreateCompanyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+             Background="{StaticResource SurfaceHoverBrush}"
+             d:DesignWidth="860">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="24,20,24,32">
+
+            <!-- ══════ Page Header ══════ -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                <Border Width="42" Height="42"
+                        Background="{StaticResource SurfaceBrush}"
+                        CornerRadius="{StaticResource RadiusXl}"
+                        Margin="0,0,12,0">
+                    <TextBlock Text="🏢" FontSize="20"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </Border>
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Text="إنشاء شركة جديدة"
+                               Style="{StaticResource PageHeaderTitle}"/>
+                    <TextBlock Text="قم بتعبئة البيانات التالية لتسجيل شركة جديدة في النظام"
+                               Style="{StaticResource PageHeaderSubtitle}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- ══════ بيانات الشركة ══════ -->
+            <Border Style="{StaticResource SectionCard}">
+                <StackPanel>
+
+                    <!-- Section Header -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                        <Border Style="{StaticResource SectionIndicator}"
+                                Background="{StaticResource TextPrimaryBrush}"/>
+                        <StackPanel>
+                            <TextBlock Text="بيانات الشركة"
+                                       Style="{StaticResource SectionLabel}"/>
+                            <TextBlock Text="المعلومات الأساسية للشركة"
+                                       Style="{StaticResource SectionSubtext}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Row 1: Name + TaxReg -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Text="اسم الشركة" Style="{StaticResource InputLabel}" Margin="0"/>
+                                <TextBlock Style="{StaticResource RequiredStar}"/>
+                            </StackPanel>
+                            <telerik:RadWatermarkTextBox
+                                x:Name="NameBox"
+                                Text="{Binding Name, Mode=TwoWay,
+                                       UpdateSourceTrigger=PropertyChanged,
+                                       ValidatesOnNotifyDataErrors=True}"
+                                WatermarkContent="أدخل اسم الشركة"
+                                Style="{StaticResource InputDefault}"
+                                Validation.ErrorTemplate="{x:Null}"/>
+                            <TextBlock Style="{StaticResource ValidationError}"
+                                       Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=NameBox}"
+                                       Visibility="{Binding (Validation.HasError), ElementName=NameBox,
+                                                    Converter={StaticResource BoolToVis}}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Text="رقم السجل الضريبي" Style="{StaticResource InputLabel}" Margin="0"/>
+                                <TextBlock Style="{StaticResource RequiredStar}"/>
+                            </StackPanel>
+                            <telerik:RadWatermarkTextBox
+                                x:Name="TaxRegBox"
+                                Text="{Binding TaxRegistrationNumber, Mode=TwoWay,
+                                       UpdateSourceTrigger=PropertyChanged,
+                                       ValidatesOnNotifyDataErrors=True}"
+                                WatermarkContent="000000000"
+                                MaxLength="15"
+                                Style="{StaticResource InputDefault}"
+                                Validation.ErrorTemplate="{x:Null}"/>
+                            <TextBlock Style="{StaticResource ValidationError}"
+                                       Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=TaxRegBox}"
+                                       Visibility="{Binding (Validation.HasError), ElementName=TaxRegBox,
+                                                    Converter={StaticResource BoolToVis}}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Row 2: TaxFile -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Text="رقم الملف الضريبي" Style="{StaticResource InputLabel}" Margin="0"/>
+                                <TextBlock Style="{StaticResource RequiredStar}"/>
+                            </StackPanel>
+                            <telerik:RadWatermarkTextBox
+                                x:Name="TaxFileBox"
+                                Text="{Binding TaxFileNumber, Mode=TwoWay,
+                                       UpdateSourceTrigger=PropertyChanged,
+                                       ValidatesOnNotifyDataErrors=True}"
+                                WatermarkContent="أدخل رقم الملف الضريبي"
+                                Style="{StaticResource InputDefault}"
+                                Validation.ErrorTemplate="{x:Null}"/>
+                            <TextBlock Style="{StaticResource ValidationError}"
+                                       Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=TaxFileBox}"
+                                       Visibility="{Binding (Validation.HasError), ElementName=TaxFileBox,
+                                                    Converter={StaticResource BoolToVis}}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Row 3: Address -->
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="العنوان" Style="{StaticResource InputLabel}" Margin="0"/>
+                            <TextBlock Style="{StaticResource RequiredStar}"/>
+                        </StackPanel>
+                        <TextBox x:Name="AddressBox"
+                                 Text="{Binding Address, Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        ValidatesOnNotifyDataErrors=True}"
+                                 Height="68" TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 VerticalContentAlignment="Top"
+                                 Style="{StaticResource TextBoxDefault}"
+                                 Validation.ErrorTemplate="{x:Null}"/>
+                        <TextBlock Style="{StaticResource ValidationError}"
+                                   Text="{Binding (Validation.Errors)[0].ErrorContent, ElementName=AddressBox}"
+                                   Visibility="{Binding (Validation.HasError), ElementName=AddressBox,
+                                                Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ══════ المالكون ══════ -->
+            <Border Style="{StaticResource SectionCard}">
+                <StackPanel>
+
+                    <!-- Section Header -->
+                    <Grid Margin="0,0,0,14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <Border Style="{StaticResource SectionIndicator}"
+                                    Background="{StaticResource AccentBrush}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="المالكون" Style="{StaticResource SectionLabel}"/>
+                                    <Border Style="{StaticResource BadgeWarning}">
+                                        <TextBlock Text="{Binding Owners.Count}"
+                                                   FontSize="{StaticResource FontSizeXs}"
+                                                   FontWeight="SemiBold" Foreground="#92400E"/>
+                                    </Border>
+                                </StackPanel>
+                                <TextBlock Text="أضف مالكي الشركة"
+                                           Style="{StaticResource SectionSubtext}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button Grid.Column="1"
+                                Style="{StaticResource BtnPrimary}"
+                                Command="{Binding AddOwnerCommand}"
+                                Height="{StaticResource InputHeightMd}">
+                            <StackPanel Orientation="Horizontal" Margin="2,0">
+                                <TextBlock Text="+" FontSize="14" FontWeight="Bold"
+                                           Foreground="White" VerticalAlignment="Center"
+                                           Margin="0,0,5,0"/>
+                                <TextBlock Text="إضافة مالك"
+                                           FontSize="{StaticResource FontSizeMd}"
+                                           FontWeight="SemiBold" Foreground="White"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <!-- Owner Rows -->
+                    <ItemsControl ItemsSource="{Binding Owners}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardRow}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="12"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="اسم المالك" Style="{StaticResource RowLabel}"/>
+                                            <telerik:RadWatermarkTextBox
+                                                x:Name="OwnerNameBox"
+                                                Text="{Binding Name, Mode=TwoWay,
+                                                       UpdateSourceTrigger=PropertyChanged,
+                                                       ValidatesOnNotifyDataErrors=True}"
+                                                WatermarkContent="أدخل اسم المالك"
+                                                Style="{StaticResource InputSm}"
+                                                Validation.ErrorTemplate="{x:Null}"/>
+                                            <TextBlock Style="{StaticResource ValidationError}"
+                                                       Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                                              ElementName=OwnerNameBox}"
+                                                       Visibility="{Binding (Validation.HasError),
+                                                                    ElementName=OwnerNameBox,
+                                                                    Converter={StaticResource BoolToVis}}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text="رقم الهوية الوطنية" Style="{StaticResource RowLabel}"/>
+                                            <telerik:RadWatermarkTextBox
+                                                x:Name="OwnerSsnBox"
+                                                Text="{Binding SSN, Mode=TwoWay,
+                                                       UpdateSourceTrigger=PropertyChanged,
+                                                       ValidatesOnNotifyDataErrors=True}"
+                                                WatermarkContent="أدخل رقم الهوية"
+                                                Style="{StaticResource InputSm}"
+                                                Validation.ErrorTemplate="{x:Null}"/>
+                                            <TextBlock Style="{StaticResource ValidationError}"
+                                                       Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                                              ElementName=OwnerSsnBox}"
+                                                       Visibility="{Binding (Validation.HasError),
+                                                                    ElementName=OwnerSsnBox,
+                                                                    Converter={StaticResource BoolToVis}}"/>
+                                        </StackPanel>
+
+                                        <Button Grid.Column="4"
+                                                Style="{StaticResource BtnIcon}"
+                                                VerticalAlignment="Center"
+                                                Command="{Binding DataContext.RemoveOwnerCommand,
+                                                          RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}">
+                                            <TextBlock Text="🗑️" FontSize="13"/>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Empty State -->
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="Border" BasedOn="{StaticResource EmptyStateCard}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Owners.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="👤" FontSize="24"
+                                       HorizontalAlignment="Center" Margin="0,0,0,7"/>
+                            <TextBlock Text="لا يوجد مالكون حتى الآن"
+                                       FontSize="{StaticResource FontSizeMd}"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextSecondaryBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="اضغط &quot;+ إضافة مالك&quot; للبدء"
+                                       FontSize="{StaticResource FontSizeSm}"
+                                       Foreground="{StaticResource TextPlaceholderBrush}"
+                                       HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ══════ حسابات المنصات ══════ -->
+            <Border Style="{StaticResource SectionCard}">
+                <StackPanel>
+
+                    <!-- Section Header -->
+                    <Grid Margin="0,0,0,14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <Border Style="{StaticResource SectionIndicator}"
+                                    Background="{StaticResource SuccessBrush}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="حسابات المنصات" Style="{StaticResource SectionLabel}"/>
+                                    <Border Style="{StaticResource BadgeSuccess}">
+                                        <TextBlock Text="{Binding Accounts.Count}"
+                                                   FontSize="{StaticResource FontSizeXs}"
+                                                   FontWeight="SemiBold" Foreground="#065F46"/>
+                                    </Border>
+                                </StackPanel>
+                                <TextBlock Text="أضف حسابات المنصات المرتبطة بالشركة"
+                                           Style="{StaticResource SectionSubtext}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button Grid.Column="1"
+                                Style="{StaticResource BtnPrimary}"
+                                Command="{Binding AddAccountCommand}"
+                                Height="{StaticResource InputHeightMd}">
+                            <StackPanel Orientation="Horizontal" Margin="2,0">
+                                <TextBlock Text="+" FontSize="14" FontWeight="Bold"
+                                           Foreground="White" VerticalAlignment="Center"
+                                           Margin="0,0,5,0"/>
+                                <TextBlock Text="إضافة حساب"
+                                           FontSize="{StaticResource FontSizeMd}"
+                                           FontWeight="SemiBold" Foreground="White"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                    <!-- Account Rows -->
+                    <ItemsControl ItemsSource="{Binding Accounts}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardRow}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2.5*"/>
+                                            <ColumnDefinition Width="12"/>
+                                            <ColumnDefinition Width="2*"/>
+                                            <ColumnDefinition Width="12"/>
+                                            <ColumnDefinition Width="1.5*"/>
+                                            <ColumnDefinition Width="8"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0">
+                                            <TextBlock Text="البريد الإلكتروني" Style="{StaticResource RowLabel}"/>
+                                            <telerik:RadWatermarkTextBox
+                                                x:Name="EmailBox"
+                                                Text="{Binding Email, Mode=TwoWay,
+                                                       UpdateSourceTrigger=PropertyChanged,
+                                                       ValidatesOnNotifyDataErrors=True}"
+                                                WatermarkContent="example@email.com"
+                                                Style="{StaticResource InputSm}"
+                                                Validation.ErrorTemplate="{x:Null}"/>
+                                            <TextBlock Style="{StaticResource ValidationError}"
+                                                       Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                                              ElementName=EmailBox}"
+                                                       Visibility="{Binding (Validation.HasError),
+                                                                    ElementName=EmailBox,
+                                                                    Converter={StaticResource BoolToVis}}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="2">
+                                            <TextBlock Text="كلمة المرور" Style="{StaticResource RowLabel}"/>
+                                            <telerik:RadWatermarkTextBox
+                                                x:Name="PasswordBox"
+                                                Text="{Binding Password, Mode=TwoWay,
+                                                       UpdateSourceTrigger=PropertyChanged,
+                                                       ValidatesOnNotifyDataErrors=True}"
+                                                WatermarkContent="••••••••"
+                                                Style="{StaticResource InputSm}"
+                                                Validation.ErrorTemplate="{x:Null}"/>
+                                            <TextBlock Style="{StaticResource ValidationError}"
+                                                       Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                                              ElementName=PasswordBox}"
+                                                       Visibility="{Binding (Validation.HasError),
+                                                                    ElementName=PasswordBox,
+                                                                    Converter={StaticResource BoolToVis}}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Column="4">
+                                            <TextBlock Text="المنصة" Style="{StaticResource RowLabel}"/>
+                                            <telerik:RadComboBox
+                                                SelectedValue="{Binding PlatformId, Mode=TwoWay}"
+                                                SelectedValuePath="Id"
+                                                DisplayMemberPath="Name"
+                                                ItemsSource="{Binding DataContext.Platforms,
+                                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                Style="{StaticResource ModernComboBoxStyle}"/>
+                                        </StackPanel>
+
+                                        <Button Grid.Column="6"
+                                                Style="{StaticResource BtnIcon}"
+                                                VerticalAlignment="Center"
+                                                Command="{Binding DataContext.RemoveAccountCommand,
+                                                          RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                CommandParameter="{Binding}">
+                                            <TextBlock Text="🗑️" FontSize="13"/>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Empty State -->
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="Border" BasedOn="{StaticResource EmptyStateCard}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Accounts.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="🖥️" FontSize="24"
+                                       HorizontalAlignment="Center" Margin="0,0,0,7"/>
+                            <TextBlock Text="لا توجد حسابات حتى الآن"
+                                       FontSize="{StaticResource FontSizeMd}"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextSecondaryBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="اضغط &quot;+ إضافة حساب&quot; للبدء"
+                                       FontSize="{StaticResource FontSizeSm}"
+                                       Foreground="{StaticResource TextPlaceholderBrush}"
+                                       HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ══════ Action Buttons ══════ -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,6,0,0">
+
+                <Button Style="{StaticResource BtnOutline}"
+                        Width="100" Margin="0,0,10,0"
+                        Command="{Binding CancelCommand}">
+                    <TextBlock Text="إلغاء"
+                               FontSize="{StaticResource FontSizeMd}"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                </Button>
+
+                <telerik:RadButton Style="{StaticResource RadBtnPrimary}"
+                                   MinWidth="130" Height="34"
+                                   Command="{Binding SaveCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="✓" FontSize="13" Foreground="White"
+                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="حفظ الشركة"
+                                   FontSize="{StaticResource FontSizeMd}"
+                                   FontWeight="SemiBold" Foreground="White"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </telerik:RadButton>
+
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

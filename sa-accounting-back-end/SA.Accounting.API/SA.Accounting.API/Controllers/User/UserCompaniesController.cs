@@ -1,10 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SA.Accounting.Application.Commands.User;
 using SA.Accounting.Application.Contracts.Common;
-using SA.Accounting.Application.Contracts.User.Requests;
 using SA.Accounting.Application.Queries.User;
 using SA.Accounting.Core.Extensions;
 
@@ -26,22 +24,22 @@ public class UserCompaniesController(IMediator mediator) : ControllerBase
     }
 
 
-    [HttpPost("{userId}/companies")]
-    public async Task<IActionResult> AssignCompanies([FromRoute] int userId,[FromBody] AssignUserCompaniesRequest request)
+    [HttpPost("{userId}/companies/{companyId}")]
+    public async Task<IActionResult> AssignCompanyToUser([FromRoute] int userId, [FromRoute] int companyId)
     {
-        var command = new AssignUserCompaniesCommand() with
+        var command = new AssignCompanyToUserCommand() with
         {
             UserId = userId,
-            CompanyIds = request.CompanyIds
+            CompanyId = companyId
         };
         var result = await _mediator.Send(command);
         return result.IsSuccess ? CreatedAtAction(nameof(GetCompanies), new { userId },null) : result.ToProblem();
     }
 
     [HttpDelete("{userId}/companies/{companyId}")]
-    public async Task<IActionResult> RemoveCompany([FromRoute] int userId,[FromRoute] int companyId)
+    public async Task<IActionResult> RemoveCompanyFromUser([FromRoute] int userId,[FromRoute] int companyId)
     {
-        var command = new RemoveUserCompanyCommand() with
+        var command = new RemoveCompanyFromUserCommand() with
         {
             UserId = userId,
             CompanyId = companyId
@@ -49,4 +47,27 @@ public class UserCompaniesController(IMediator mediator) : ControllerBase
         var result = await _mediator.Send(command);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
+
+    [HttpPost("{userId}/companies/all")]
+    public async Task<IActionResult> AssignAllCompaniesToUser(int userId)
+    {
+        var command = new AssignAllCompaniesToUserCommand() with
+        {
+            UserId = userId,
+        };
+        var result = await _mediator.Send(command);
+        return result.IsSuccess ? NoContent() : result.ToProblem();
+    }
+
+    [HttpDelete("{userId}/companies/all")]
+    public async Task<IActionResult> RemoveAllCompaniesFromUser(int userId)
+    {
+        var command = new RemoveAllCompaniesFromUserCommand() with
+        {
+            UserId = userId,
+        };
+        var result = await _mediator.Send(command);
+        return result.IsSuccess ? NoContent() : result.ToProblem();
+    }
+
 }

@@ -301,10 +301,10 @@
           }
         }
       },
-      "MailKit/4.15.1": {
+      "MailKit/4.16.0": {
         "type": "package",
         "dependencies": {
-          "MimeKit": "4.15.1"
+          "MimeKit": "4.16.0"
         },
         "compile": {
           "lib/net10.0/MailKit.dll": {
@@ -1245,7 +1245,7 @@
           }
         }
       },
-      "MimeKit/4.15.1": {
+      "MimeKit/4.16.0": {
         "type": "package",
         "dependencies": {
           "BouncyCastle.Cryptography": "2.6.2",
@@ -1872,11 +1872,11 @@
           "Hangfire.Core": "1.8.22",
           "Hangfire.Dashboard.Basic.Authentication": "8.0.0",
           "Hangfire.SqlServer": "1.8.22",
-          "MailKit": "4.15.1",
+          "MailKit": "4.16.0",
           "Mapster": "7.4.0",
           "Mapster.DependencyInjection": "1.0.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "10.0.0",
-          "MimeKit": "4.15.1",
+          "MimeKit": "4.16.0",
           "Newtonsoft.Json": "13.0.4",
           "SA.Accounting.Core": "1.0.0"
         },
@@ -2265,10 +2265,10 @@
         "logo.png"
       ]
     },
-    "MailKit/4.15.1": {
-      "sha512": "4mLbqTbH3ctd0NlukHjVQbU3ZnNDuCtB6ttNZDLPZLWMA2Dr31rh/eCSTqOwDojUX8zfDOVaxstMgJTE9PwZNA==",
+    "MailKit/4.16.0": {
+      "sha512": "trJ82DOpAmo8i1jO1vNE+dGn4mPRyeYfy4swRcAGgMJhPoI1Kohf4OFJJf0+YIj4iUxgxPn8W+ht7e7KiYzSjg==",
       "type": "package",
-      "path": "mailkit/4.15.1",
+      "path": "mailkit/4.16.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2305,7 +2305,7 @@
         "lib/netstandard2.1/MailKit.dll.config",
         "lib/netstandard2.1/MailKit.pdb",
         "lib/netstandard2.1/MailKit.xml",
-        "mailkit.4.15.1.nupkg.sha512",
+        "mailkit.4.16.0.nupkg.sha512",
         "mailkit.nuspec"
       ]
     },
@@ -4129,10 +4129,10 @@
         "microsoft.sqlserver.server.nuspec"
       ]
     },
-    "MimeKit/4.15.1": {
-      "sha512": "cxCcQhD0zhboFoG136jJuJtQjNRDJ+BxBm3f2vWn+53bff/CRo+K1mAkWjsW4Wuyy5O22F40MdMG2nRzQu1cJw==",
+    "MimeKit/4.16.0": {
+      "sha512": "X0LFxeM4gPRIhODyY/HYS9b+zRZ7y//v59rFzgS6wLxcPuZThnMtNZHtrr0fjLyRRkg3gqJBtvW36XfUzZ7Djw==",
       "type": "package",
-      "path": "mimekit/4.15.1",
+      "path": "mimekit/4.16.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4164,7 +4164,7 @@
         "lib/netstandard2.1/MimeKit.dll.config",
         "lib/netstandard2.1/MimeKit.pdb",
         "lib/netstandard2.1/MimeKit.xml",
-        "mimekit.4.15.1.nupkg.sha512",
+        "mimekit.4.16.0.nupkg.sha512",
         "mimekit.nuspec"
       ]
     },
@@ -5050,7 +5050,7 @@
       "Asp.Versioning.Http >= 8.1.1",
       "Asp.Versioning.Mvc.ApiExplorer >= 8.1.1",
       "Microsoft.AspNetCore.OpenApi >= 10.0.0",
-      "MimeKit >= 4.15.1",
+      "MimeKit >= 4.16.0",
       "Newtonsoft.Json >= 13.0.4",
       "SA.Accounting.Application >= 1.0.0",
       "Scalar.AspNetCore >= 2.13.12",
@@ -5059,25 +5059,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\shrif\\.nuget\\packages\\": {},
+    "C:\\Users\\Sherif Dahy\\.nuget\\packages\\": {},
+    "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
     "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
+      "projectUniqueName": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
       "projectName": "SA.Accounting.API",
-      "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
-      "packagesPath": "C:\\Users\\shrif\\.nuget\\packages\\",
-      "outputPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\obj\\",
+      "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\SA.Accounting.API.csproj",
+      "packagesPath": "C:\\Users\\Sherif Dahy\\.nuget\\packages\\",
+      "outputPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
         "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\shrif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sherif Dahy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Telerik UI for WPF.config"
@@ -5087,6 +5090,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages\\telerik.ui.for.wpf.netcore.xaml\\2023.1.117": {},
+        "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5094,8 +5099,8 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
-            "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj": {
-              "projectPath": "F:\\SA.Accounting\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj"
+            "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj": {
+              "projectPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj"
             }
           }
         }
@@ -5131,7 +5136,7 @@
           },
           "MimeKit": {
             "target": "Package",
-            "version": "[4.15.1, )"
+            "version": "[4.16.0, )"
           },
           "Newtonsoft.Json": {
             "target": "Package",
@@ -5169,7 +5174,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.202/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

@@ -6,15 +6,13 @@
              mc:Ignorable="d"
              d:DesignHeight="700"
              d:DesignWidth="240"
+             xmlns:enums="clr-namespace:SA.Accounting.WPF.Interfaces"
              xmlns:converters="clr-namespace:SA.Accounting.WPF.Converters"
              xmlns:consts="clr-namespace:SA.Accounting.Core.Consts;assembly=SA.Accounting.Core"
+             xmlns:vms="clr-namespace:SA.Accounting.WPF.ViewModels"
              FlowDirection="RightToLeft">
 
-    <UserControl.Resources>
-        <converters:PermissionToVisibilityConverter x:Key="PermissionToVisibilityConverter"/>
-    </UserControl.Resources>
-
-    <Border Background="#1C2536">
+    <Border Background="{StaticResource SidebarBaseBrush}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -22,10 +20,12 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <!-- Logo -->
+            <!-- ══════ Logo ══════ -->
             <StackPanel Grid.Row="0" Margin="16,20,16,16">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-                    <Border Style="{StaticResource SidebarLogoBoxStyle}" Margin="0,0,10,0">
+
+                    <Border Style="{StaticResource SidebarLogoBoxStyle}"
+                            Margin="0,0,10,0">
                         <TextBlock Text="💼"
                                    FontSize="20"
                                    HorizontalAlignment="Center"
@@ -36,15 +36,16 @@
                         <TextBlock Text="Saber Eid"
                                    FontSize="15"
                                    FontWeight="Bold"
-                                   Foreground="White"/>
+                                   Foreground="{StaticResource SurfaceBrush}"/>
+
                         <TextBlock Text="Accounting System"
-                                   FontSize="11"
-                                   Foreground="#9CA3AF"/>
+                                   FontSize="{StaticResource FontSizeSm}"
+                                   Foreground="{StaticResource SidebarTextBrush}"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
 
-            <!-- Menu -->
+            <!-- ══════ Menu ══════ -->
             <ScrollViewer Grid.Row="1"
                           VerticalScrollBarVisibility="Auto"
                           Padding="0,4">
@@ -53,49 +54,85 @@
 
                     <!-- Home -->
                     <Button Style="{StaticResource SidebarButtonStyle}"
-                            x:Name="HomePageBtn"
                             Content="🏠  الصفحة الرئيسية"
-                            Tag="Selected"/>
+                            Command="{Binding UpdateCurrentViewModel}"
+                            CommandParameter="{x:Static enums:ViewType.Home}"
+                            Tag="{Binding CurrentViewModel,
+                                  Converter={StaticResource ViewModelToSelectedConverter},
+                                  ConverterParameter={x:Static enums:ViewType.Home}}"/>
 
                     <!-- Companies -->
                     <Button Style="{StaticResource SidebarButtonStyle}"
                             x:Name="CompanyPageBtn"
                             Content="🏢  الشركات"
+                            Command="{Binding UpdateCurrentViewModel}"
+                            CommandParameter="{x:Static enums:ViewType.Companies}"
+                            Tag="{Binding CurrentViewModel,
+                                  Converter={StaticResource ViewModelToSelectedConverter},
+                                  ConverterParameter={x:Static enums:ViewType.Companies}}"
                             Visibility="{Binding UserPermissions,
-                                Converter={StaticResource PermissionToVisibilityConverter},
-                                ConverterParameter={x:Static consts:Permissions.CompaniesRead}}"/>
+                                  Converter={StaticResource PermissionToVisibilityConverter},
+                                  ConverterParameter={x:Static consts:Permissions.CompaniesRead}}"/>
 
                     <!-- Platforms -->
                     <Button Style="{StaticResource SidebarButtonStyle}"
                             x:Name="PlatfromsBtn"
                             Content="🏛️  المنظمات"
+                            Command="{Binding UpdateCurrentViewModel}"
+                            CommandParameter="{x:Static enums:ViewType.Platforms}"
+                            Tag="{Binding CurrentViewModel,
+                                  Converter={StaticResource ViewModelToSelectedConverter},
+                                  ConverterParameter={x:Static enums:ViewType.Platforms}}"
                             Visibility="{Binding UserPermissions,
-                                Converter={StaticResource PermissionToVisibilityConverter},
-                                ConverterParameter={x:Static consts:Permissions.PlatformsRead}}"/>
+                                  Converter={StaticResource PermissionToVisibilityConverter},
+                                  ConverterParameter={x:Static consts:Permissions.PlatformsRead}}"/>
 
                     <!-- Users -->
                     <Button Style="{StaticResource SidebarButtonStyle}"
                             x:Name="UsersBtn"
                             Content="👥  المستخدمين"
+                            Command="{Binding UpdateCurrentViewModel}"
+                            CommandParameter="{x:Static enums:ViewType.Users}"
+                            Tag="{Binding CurrentViewModel,
+                                  Converter={StaticResource ViewModelToSelectedConverter},
+                                  ConverterParameter={x:Static enums:ViewType.Users}}"
                             Visibility="{Binding UserPermissions,
-                                Converter={StaticResource PermissionToVisibilityConverter},
-                                ConverterParameter={x:Static consts:Permissions.UsersRead}}"/>
+                                  Converter={StaticResource PermissionToVisibilityConverter},
+                                  ConverterParameter={x:Static consts:Permissions.UsersRead}}"/>
 
                     <!-- Transactions -->
                     <Button Style="{StaticResource SidebarButtonStyle}"
                             x:Name="TransactionsBtn"
-                            Content="💰  العهد"
+                            Content="💰  المصاريف"
+                            Command="{Binding UpdateCurrentViewModel}"
+                            CommandParameter="{x:Static enums:ViewType.Transactions}"
+                            Tag="{Binding CurrentViewModel,
+                                    Converter={StaticResource ViewModelToSelectedConverter},
+                                    ConverterParameter={x:Static enums:ViewType.Transactions}}"
                             Visibility="{Binding UserPermissions,
-                                Converter={StaticResource PermissionToVisibilityConverter},
-                                ConverterParameter={x:Static consts:Permissions.TransactionsRead}}"/>
+                                  Converter={StaticResource PermissionToVisibilityConverter},
+                                  ConverterParameter={x:Static consts:Permissions.TransactionsRead}}"/>
+
+                    <!-- Funds -->
+                    <Button Style="{StaticResource SidebarButtonStyle}"
+                            x:Name="FundsBtn"
+                            Content="💰  العهد"
+                            Command="{Binding UpdateCurrentViewModel}"
+                            CommandParameter="{x:Static enums:ViewType.Funds}"
+                            Tag="{Binding CurrentViewModel,
+                                  Converter={StaticResource ViewModelToSelectedConverter},
+                                  ConverterParameter={x:Static enums:ViewType.Users}}"
+                            Visibility="{Binding UserPermissions,
+                                  Converter={StaticResource PermissionToVisibilityConverter},
+                                  ConverterParameter={x:Static consts:Permissions.FundsRead}}"/>
 
                     <!-- Reports -->
                     <Button Style="{StaticResource SidebarButtonStyle}"
                             x:Name="ReportsBtn"
                             Content="📄  التقارير"
                             Visibility="{Binding UserPermissions,
-                                Converter={StaticResource PermissionToVisibilityConverter},
-                                ConverterParameter={x:Static consts:Permissions.ReportsRead}}"/>
+                                  Converter={StaticResource PermissionToVisibilityConverter},
+                                  ConverterParameter={x:Static consts:Permissions.ReportsRead}}"/>
 
                     <!-- Settings -->
                     <Button Style="{StaticResource SidebarButtonStyle}"
@@ -103,36 +140,37 @@
                             Content="⚙️  الإعدادات"
                             Margin="8,6,8,1"
                             Visibility="{Binding UserPermissions,
-                                Converter={StaticResource PermissionToVisibilityConverter},
-                                ConverterParameter={x:Static consts:Permissions.SettingsRead}}"/>
+                                  Converter={StaticResource PermissionToVisibilityConverter},
+                                  ConverterParameter={x:Static consts:Permissions.SettingsRead}}"/>
 
                 </StackPanel>
             </ScrollViewer>
 
-            <!-- User Info -->
+            <!-- ══════ User Info ══════ -->
             <Border Grid.Row="2"
                     Style="{StaticResource SidebarUserCardStyle}">
                 <StackPanel Orientation="Horizontal">
 
-                    <Border Style="{StaticResource SidebarAvatarCircleStyle}" Margin="0,0,8,0">
+                    <Border Style="{StaticResource SidebarAvatarCircleStyle}"
+                            Margin="0,0,8,0">
                         <TextBlock Text="👤"
-                                   Foreground="White"
-                                   FontSize="14"/>
+                                   Foreground="{StaticResource SurfaceBrush}"
+                                   FontSize="{StaticResource FontSizeXl}"/>
                     </Border>
 
                     <StackPanel VerticalAlignment="Center">
                         <TextBlock x:Name="UserEmailTxt"
                                    Text="admin@example.com"
-                                   FontSize="12"
+                                   FontSize="{StaticResource FontSizeMd}"
                                    FontWeight="SemiBold"
-                                   Foreground="White"
+                                   Foreground="{StaticResource SurfaceBrush}"
                                    TextTrimming="CharacterEllipsis"
                                    MaxWidth="140"/>
 
                         <TextBlock x:Name="UserRoleTxt"
                                    Text="مدير النظام"
-                                   FontSize="10"
-                                   Foreground="#9CA3AF"/>
+                                   FontSize="{StaticResource FontSizeXs}"
+                                   Foreground="{StaticResource SidebarTextBrush}"/>
                     </StackPanel>
 
                 </StackPanel>

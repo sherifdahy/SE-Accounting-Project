@@ -1,6 +1,6 @@
 [
   {
-    "ContainingType": "SA.Accounting.API.Controllers.AuthController",
+    "ContainingType": "SA.Accounting.API.Controllers.Authentication.AuthController",
     "Method": "ForgetPassword",
     "RelativePath": "api/Auth/forget-password",
     "HttpMethod": "POST",
@@ -16,7 +16,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "SA.Accounting.API.Controllers.AuthController",
+    "ContainingType": "SA.Accounting.API.Controllers.Authentication.AuthController",
     "Method": "ResetPassword",
     "RelativePath": "api/Auth/reset-password",
     "HttpMethod": "POST",
@@ -504,7 +504,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "SA.Accounting.API.Controllers.AuthController",
+    "ContainingType": "SA.Accounting.API.Controllers.Authentication.AuthController",
     "Method": "ResendConfirmEmail",
     "RelativePath": "api/resend-confirm-email",
     "HttpMethod": "POST",
@@ -593,6 +593,263 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
+    "Method": "GetAll",
+    "RelativePath": "api/TransactionCategories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "includeDisabled",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
+    "Method": "Create",
+    "RelativePath": "api/TransactionCategories",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.TransactionCategory.Requests.TransactionCategoryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
+    "Method": "Get",
+    "RelativePath": "api/TransactionCategories/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
+    "Method": "Update",
+    "RelativePath": "api/TransactionCategories/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.TransactionCategory.Requests.TransactionCategoryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
+    "Method": "ToggleStatus",
+    "RelativePath": "api/TransactionCategories/{id}/toggle-status",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Transactions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
+    "Method": "Get",
+    "RelativePath": "api/Transactions/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
+    "Method": "Update",
+    "RelativePath": "api/Transactions/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Transaction.Requests.UpdateTransactionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
+    "Method": "Delete",
+    "RelativePath": "api/Transactions/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
+    "Method": "ChangeTransactionState",
+    "RelativePath": "api/Transactions/{id}",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Transaction.Requests.ChangeTransactionStateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Transactions/users/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "PageNumber",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SearchValue",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortColumn",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SortDirection",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
+    "Method": "Create",
+    "RelativePath": "api/Transactions/users/{userId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Transaction.Requests.CreateTransactionRequest",
         "IsRequired": true
       }
     ],
@@ -751,8 +1008,8 @@
   },
   {
     "ContainingType": "SA.Accounting.API.Controllers.User.UserCompaniesController",
-    "Method": "AssignCompanies",
-    "RelativePath": "api/Users/{userId}/companies",
+    "Method": "AssignCompanyToUser",
+    "RelativePath": "api/Users/{userId}/companies/{companyId}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -763,8 +1020,8 @@
         "IsRequired": true
       },
       {
-        "Name": "request",
-        "Type": "SA.Accounting.Application.Contracts.User.Requests.AssignUserCompaniesRequest",
+        "Name": "companyId",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],
@@ -772,7 +1029,7 @@
   },
   {
     "ContainingType": "SA.Accounting.API.Controllers.User.UserCompaniesController",
-    "Method": "RemoveCompany",
+    "Method": "RemoveCompanyFromUser",
     "RelativePath": "api/Users/{userId}/companies/{companyId}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -792,7 +1049,39 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "SA.Accounting.API.Controllers.AuthController",
+    "ContainingType": "SA.Accounting.API.Controllers.User.UserCompaniesController",
+    "Method": "AssignAllCompaniesToUser",
+    "RelativePath": "api/Users/{userId}/companies/all",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.User.UserCompaniesController",
+    "Method": "RemoveAllCompaniesFromUser",
+    "RelativePath": "api/Users/{userId}/companies/all",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Authentication.AuthController",
     "Method": "ConfirmEmail",
     "RelativePath": "auth/confirmEmail",
     "HttpMethod": "POST",
@@ -808,7 +1097,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "SA.Accounting.API.Controllers.AuthController",
+    "ContainingType": "SA.Accounting.API.Controllers.Authentication.AuthController",
     "Method": "GetToken",
     "RelativePath": "auth/get-token",
     "HttpMethod": "POST",
@@ -824,7 +1113,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "SA.Accounting.API.Controllers.AccountController",
+    "ContainingType": "SA.Accounting.API.Controllers.Account.AccountController",
     "Method": "GetUserProfile",
     "RelativePath": "me",
     "HttpMethod": "GET",
@@ -834,7 +1123,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "SA.Accounting.API.Controllers.AccountController",
+    "ContainingType": "SA.Accounting.API.Controllers.Account.AccountController",
     "Method": "ChangePassword",
     "RelativePath": "me/change-password",
     "HttpMethod": "PUT",
@@ -842,15 +1131,15 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "command",
-        "Type": "SA.Accounting.Application.Commands.Profile.ChangePasswordCommand",
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Profile.Requests.ChangePasswordRequest",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "SA.Accounting.API.Controllers.AccountController",
+    "ContainingType": "SA.Accounting.API.Controllers.Account.AccountController",
     "Method": "UpdateProfile",
     "RelativePath": "me/info",
     "HttpMethod": "PUT",
@@ -858,8 +1147,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "command",
-        "Type": "SA.Accounting.Application.Commands.User.UpdateProfileCommand",
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Profile.Requests.UpdateProfileRequest",
         "IsRequired": true
       }
     ],

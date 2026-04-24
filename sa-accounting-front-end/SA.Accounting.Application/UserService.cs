@@ -11,39 +11,19 @@ namespace SA.Accounting.Services;
 public class UserService(IUserClient client) : IUserService
 {
     private readonly IUserClient _client = client;
-    public async Task AssignCompaniesToUserAsync(int id, AssignUserCompaniesRequest request)
+
+    public async Task CreateAsync(CreateUserRequest request)
     {
-        await _client.AssignCompaniesToUserAsync(id, request);
+        await _client.CreateAsync(request);
     }
 
-    public async Task CreateUserAsync(CreateUserRequest request)
+    public async Task<UserResponse> GetByIdAsync(int id)
     {
-        await _client.CreateUserAsync(request);
+        return await _client.GetByIdAsync(id);
     }
-
-    public async Task DeleteUserCompaniesAsync(string userId)
+    public async Task<PaginatedList<UserResponse>> GetAllAsync(RequestFilters filters, bool includeDisabled)
     {
-        await _client.DeleteUserCompaniesAsync(userId);
-    }
-
-    public async Task DeleteUserCompanyAsync(int userId, int companyId)
-    {
-        await _client.DeleteUserCompanyAsync(userId, companyId);
-    }
-
-    public async Task<UserResponse> GetUserByIdAsync(int id)
-    {
-        return await _client.GetUserByIdAsync(id);
-    }
-
-    public async Task<List<CompanyResponse>> GetUserCompaniesAsync(int id, RequestFilters filters)
-    {
-        return await _client.GetUserCompaniesAsync(id, filters);
-    }
-
-    public async Task<PaginatedList<UserResponse>> GetUsersAsync(RequestFilters filters, bool includeDisabled)
-    {
-        return await _client.GetUsersAsync(filters, includeDisabled);
+        return await _client.GetAllAsync(filters, includeDisabled);
     }
 
     public async Task ToggleStatusAsync(int id)
@@ -51,8 +31,34 @@ public class UserService(IUserClient client) : IUserService
         await _client.ToggleStatusAsync(id);
     }
 
-    public async Task UpdateUserAsync(int id, UpdateUserRequest request)
+    public async Task UpdateAsync(int id, UpdateUserRequest request)
     {
-        await _client.UpdateUserAsync(id, request);
+        await _client.UpdateAsync(id, request);
+    }
+
+    public async Task<PaginatedList<CompanyResponse>> GetUserCompaniesAsync(int userId, RequestFilters filters)
+    {
+        return await _client.GetUserCompaniesAsync(userId, filters);
+    }
+
+    public async Task AssignCompanyToUserAsync(int userId, int companyId)
+    {
+        await _client.AssignCompanyToUserAsync(userId, companyId);
+    }
+
+    public async Task RemoveCompanyFromUserAsync(int userId, int companyId)
+    {
+        await _client.RemoveCompanyFromUserAsync(userId, companyId);
+    }
+
+    public async Task AssignAllCompaniesToUserAsync(int userId)
+    {
+        await _client.AssignAllCompaniesToUserAsync(userId);
+    }
+
+    public async Task RemoveAllCompaniesFromUserAsync(int userId)
+    {
+        await _client.RemoveAllCompaniesFromUserAsync(userId);
+
     }
 }

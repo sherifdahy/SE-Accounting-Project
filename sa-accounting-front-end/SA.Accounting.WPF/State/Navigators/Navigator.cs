@@ -3,7 +3,7 @@ using SA.Accounting.WPF.Commands;
 using SA.Accounting.WPF.Commands.Base;
 using SA.Accounting.WPF.Interfaces;
 using SA.Accounting.WPF.Models;
-using SA.Accounting.WPF.ViewModels;
+using SA.Accounting.WPF.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,24 +11,18 @@ using System.Windows.Input;
 
 namespace SA.Accounting.WPF.State.Navigators;
 
-public class Navigator : ObservableObject , INavigator
+public class Navigator : INavigator
 {
     private ViewModelBase? _currentViewModel;
-    private readonly IViewModelAbstractFactory _viewModelAbstractFactory;
-
-    public ViewModelBase CurrentViewModel 
-    { 
-        get { return _currentViewModel!; }
-        set 
-        { 
-            _currentViewModel = value;
-            OnPropertyChanged(nameof(CurrentViewModel));
-        } 
-    }
-
-    public Navigator(IViewModelAbstractFactory viewModelAbstractFactory)
+    public ViewModelBase CurrentViewModel
     {
-        _viewModelAbstractFactory = viewModelAbstractFactory;
+        get { return _currentViewModel!; }
+        set
+        {
+            _currentViewModel = value;
+            StateChanged?.Invoke();
+        }
     }
-    public ICommand UpdateCurrentViewModelCommand => new UpdateCurrentViewModelCommand(this,_viewModelAbstractFactory);
+
+    public event Action StateChanged;
 }

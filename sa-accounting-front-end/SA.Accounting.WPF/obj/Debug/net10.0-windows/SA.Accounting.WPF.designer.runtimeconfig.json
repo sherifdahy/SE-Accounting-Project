@@ -12,14 +12,13 @@
       }
     ],
     "additionalProbingPaths": [
-      "C:\\Users\\shrif\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\shrif\\.nuget\\packages",
+      "C:\\Users\\Sherif Dahy\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Sherif Dahy\\.nuget\\packages",
+      "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages",
       "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
       "C:\\Program Files (x86)\\Progress\\ToolboxNuGetPackages"
     ],
     "configProperties": {
-      "MVVMTOOLKIT_ENABLE_INOTIFYPROPERTYCHANGING_SUPPORT": true,
-      "System.Reflection.NullabilityInfoContext.IsSupported": true,
       "System.Runtime.Serialization.EnableUnsafeBinaryFormatterSerialization": false,
       "CSWINRT_USE_WINDOWS_UI_XAML_PROJECTIONS": false,
       "Microsoft.NETCore.DotNetHostPolicy.SetAppPaths": true

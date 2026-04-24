@@ -1,0 +1,450 @@
+﻿<UserControl x:Class="SA.Accounting.WPF.Views.UpdateTransactionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+             Background="{StaticResource SurfaceHoverBrush}"
+             d:DesignWidth="860">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                  HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="24,20,24,32">
+
+            <!-- ══════════════════════════════════
+                 PAGE HEADER
+            ══════════════════════════════════ -->
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Border Width="42" Height="42"
+                            Background="{StaticResource SurfaceBrush}"
+                            CornerRadius="{StaticResource RadiusXl}"
+                            Margin="0,0,12,0">
+                        <TextBlock Text="✏️" FontSize="20"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource PageHeaderTitle}">
+                            <Run Text="تعديل معاملة رقم"/>
+                            <Run Text="{Binding Number, Mode=OneWay}"
+                                 Foreground="{StaticResource InfoBrush}"/>
+                        </TextBlock>
+                        <TextBlock Text="قم بتعديل بيانات المعاملة ثم اضغط حفظ"
+                                   Style="{StaticResource PageHeaderSubtitle}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+
+            <!-- ══════════════════════════════════
+                 بيانات المعاملة
+            ══════════════════════════════════ -->
+            <Border Style="{StaticResource SectionCard}">
+                <StackPanel>
+
+                    <!-- Section Header -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                        <Border Style="{StaticResource SectionIndicator}"
+                                Background="{StaticResource TextPrimaryBrush}"/>
+                        <StackPanel>
+                            <TextBlock Text="بيانات المعاملة"
+                                       Style="{StaticResource SectionLabel}"/>
+                            <TextBlock Text="المعلومات الأساسية للمعاملة"
+                                       Style="{StaticResource SectionSubtext}"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Row 1: Number + DateTime -->
+                    <Grid Margin="0,0,0,12">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Number -->
+                        <StackPanel Grid.Column="0">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Text="رقم المعاملة"
+                                           Style="{StaticResource InputLabel}" Margin="0"/>
+                                <TextBlock Style="{StaticResource RequiredStar}"/>
+                            </StackPanel>
+                            <telerik:RadWatermarkTextBox
+                                x:Name="NumberBox"
+                                Text="{Binding Number, Mode=TwoWay,
+                                       UpdateSourceTrigger=PropertyChanged,
+                                       ValidatesOnNotifyDataErrors=True}"
+                                WatermarkContent="أدخل رقم المعاملة"
+                                Style="{StaticResource InputDefault}"
+                                Validation.ErrorTemplate="{x:Null}"/>
+                            <TextBlock Style="{StaticResource ValidationError}"
+                                       Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                              ElementName=NumberBox}"
+                                       Visibility="{Binding (Validation.HasError),
+                                                    ElementName=NumberBox,
+                                                    Converter={StaticResource BoolToVis}}"/>
+                        </StackPanel>
+
+                        <!-- DateTime -->
+                        <StackPanel Grid.Column="2">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                                <TextBlock Text="تاريخ المعاملة"
+                                           Style="{StaticResource InputLabel}" Margin="0"/>
+                                <TextBlock Style="{StaticResource RequiredStar}"/>
+                            </StackPanel>
+                            <telerik:RadDatePicker
+                                SelectedValue="{Binding DateTime, Mode=TwoWay}"
+                                Height="{StaticResource InputHeightLg}"
+                                FontSize="{StaticResource FontSizeMd}"
+                                FlowDirection="LeftToRight"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Row 2: Note -->
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                            <TextBlock Text="ملاحظات"
+                                       Style="{StaticResource InputLabel}" Margin="0"/>
+                        </StackPanel>
+                        <TextBox x:Name="NoteBox"
+                                 Text="{Binding Note, Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        ValidatesOnNotifyDataErrors=True}"
+                                 Height="68" TextWrapping="Wrap"
+                                 AcceptsReturn="True"
+                                 VerticalContentAlignment="Top"
+                                 Style="{StaticResource TextBoxDefault}"
+                                 Validation.ErrorTemplate="{x:Null}"/>
+                        <TextBlock Style="{StaticResource ValidationError}"
+                                   Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                          ElementName=NoteBox}"
+                                   Visibility="{Binding (Validation.HasError),
+                                                ElementName=NoteBox,
+                                                Converter={StaticResource BoolToVis}}"/>
+                    </StackPanel>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ══════════════════════════════════
+                 بنود المعاملة
+            ══════════════════════════════════ -->
+            <Border Style="{StaticResource SectionCard}">
+                <StackPanel>
+
+                    <!-- Section Header -->
+                    <Grid Margin="0,0,0,14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <Border Style="{StaticResource SectionIndicator}"
+                                    Background="{StaticResource SuccessBrush}"/>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="بنود المعاملة"
+                                               Style="{StaticResource SectionLabel}"/>
+                                    <Border Style="{StaticResource BadgeSuccess}">
+                                        <TextBlock Text="{Binding Items.Count}"
+                                                   FontSize="{StaticResource FontSizeXs}"
+                                                   FontWeight="SemiBold" Foreground="#065F46"/>
+                                    </Border>
+                                </StackPanel>
+                                <TextBlock Text="تعديل وإضافة بنود المعاملة"
+                                           Style="{StaticResource SectionSubtext}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+
+                            <!-- Total Badge -->
+                            <Border Background="{StaticResource SuccessLightBrush}"
+                                    CornerRadius="20" Padding="12,4"
+                                    Margin="0,0,12,0"
+                                    VerticalAlignment="Center">
+                                <TextBlock FontSize="{StaticResource FontSizeSm}"
+                                           FontWeight="Bold"
+                                           Foreground="{StaticResource SuccessBrush}"
+                                           FlowDirection="LeftToRight">
+                                    <Run Text="الإجمالي:"/>
+                                    <Run Text="{Binding TotalAmount, Mode=OneWay,
+                                             StringFormat='{}{0:N2}'}"/>
+                                    <Run Text="جنيه"/>
+                                </TextBlock>
+                            </Border>
+
+                            <Button Style="{StaticResource BtnPrimary}"
+                                    Command="{Binding AddItemCommand}"
+                                    Height="{StaticResource InputHeightMd}">
+                                <StackPanel Orientation="Horizontal" Margin="2,0">
+                                    <TextBlock Text="+" FontSize="14" FontWeight="Bold"
+                                               Foreground="White" VerticalAlignment="Center"
+                                               Margin="0,0,5,0"/>
+                                    <TextBlock Text="إضافة بند"
+                                               FontSize="{StaticResource FontSizeMd}"
+                                               FontWeight="SemiBold" Foreground="White"
+                                               VerticalAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Item Rows -->
+                    <ItemsControl ItemsSource="{Binding Items}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardRow}">
+                                    <StackPanel>
+
+                                        <!-- Existing Item Indicator -->
+                                        <StackPanel Orientation="Horizontal"
+                                                    Margin="0,0,0,6">
+                                            <Border CornerRadius="10" Padding="8,2"
+                                                    Margin="0,0,6,0">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Setter Property="Background"
+                                                                Value="{StaticResource InfoLightBrush}"/>
+                                                        <Setter Property="Visibility"
+                                                                Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Id}"
+                                                                         Value="{x:Null}">
+                                                                <Setter Property="Background"
+                                                                        Value="{StaticResource SuccessLightBrush}"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <TextBlock FontSize="{StaticResource FontSizeXs}"
+                                                           FontWeight="SemiBold">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Text" Value="بند موجود"/>
+                                                            <Setter Property="Foreground"
+                                                                    Value="{StaticResource InfoBrush}"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding Id}"
+                                                                             Value="{x:Null}">
+                                                                    <Setter Property="Text" Value="بند جديد"/>
+                                                                    <Setter Property="Foreground"
+                                                                            Value="{StaticResource SuccessBrush}"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </Border>
+
+                                            <TextBlock FontSize="{StaticResource FontSizeXs}"
+                                                       Foreground="{StaticResource TextPlaceholderBrush}"
+                                                       VerticalAlignment="Center">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock">
+                                                        <Setter Property="Visibility"
+                                                                Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Id}"
+                                                                         Value="{x:Null}">
+                                                                <Setter Property="Visibility"
+                                                                        Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                                <Run Text="#"/><Run Text="{Binding Id, Mode=OneWay}"/>
+                                            </TextBlock>
+                                        </StackPanel>
+
+                                        <!-- Row 1: Category + Company + Amount + Delete -->
+                                        <Grid Margin="0,0,0,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="12"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="12"/>
+                                                <ColumnDefinition Width="0.8*"/>
+                                                <ColumnDefinition Width="8"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Category -->
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="التصنيف"
+                                                           Style="{StaticResource RowLabel}"/>
+                                                <telerik:RadComboBox
+                                                    SelectedValue="{Binding TransactionCategoryId,
+                                                                    Mode=TwoWay}"
+                                                    SelectedValuePath="Id"
+                                                    DisplayMemberPath="Name"
+                                                    ItemsSource="{Binding DataContext.Categories,
+                                                                  RelativeSource={RelativeSource
+                                                                  AncestorType=UserControl}}"
+                                                    Style="{StaticResource ModernComboBoxStyle}"/>
+                                            </StackPanel>
+
+                                            <!-- Company -->
+                                            <StackPanel Grid.Column="2">
+                                                <TextBlock Text="الشركة"
+                                                           Style="{StaticResource RowLabel}"/>
+                                                <telerik:RadComboBox
+                                                    SelectedValue="{Binding CompanyId,
+                                                                    Mode=TwoWay}"
+                                                    SelectedValuePath="Id"
+                                                    DisplayMemberPath="Name"
+                                                    ItemsSource="{Binding DataContext.Companies,
+                                                                  RelativeSource={RelativeSource
+                                                                  AncestorType=UserControl}}"
+                                                    Style="{StaticResource ModernComboBoxStyle}"/>
+                                            </StackPanel>
+
+                                            <!-- Amount -->
+                                            <StackPanel Grid.Column="4">
+                                                <TextBlock Text="المبلغ"
+                                                           Style="{StaticResource RowLabel}"/>
+                                                <telerik:RadWatermarkTextBox
+                                                    x:Name="AmountBox"
+                                                    Text="{Binding Amount, Mode=TwoWay,
+                                                           UpdateSourceTrigger=PropertyChanged,
+                                                           ValidatesOnNotifyDataErrors=True}"
+                                                    WatermarkContent="0.00"
+                                                    Style="{StaticResource InputSm}"
+                                                    FlowDirection="LeftToRight"
+                                                    Validation.ErrorTemplate="{x:Null}"/>
+                                                <TextBlock Style="{StaticResource ValidationError}"
+                                                           Text="{Binding (Validation.Errors)[0].ErrorContent,
+                                                                  ElementName=AmountBox}"
+                                                           Visibility="{Binding (Validation.HasError),
+                                                                        ElementName=AmountBox,
+                                                                        Converter={StaticResource BoolToVis}}"/>
+                                            </StackPanel>
+
+                                            <!-- Delete -->
+                                            <Button Grid.Column="6"
+                                                    Style="{StaticResource BtnIcon}"
+                                                    VerticalAlignment="Center"
+                                                    Margin="0,14,0,0"
+                                                    Command="{Binding DataContext.RemoveItemCommand,
+                                                              RelativeSource={RelativeSource
+                                                              AncestorType=UserControl}}"
+                                                    CommandParameter="{Binding}">
+                                                <TextBlock Text="🗑️" FontSize="13"/>
+                                            </Button>
+                                        </Grid>
+
+                                        <!-- Row 2: Note + FileUrl -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="12"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!-- Note -->
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="ملاحظات البند"
+                                                           Style="{StaticResource RowLabel}"/>
+                                                <telerik:RadWatermarkTextBox
+                                                    Text="{Binding Note, Mode=TwoWay,
+                                                           UpdateSourceTrigger=PropertyChanged}"
+                                                    WatermarkContent="ملاحظات اختيارية..."
+                                                    Style="{StaticResource InputSm}"/>
+                                            </StackPanel>
+
+                                            <!-- FileUrl -->
+                                            <StackPanel Grid.Column="2">
+                                                <TextBlock Text="رابط الملف"
+                                                           Style="{StaticResource RowLabel}"/>
+                                                <telerik:RadWatermarkTextBox
+                                                    Text="{Binding FileUrl, Mode=TwoWay,
+                                                           UpdateSourceTrigger=PropertyChanged}"
+                                                    WatermarkContent="https://..."
+                                                    Style="{StaticResource InputSm}"
+                                                    FlowDirection="LeftToRight"/>
+                                            </StackPanel>
+                                        </Grid>
+
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Empty State -->
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="Border"
+                                   BasedOn="{StaticResource EmptyStateCard}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Items.Count}" Value="0">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="📦" FontSize="24"
+                                       HorizontalAlignment="Center" Margin="0,0,0,7"/>
+                            <TextBlock Text="لا يوجد بنود حتى الآن"
+                                       FontSize="{StaticResource FontSizeMd}"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextSecondaryBrush}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock Text="اضغط &quot;+ إضافة بند&quot; للبدء"
+                                       FontSize="{StaticResource FontSizeSm}"
+                                       Foreground="{StaticResource TextPlaceholderBrush}"
+                                       HorizontalAlignment="Center" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </Border>
+
+            <!-- ══════════════════════════════════
+                 ACTION BUTTONS
+            ══════════════════════════════════ -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,6,0,0">
+
+                <Button Style="{StaticResource BtnOutline}"
+                        Width="100" Margin="0,0,10,0"
+                        Command="{Binding CancelCommand}">
+                    <TextBlock Text="إلغاء"
+                               FontSize="{StaticResource FontSizeMd}"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextSecondaryBrush}"/>
+                </Button>
+
+                <telerik:RadButton Style="{StaticResource RadBtnPrimary}"
+                                   MinWidth="140" Height="34"
+                                   Command="{Binding SaveCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="✓" FontSize="13" Foreground="White"
+                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock Text="حفظ التعديلات"
+                                   FontSize="{StaticResource FontSizeMd}"
+                                   FontWeight="SemiBold" Foreground="White"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </telerik:RadButton>
+
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
