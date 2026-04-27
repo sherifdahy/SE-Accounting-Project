@@ -102,6 +102,29 @@
                 </Button>
 
                 <!-- Tab: الشركات -->
+                <Button Command="{Binding ShowUserPermissionsCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource TabButton}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CurrentSection}" Value="UserPermssions">
+                                    <Setter Property="Foreground"
+                                            Value="{StaticResource PrimaryBrush}"/>
+                                    <Setter Property="Template"
+                                            Value="{StaticResource TabButtonActiveTemplate}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="🏢" FontSize="12"
+                                   Margin="0,0,6,0" VerticalAlignment="Center"/>
+                        <TextBlock Text="الصلاحيات"
+                                   FontSize="{StaticResource FontSizeMd}"
+                                   FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Button>
+
+                <!-- Tab: الشركات -->
                 <Button Command="{Binding ShowCompaniesCommand}">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource TabButton}">

@@ -55,7 +55,6 @@
     <Folder Include="Models\Companies\" />
     <Folder Include="Models\Users\" />
     <Folder Include="Validators\Users\" />
-    <Folder Include="ViewModels\NewFolder\" />
     <Folder Include="Views\Funds\" />
   </ItemGroup>
 

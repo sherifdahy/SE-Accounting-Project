@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SA.Accounting.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e622e46adcb61544bd985887e498765377b08fec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3271d04ba94d12f180484aed4099667170e22f54")]
 [assembly: System.Reflection.AssemblyProductAttribute("SA.Accounting.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SA.Accounting.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

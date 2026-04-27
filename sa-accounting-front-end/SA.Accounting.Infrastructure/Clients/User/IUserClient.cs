@@ -9,21 +9,24 @@ namespace SA.Accounting.Infrastructure.Clients.User;
 
 public interface IUserClient
 {
+    #region Users
     [Get("/api/users")]
-    public Task<PaginatedList<UserResponse>> GetAllAsync([Body]RequestFilters filters,[Query]bool includeDisabled);
+    public Task<PaginatedList<UserResponse>> GetAllAsync([Body] RequestFilters filters, [Query] bool includeDisabled);
 
     [Get("/api/users/{id}")]
     public Task<UserResponse> GetByIdAsync(int id);
 
     [Post("/api/users")]
-    public Task CreateAsync([Body]CreateUserRequest request);
+    public Task CreateAsync([Body] CreateUserRequest request);
 
     [Put("/api/users/{id}")]
-    public Task UpdateAsync(int id, [Body]UpdateUserRequest request);
+    public Task UpdateAsync(int id, [Body] UpdateUserRequest request);
 
     [Patch("/api/user/{id}/toggle-status")]
-    public Task ToggleStatusAsync(int id);
+    public Task ToggleStatusAsync(int id); 
+    #endregion
 
+    #region UserCompanies
     [Get("/api/users/{userId}/companies")]
     Task<PaginatedList<CompanyResponse>> GetUserCompaniesAsync(int userId, [Query] RequestFilters filters);
 
@@ -38,4 +41,13 @@ public interface IUserClient
 
     [Delete("/api/users/{userId}/companies/all")]
     Task RemoveAllCompaniesFromUserAsync(int userId);
+    #endregion
+
+    #region UserPermissions
+    [Get("/api/users/{userId}/permissions")]
+    Task<UserPermissionOverridesResponse> GetUserPermissionsAsync(int userId, CancellationToken cancellationToken = default);
+
+    [Put("/api/users/{userId}/permissions")]
+    Task UpdateUserPermissionsAsync(int userId,UpdateUserPermissionOverridesRequest request, CancellationToken cancellationToken = default);
+    #endregion
 }

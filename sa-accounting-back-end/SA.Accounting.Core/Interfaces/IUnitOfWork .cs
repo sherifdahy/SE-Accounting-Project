@@ -1,4 +1,5 @@
 ﻿using SA.Accounting.Core.Entities.Companies;
+using SA.Accounting.Core.Entities.Identity;
 using SA.Accounting.Core.Entities.Platforms;
 using SA.Accounting.Core.Entities.Relations;
 using SA.Accounting.Core.Entities.Transactions;
@@ -16,6 +17,7 @@ public interface IUnitOfWork : IDisposable
     public IRepository<TransactionItem> TransactionItems { get; }
     public IUserCompaniesRepository UserCompanies { get; }
     public IRepository<Account> Accounts { get; }
+    public IRepository<UserRolePermissionOverride> DeniedPermissions { get; }
     int Save();
     Task<int> SaveAsync(CancellationToken cancellationToken = default);
 }

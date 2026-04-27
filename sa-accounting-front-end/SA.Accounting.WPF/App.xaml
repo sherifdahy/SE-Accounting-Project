@@ -42,6 +42,8 @@
                 <ResourceDictionary Source="Styles/Features/UpdateUserStyles.xaml"/>
                 <ResourceDictionary Source="Styles/Features/TransactionStyles.xaml"/>
                 <ResourceDictionary Source="Styles/Features/ProfileStyles.xaml"/>
+                <ResourceDictionary Source="Styles/Features/UserPermissionsStyles.xaml"/>
+
                 <!-- ═══ 5. DataTemplates ═══ -->
                 <ResourceDictionary Source="Styles/DataTemplates.xaml"/>
 

@@ -225,3 +225,6 @@ D:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net
 D:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net10.0-windows\Styles\Features\ProfileStyles.baml
 D:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net10.0-windows\Views\Profiles\ProfileView.baml
 D:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net10.0-windows\Views\Profiles\ProfileView.g.cs
+D:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net10.0-windows\Views\Users\UserPermissionsView.g.cs
+D:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net10.0-windows\Views\Users\UserPermissionsView.baml
+D:\SE-Accounting-Project\sa-accounting-front-end\SA.Accounting.WPF\obj\Debug\net10.0-windows\Styles\Features\UserPermissionsStyles.baml

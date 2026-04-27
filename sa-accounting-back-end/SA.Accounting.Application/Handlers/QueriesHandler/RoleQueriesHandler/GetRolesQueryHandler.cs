@@ -19,7 +19,7 @@ public class GetRolesQueryHandler : IRequestHandler<GetRolesQuery, Result<List<R
     }
     public async Task<Result<List<RoleResponse>>> Handle(GetRolesQuery request, CancellationToken cancellationToken)
     {
-        var roles = await _roleManager.Roles.Where(x=> !x.IsDeleted).ProjectToType<RoleResponse>().ToListAsync(cancellationToken);
+        var roles = await _roleManager.Roles.ProjectToType<RoleResponse>().ToListAsync(cancellationToken);
 
         return Result.Success(roles);
     }

@@ -5,6 +5,7 @@ using Refit;
 using SA.Accounting.Infrastructure.Clients.Account;
 using SA.Accounting.Infrastructure.Clients.Auth;
 using SA.Accounting.Infrastructure.Clients.Company;
+using SA.Accounting.Infrastructure.Clients.Permission;
 using SA.Accounting.Infrastructure.Clients.Platform;
 using SA.Accounting.Infrastructure.Clients.Role;
 using SA.Accounting.Infrastructure.Clients.Transaction;
@@ -90,6 +91,16 @@ public static class AddRefitHostBuilderExtensions
                     ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
                 })
                 .AddHttpMessageHandler<AuthHeaderHandler>();
+
+
+            services.AddRefitClient<IPermissionClient>()
+                .ConfigureHttpClient(options => options.BaseAddress = new Uri(apiSettings!.BaseUrl))
+                .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                })
+                .AddHttpMessageHandler<AuthHeaderHandler>();
+
         });
 
         return hostBuilder;

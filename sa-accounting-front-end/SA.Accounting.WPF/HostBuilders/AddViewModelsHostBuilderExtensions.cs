@@ -34,7 +34,7 @@ public static class AddViewModelsHostBuilderExtensions
             services.AddTransient<UsersViewModel>();
             services.AddTransient<CreateUserViewModel>();
             services.AddTransient<UpdateUserViewModel>();
-
+            services.AddTransient<UserPermissionsViewModel>();
             services.AddSingleton<UserBasicInfoViewModel>();
             services.AddSingleton<UserCompaniesViewModel>();
 

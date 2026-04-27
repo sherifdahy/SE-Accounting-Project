@@ -61,4 +61,14 @@ public class UserService(IUserClient client) : IUserService
         await _client.RemoveAllCompaniesFromUserAsync(userId);
 
     }
+
+    public async Task<UserPermissionOverridesResponse> GetUserPermissionsAsync(int userId, CancellationToken cancellationToken = default)
+    {
+        return await _client.GetUserPermissionsAsync(userId, cancellationToken);
+    }
+
+    public async Task UpdateUserPermissionsAsync(int userId,UpdateUserPermissionOverridesRequest request, CancellationToken cancellationToken = default)
+    {
+        await _client.UpdateUserPermissionsAsync(userId,request,cancellationToken);
+    }
 }

@@ -26,6 +26,9 @@
     <Compile Update="Views\Users\UserCompaniesView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\Users\UserPermissionsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Windows\AuthWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

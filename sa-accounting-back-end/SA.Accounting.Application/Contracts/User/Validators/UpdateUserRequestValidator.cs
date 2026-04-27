@@ -25,5 +25,6 @@ public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
         RuleFor(x => x.PhoneNumber)
             .Matches(RegexPatterns.PhoneNumber)
             .When(x => !string.IsNullOrWhiteSpace(x.PhoneNumber));
+
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SA.Accounting.Application.Contracts.User.Requests;
+﻿namespace SA.Accounting.Application.Contracts.User.Requests;
 
 public class UpdateUserRequest
 {

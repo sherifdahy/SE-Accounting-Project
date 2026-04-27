@@ -24,7 +24,6 @@ public class GetRoleQueryHandler(RoleManager<ApplicationRole> roleManager,IUnitO
         {
             Id = role.Id,
             Name = role.Name!,
-            IsDeleted = role.IsDeleted,
             Permissions = permissions.Select(x => x.Value).ToList()
         });
     }

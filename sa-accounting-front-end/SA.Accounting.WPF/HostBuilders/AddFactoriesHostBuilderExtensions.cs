@@ -36,6 +36,7 @@ public static class AddFactoriesHostBuilderExtensions
             services.AddSingleton<CreateViewModel<CreateTransactionViewModel>>(s => () => s.GetRequiredService<CreateTransactionViewModel>());
             services.AddSingleton<CreateViewModel<UpdateTransactionViewModel>>(s => () => s.GetRequiredService<UpdateTransactionViewModel>());
             services.AddSingleton<CreateViewModel<ProfileViewModel>>(s => () => s.GetRequiredService<ProfileViewModel>());
+            services.AddSingleton<CreateViewModel<UserPermissionsViewModel>>(s => () => s.GetRequiredService<UserPermissionsViewModel>());
 
 
         });

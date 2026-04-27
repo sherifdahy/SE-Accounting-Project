@@ -1,12 +1,67 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|d:\\se-accounting-project\\sa-accounting-front-end\\sa.accounting.wpf\\viewmodels\\user\\userpermissionsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:viewmodels\\user\\userpermissionsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|d:\\se-accounting-project\\sa-accounting-front-end\\sa.accounting.wpf\\views\\users\\userpermissionsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:views\\users\\userpermissionsview.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|d:\\se-accounting-project\\sa-accounting-front-end\\sa.accounting.wpf\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{E155D32C-A58A-6308-3AD9-68792CF20C55}|SA.Accounting.WPF.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UserPermissionsViewModel.cs",
+              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\ViewModels\\User\\UserPermissionsViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\User\\UserPermissionsViewModel.cs",
+              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\ViewModels\\User\\UserPermissionsViewModel.cs",
+              "RelativeToolTip": "ViewModels\\User\\UserPermissionsViewModel.cs",
+              "ViewState": "AgIAAK0AAAAAAAAAAAAtwKcAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T19:01:19.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserPermissionsView.xaml",
+              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\Views\\Users\\UserPermissionsView.xaml",
+              "RelativeDocumentMoniker": "Views\\Users\\UserPermissionsView.xaml",
+              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\Views\\Users\\UserPermissionsView.xaml",
+              "RelativeToolTip": "Views\\Users\\UserPermissionsView.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-26T18:58:54.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.xaml",
+              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.WPF\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-26T18:58:02.884Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

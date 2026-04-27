@@ -480,9 +480,6 @@ namespace SA.Accounting.Infrastructure.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Name")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -505,7 +502,6 @@ namespace SA.Accounting.Infrastructure.Migrations
                         {
                             Id = 1,
                             ConcurrencyStamp = "727F7C04-0A04-4012-9AA0-5BDF83C53788",
-                            IsDeleted = false,
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
@@ -513,7 +509,6 @@ namespace SA.Accounting.Infrastructure.Migrations
                         {
                             Id = 3,
                             ConcurrencyStamp = "D5CD1328-D599-4608-B5B0-C00056B6E7D7",
-                            IsDeleted = false,
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         });
@@ -619,6 +614,19 @@ namespace SA.Accounting.Infrastructure.Migrations
                             TwoFactorEnabled = false,
                             UserName = "admin@sa-accounting.com"
                         });
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.UserRolePermissionOverride", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "Value");
+
+                    b.ToTable("DeniedPermissions");
                 });
 
             modelBuilder.Entity("SA.Accounting.Core.Entities.Platforms.Platform", b =>
@@ -1052,6 +1060,17 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.UserRolePermissionOverride", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "User")
+                        .WithMany("Permissions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SA.Accounting.Core.Entities.Platforms.Platform", b =>
                 {
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
@@ -1234,6 +1253,8 @@ namespace SA.Accounting.Infrastructure.Migrations
 
             modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.ApplicationUser", b =>
                 {
+                    b.Navigation("Permissions");
+
                     b.Navigation("Transactions");
 
                     b.Navigation("UserCompanies");

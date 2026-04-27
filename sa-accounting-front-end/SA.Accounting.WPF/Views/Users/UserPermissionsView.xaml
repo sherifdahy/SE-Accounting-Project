@@ -1,0 +1,410 @@
+﻿<UserControl x:Class="SA.Accounting.WPF.Views.UserPermissionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+             Background="{StaticResource SurfaceHoverBrush}"
+             d:DesignWidth="860" d:DesignHeight="700">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ══════ Main Scrollable Content ══════ -->
+        <ScrollViewer Grid.Row="0"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Margin="24,20,24,20">
+
+                <!-- ══════ Page Header ══════ -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                    <Border Width="42" Height="42"
+                            Background="{StaticResource SurfaceBrush}"
+                            CornerRadius="{StaticResource RadiusXl}"
+                            Margin="0,0,12,0">
+                        <TextBlock Text="🔐" FontSize="20"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel VerticalAlignment="Center">
+                        <TextBlock Text="إدارة صلاحيات المستخدم"
+                                   Style="{StaticResource PageHeaderTitle}"/>
+                        <TextBlock Text="تخصيص الصلاحيات الممنوحة للمستخدم من خلال الأدوار المسندة إليه"
+                                   Style="{StaticResource PageHeaderSubtitle}"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- ══════ Stats Cards ══════ -->
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="12"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- DEFAULT -->
+                    <Border Grid.Column="0" Style="{StaticResource StatCard}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="الافتراضية"
+                                           FontSize="{StaticResource FontSizeSm}"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           Margin="0,0,0,4"/>
+                                <TextBlock Text="{Binding DefaultCount}"
+                                           Style="{StaticResource StatValue}"/>
+                                <TextBlock Text="الصلاحيات المتاحة"
+                                           Style="{StaticResource StatCaption}"
+                                           HorizontalAlignment="Right"/>
+                            </StackPanel>
+                            <Border Grid.Column="1"
+                                    Style="{StaticResource StatIconBox}"
+                                    Background="#F3F4F6"
+                                    VerticalAlignment="Top">
+                                <TextBlock Text="🛡️" FontSize="14"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- OVERRIDE -->
+                    <Border Grid.Column="2" Style="{StaticResource StatCard}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="المفعّلة"
+                                           FontSize="{StaticResource FontSizeSm}"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           Margin="0,0,0,4"/>
+                                <TextBlock Text="{Binding OverrideCount}"
+                                           Style="{StaticResource StatValue}"
+                                           Foreground="{StaticResource SuccessBrush}"/>
+                                <TextBlock Text="الصلاحيات المختارة"
+                                           Style="{StaticResource StatCaption}"
+                                           Foreground="{StaticResource SuccessBrush}"
+                                           HorizontalAlignment="Right"/>
+                            </StackPanel>
+                            <Border Grid.Column="1"
+                                    Style="{StaticResource StatIconBox}"
+                                    Background="{StaticResource SuccessLightBrush}"
+                                    VerticalAlignment="Top">
+                                <TextBlock Text="✅" FontSize="14"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- UNASSIGNED -->
+                    <Border Grid.Column="4" Style="{StaticResource StatCard}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="المحظورة"
+                                           FontSize="{StaticResource FontSizeSm}"
+                                           FontWeight="SemiBold"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           Margin="0,0,0,4"/>
+                                <TextBlock Text="{Binding UnassignedCount}"
+                                           Style="{StaticResource StatValue}"
+                                           Foreground="{StaticResource WarningBrush}"/>
+                                <TextBlock Text="المتبقية"
+                                           Style="{StaticResource StatCaption}"
+                                           Foreground="{StaticResource WarningBrush}"
+                                           HorizontalAlignment="Right"/>
+                            </StackPanel>
+                            <Border Grid.Column="1"
+                                    Style="{StaticResource StatIconBox}"
+                                    Background="{StaticResource WarningLightBrush}"
+                                    VerticalAlignment="Top">
+                                <TextBlock Text="⚠️" FontSize="14"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!-- ══════ Override Permissions Section ══════ -->
+                <Border Style="{StaticResource SectionCard}">
+                    <StackPanel>
+
+                        <!-- Section Header -->
+                        <Grid Margin="0,0,0,14">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                <Border Style="{StaticResource SectionIndicator}"
+                                        Background="{StaticResource InfoBrush}"/>
+                                <StackPanel>
+                                    <TextBlock Text="تخصيص الصلاحيات"
+                                               Style="{StaticResource SectionLabel}"/>
+                                    <TextBlock Text="تخصيص صلاحيات هذا المستخدم"
+                                               Style="{StaticResource SectionSubtext}"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <!-- Select All / Deselect All -->
+                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                <Button Style="{StaticResource BtnOutline}"
+                                        Height="{StaticResource InputHeightMd}"
+                                        Margin="0,0,8,0"
+                                        Command="{Binding SelectAllCommand}">
+                                    <StackPanel Orientation="Horizontal" Margin="4,0">
+                                        <TextBlock Text="✓" FontSize="11"
+                                                   Foreground="{StaticResource SuccessBrush}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0,0,4,0"/>
+                                        <TextBlock Text="تحديد الكل"
+                                                   FontSize="{StaticResource FontSizeSm}"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button Style="{StaticResource BtnOutline}"
+                                        Height="{StaticResource InputHeightMd}"
+                                        Command="{Binding DeselectAllCommand}">
+                                    <StackPanel Orientation="Horizontal" Margin="4,0">
+                                        <TextBlock Text="✕" FontSize="11"
+                                                   Foreground="{StaticResource ErrorBrush}"
+                                                   VerticalAlignment="Center"
+                                                   Margin="0,0,4,0"/>
+                                        <TextBlock Text="إلغاء الكل"
+                                                   FontSize="{StaticResource FontSizeSm}"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                                   VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+
+                        <!-- Search -->
+                        <Grid Margin="0,0,0,14">
+                            <TextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Style="{StaticResource SearchInput}"/>
+                            <TextBlock Text="🔍"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right"
+                                       Margin="0,0,10,0"
+                                       IsHitTestVisible="False"/>
+                        </Grid>
+
+                        <!-- ══════ Permission Groups ══════ -->
+                        <ItemsControl ItemsSource="{Binding FilteredGroups}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Style="{StaticResource GroupRowBorder}">
+                                        <StackPanel>
+
+                                            <!-- Group Header (Toggle) -->
+                                            <ToggleButton IsChecked="{Binding IsExpanded, Mode=TwoWay}"
+                                                          Style="{StaticResource ExpanderToggle}">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <!-- Group Name -->
+                                                    <TextBlock Grid.Column="0"
+                                                               Text="{Binding GroupName}"
+                                                               FontSize="{StaticResource FontSizeMd}"
+                                                               FontWeight="Bold"
+                                                               Foreground="{StaticResource TextPrimaryBrush}"
+                                                               VerticalAlignment="Center"/>
+
+                                                    <!-- Count Badge -->
+                                                    <Border Grid.Column="1"
+                                                            Style="{StaticResource BadgeSuccess}"
+                                                            Margin="8,0,0,0">
+                                                        <TextBlock Text="{Binding CountText}"
+                                                                   FontSize="{StaticResource FontSizeXs}"
+                                                                   FontWeight="SemiBold"
+                                                                   Foreground="#065F46"/>
+                                                    </Border>
+
+                                                    <!-- Progress Bar -->
+                                                    <ProgressBar Grid.Column="3"
+                                                                 Style="{StaticResource PermissionProgressBar}"
+                                                                 Value="{Binding Progress, Mode=OneWay}"
+                                                                 Margin="0,0,10,0"/>
+
+                                                    <!-- Arrow -->
+                                                    <TextBlock Grid.Column="4"
+                                                               FontSize="10"
+                                                               Foreground="{StaticResource TextMutedBrush}"
+                                                               VerticalAlignment="Center">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Text" Value="▼"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding IsExpanded}" Value="True">
+                                                                        <Setter Property="Text" Value="▲"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </ToggleButton>
+
+                                            <!-- Permissions (Expandable) -->
+                                            <ItemsControl ItemsSource="{Binding Permissions}"
+                                                          Visibility="{Binding IsExpanded, Converter={StaticResource BoolToVis}}"
+                                                          Margin="8,4,8,8">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <Border Style="{StaticResource PermissionCheckCard}"
+                                                                MinWidth="180">
+                                                            <CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                                      IsEnabled="{Binding IsDefault}"
+                                                                      Style="{StaticResource ModernCheckBox}">
+                                                                <StackPanel>
+                                                                    <TextBlock Text="{Binding DisplayName}"
+                                                                               FontSize="{StaticResource FontSizeMd}"
+                                                                               FontWeight="SemiBold"
+                                                                               Foreground="{StaticResource TextPrimaryBrush}"/>
+                                                                    <TextBlock Text="{Binding FullKey}"
+                                                                               FontSize="{StaticResource FontSizeXs}"
+                                                                               Foreground="{StaticResource TextPlaceholderBrush}"/>
+                                                                </StackPanel>
+                                                            </CheckBox>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- ══════ Sticky Footer ══════ -->
+        <Border Grid.Row="1" Style="{StaticResource StickyFooter}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Status -->
+                <StackPanel Grid.Column="0"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center">
+
+                    <!-- Unsaved Changes -->
+                    <StackPanel Orientation="Horizontal"
+                                Visibility="{Binding HasUnsavedChanges, Converter={StaticResource BoolToVis}}">
+                        <Ellipse Width="8" Height="8"
+                                 Fill="{StaticResource WarningBrush}"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,6,0"/>
+                        <TextBlock Text="يوجد تغييرات غير محفوظة"
+                                   FontSize="{StaticResource FontSizeSm}"
+                                   Foreground="{StaticResource WarningBrush}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- All Saved -->
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Setter Property="Visibility" Value="Visible"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding HasUnsavedChanges}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <Ellipse Width="8" Height="8"
+                                 Fill="{StaticResource SuccessBrush}"
+                                 VerticalAlignment="Center"
+                                 Margin="0,0,6,0"/>
+                        <TextBlock Text="تم حفظ جميع التغييرات"
+                                   FontSize="{StaticResource FontSizeSm}"
+                                   Foreground="{StaticResource SuccessBrush}"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal">
+                    <Button Style="{StaticResource BtnOutline}"
+                            Width="100"
+                            Margin="0,0,10,0"
+                            Command="{Binding CancelCommand}">
+                        <TextBlock Text="إلغاء"
+                                   FontSize="{StaticResource FontSizeMd}"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextSecondaryBrush}"/>
+                    </Button>
+
+                    <telerik:RadButton Style="{StaticResource RadBtnPrimary}"
+                                       MinWidth="130" Height="34"
+                                       Command="{Binding SaveCommand}"
+                                       IsEnabled="{Binding HasUnsavedChanges}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="💾" FontSize="12"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,6,0"/>
+                            <TextBlock Text="حفظ التغييرات"
+                                       FontSize="{StaticResource FontSizeMd}"
+                                       FontWeight="SemiBold"
+                                       Foreground="White"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </telerik:RadButton>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

@@ -35,6 +35,7 @@ public sealed class UpdateUserViewModel : ViewModelBase, IAsyncInitializable<int
     public ICommand ShowBasicInfoCommand { get; }
     public ICommand ShowCompaniesCommand { get; }
     public ICommand ShowCustodiesCommand { get; }
+    public ICommand ShowUserPermissionsCommand { get; }
     public ICommand GoBackCommand { get; }
 
     public UpdateUserViewModel(
@@ -46,6 +47,8 @@ public sealed class UpdateUserViewModel : ViewModelBase, IAsyncInitializable<int
         _navigator = navigator;
         _dialogService = dialogService;
 
+        ShowUserPermissionsCommand = new AsyncRelayCommand(async _ =>
+            await NavigateToTabAsync("UserCompanies", ViewType.UserPermissions));
         ShowBasicInfoCommand = new AsyncRelayCommand(async _ =>
             await NavigateToTabAsync("BasicInfo", ViewType.UserBasicInfo));
         ShowCompaniesCommand = new AsyncRelayCommand(async _ =>
@@ -75,7 +78,7 @@ public sealed class UpdateUserViewModel : ViewModelBase, IAsyncInitializable<int
             if (vm is IAsyncInitializable<int> init)
                 await init.InitializeAsync(_userId);
 
-            CurrentViewModel = vm;  // ✅ ده دلوقتي بيعمل OnPropertyChanged
+            CurrentViewModel = vm; 
         }
         catch (Exception ex)
         {

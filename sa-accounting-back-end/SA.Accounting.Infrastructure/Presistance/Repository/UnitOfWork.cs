@@ -3,6 +3,7 @@ using SA.Accounting.Core.Entities.Companies;
 using SA.Accounting.Core.Entities.Platforms;
 using SA.Accounting.Core.Entities.Transactions;
 using SA.Accounting.Core.Interfaces;
+using SA.Accounting.Core.Entities.Identity;
 
 namespace SA.Accounting.Infrastructure.Presistance.Repository;
 
@@ -22,6 +23,7 @@ public class UnitOfWork : IUnitOfWork
         TransactionItems = new Repository<TransactionItem>(_context);
         UserCompanies = new UserCompaniesRepository(_context);
         Accounts = new Repository<Account>(_context);
+        DeniedPermissions = new Repository<UserRolePermissionOverride>(_context);
     }
 
     public IRepository<Company> Companies { get; }
@@ -33,6 +35,7 @@ public class UnitOfWork : IUnitOfWork
     public IRepository<TransactionItem> TransactionItems { get; }
     public IUserCompaniesRepository UserCompanies { get; }
     public IRepository<Account> Accounts { get; }
+    public IRepository<UserRolePermissionOverride> DeniedPermissions { get; }
     public void Dispose()
     {
         _context.Dispose();

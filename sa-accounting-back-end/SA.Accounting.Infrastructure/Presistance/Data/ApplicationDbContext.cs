@@ -25,6 +25,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser,Applicatio
     public virtual DbSet<TransactionCategory> TransactionCategories { get; set; }
     public virtual DbSet<TransactionItem> TransactionItems { get; set; }
     public virtual DbSet<UserCompany> UserCompanies { get; set; }
+    public virtual DbSet<UserRolePermissionOverride> DeniedPermissions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

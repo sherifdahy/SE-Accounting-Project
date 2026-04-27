@@ -19,6 +19,7 @@ public enum ViewType
     UserBasicInfo,
     UserCompanies,
     UserCustodies,
+    UserPermissions,
     Funds,
     Transactions,
     DisplayTransaction,

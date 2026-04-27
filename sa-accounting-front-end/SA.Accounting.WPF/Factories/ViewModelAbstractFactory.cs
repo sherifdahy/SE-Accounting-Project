@@ -25,6 +25,8 @@ public class ViewModelAbstractFactory : IViewModelAbstractFactory
     private readonly CreateViewModel<CreateTransactionViewModel> _createCreateTransactionViewModel;
     private readonly CreateViewModel<UpdateTransactionViewModel> _createUpdateTransactionViewModel;
     private readonly CreateViewModel<ProfileViewModel> _createProfileViewModel;
+    private readonly CreateViewModel<UserPermissionsViewModel> _createUserPermissionsViewModel;
+
 
     public ViewModelAbstractFactory(CreateViewModel<HomeViewModel> createHomeViewModel,
         CreateViewModel<LoginViewModel> createLoginViewModel,
@@ -44,6 +46,7 @@ public class ViewModelAbstractFactory : IViewModelAbstractFactory
         CreateViewModel<DisplayTransactionViewModel> createDisplayTransactionViewModel,
         CreateViewModel<CreateTransactionViewModel> createCreateTransactionViewModel,
         CreateViewModel<UpdateTransactionViewModel> createUpdateTransactionViewModel,
+        CreateViewModel<UserPermissionsViewModel> createUserPermissionsViewModel,
         CreateViewModel<ProfileViewModel> createProfileViewModel)
     {
         _createHomeViewModel = createHomeViewModel;
@@ -66,6 +69,7 @@ public class ViewModelAbstractFactory : IViewModelAbstractFactory
         _createCreateTransactionViewModel = createCreateTransactionViewModel;
         _createUpdateTransactionViewModel = createUpdateTransactionViewModel;
         _createProfileViewModel = createProfileViewModel;
+        _createUserPermissionsViewModel = createUserPermissionsViewModel;
     }
 
     public ViewModelBase CreateViewModel(ViewType viewType)
@@ -92,6 +96,8 @@ public class ViewModelAbstractFactory : IViewModelAbstractFactory
                 return _createUserBasicInfoViewModel();
             case ViewType.UserCompanies:
                 return _createUserCompaniesViewModel();
+            case ViewType.UserPermissions:
+                return _createUserPermissionsViewModel();
             case ViewType.Companies:
                 return _createCompaniesViewModel();
             case ViewType.UpdateCompany:

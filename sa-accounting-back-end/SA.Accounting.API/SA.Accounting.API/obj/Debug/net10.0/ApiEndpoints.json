@@ -377,6 +377,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SA.Accounting.API.Controllers.Permission.PermissionsController",
+    "Method": "GetAll",
+    "RelativePath": "api/Permissions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SA.Accounting.API.Controllers.Platform.PlatformsController",
     "Method": "GetAll",
     "RelativePath": "api/Platforms",
@@ -531,6 +541,22 @@
   },
   {
     "ContainingType": "SA.Accounting.API.Controllers.Role.RolesController",
+    "Method": "Create",
+    "RelativePath": "api/Roles",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Role.Requests.RoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Role.RolesController",
     "Method": "Get",
     "RelativePath": "api/Roles/{id}",
     "HttpMethod": "GET",
@@ -540,6 +566,43 @@
       {
         "Name": "id",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Role.RolesController",
+    "Method": "Update",
+    "RelativePath": "api/Roles/{name}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Role.Requests.RoleRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Role.RolesController",
+    "Method": "Remove",
+    "RelativePath": "api/Roles/{name}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "name",
+        "Type": "System.String",
         "IsRequired": true
       }
     ],
@@ -1075,6 +1138,43 @@
       {
         "Name": "userId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.User.UserPermissionsController",
+    "Method": "GetDeniedPermissions",
+    "RelativePath": "api/users/{userId}/permissions",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.User.UserPermissionsController",
+    "Method": "Update",
+    "RelativePath": "api/users/{userId}/permissions",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.PermissionOverride.Requests.UpdateUserPermissionOverridesRequest",
         "IsRequired": true
       }
     ],

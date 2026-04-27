@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SA.Accounting.Application.Commands.User;
 using SA.Accounting.Application.Errors;
+using SA.Accounting.Core.Abstractions.Consts;
 using SA.Accounting.Core.Entities.Identity;
+using SA.Accounting.Core.Entities.Interfaces;
 
 public class UpdateUserCommandHandler(UserManager<ApplicationUser> userManager,RoleManager<ApplicationRole> roleManager) : IRequestHandler<UpdateUserCommand, Result>
 {
@@ -27,6 +29,7 @@ public class UpdateUserCommandHandler(UserManager<ApplicationUser> userManager,R
                 x => x.SSN == request.SSN && x.Id != request.UserId, cancellationToken))
             return Result.Failure(UserErrors.DuplicateSSN);
 
+
         request.Adapt(user);
 
         user.UserName = request.Email;
@@ -34,14 +37,12 @@ public class UpdateUserCommandHandler(UserManager<ApplicationUser> userManager,R
         if (!string.IsNullOrEmpty(request.Password))
         {
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var passwordResult = await _userManager.ResetPasswordAsync(
-                user, token, request.Password);
+            var passwordResult = await _userManager.ResetPasswordAsync(user, token, request.Password);
 
             if (!passwordResult.Succeeded)
             {
                 var pwError = passwordResult.Errors.First();
-                return Result.Failure(
-                    new Error(pwError.Code, pwError.Description, StatusCodes.Status400BadRequest));
+                return Result.Failure(new Error(pwError.Code, pwError.Description, StatusCodes.Status400BadRequest));
             }
         }
 
@@ -50,8 +51,7 @@ public class UpdateUserCommandHandler(UserManager<ApplicationUser> userManager,R
         if (!updateResult.Succeeded)
         {
             var error = updateResult.Errors.First();
-            return Result.Failure(
-                new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
+            return Result.Failure(new Error(error.Code, error.Description, StatusCodes.Status400BadRequest));
         }
 
         var currentRole = (await _userManager.GetRolesAsync(user)).FirstOrDefault();

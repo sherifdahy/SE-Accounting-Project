@@ -37,6 +37,10 @@
         <views:UpdateUserView/>
     </DataTemplate>
 
+    <DataTemplate DataType="{x:Type vm:UserPermissionsViewModel}">
+        <views:UserPermissionsView/>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type vm:CompaniesViewModel}">
         <views:CompaniesView/>
     </DataTemplate>
