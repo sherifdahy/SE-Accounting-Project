@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SA.Accounting.Core.Entities.Base;
 using SA.Accounting.Core.Entities.Companies;
+using SA.Accounting.Core.Entities.Custodies;
+using SA.Accounting.Core.Entities.ExpenseClaims;
 using SA.Accounting.Core.Entities.Identity;
 using SA.Accounting.Core.Entities.Platforms;
-using SA.Accounting.Core.Entities.Transactions;
 using SA.Accounting.Infrastructure.Extensions;
 
 namespace SA.Accounting.Infrastructure.Presistance.Data;
@@ -11,7 +12,7 @@ namespace SA.Accounting.Infrastructure.Presistance.Data;
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser,ApplicationRole,int>
 {
     private readonly IHttpContextAccessor _httpContext;
-    public ApplicationDbContext(IHttpContextAccessor context,DbContextOptions options) : base(options)
+    public ApplicationDbContext(IHttpContextAccessor context, DbContextOptions<ApplicationDbContext> options) : base(options)
     {
         _httpContext = context;
     }
@@ -21,11 +22,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser,Applicatio
     public virtual DbSet<Owner> Owners { get; set; }
     public virtual DbSet<Platform> Platforms { get; set; }
     public virtual DbSet<Selector> Selectors { get; set; }
-    public virtual DbSet<Transaction> Transactions { get; set; }
-    public virtual DbSet<TransactionCategory> TransactionCategories { get; set; }
-    public virtual DbSet<TransactionItem> TransactionItems { get; set; }
     public virtual DbSet<UserCompany> UserCompanies { get; set; }
     public virtual DbSet<UserRolePermissionOverride> DeniedPermissions { get; set; }
+
+    public DbSet<Custody> Custodies { get; set; }
+    public DbSet<Movement> Movements { get; set; }
+    public DbSet<ExpenseClaim> ExpenseClaims { get; set; }
+    public DbSet<ExpenseClaimItem> ExpenseClaimItems { get; set; }
+    public DbSet<ExpenseClaimHistory> ExpenseClaimHistories { get; set; }
+    public DbSet<ExpenseCategory> ExpenseCategories { get; set; }
+
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

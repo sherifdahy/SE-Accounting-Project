@@ -468,6 +468,360 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.ToTable("Owners");
                 });
 
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.Custody", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
+
+                    b.HasIndex("UpdatedById");
+
+                    b.HasIndex("UserId")
+                        .IsUnique()
+                        .HasFilter("[IsActive] = 1");
+
+                    b.ToTable("Custodies");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.Movement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustodyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("ExpenseClaimId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("CustodyId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.HasIndex("ExpenseClaimId", "Type")
+                        .IsUnique()
+                        .HasFilter("[ExpenseClaimId] IS NOT NULL AND [Type] = 2");
+
+                    b.ToTable("Movements", t =>
+                        {
+                            t.HasCheckConstraint("CK_Movement_Amount_Positive", "[Amount] > 0");
+
+                            t.HasCheckConstraint("CK_Movement_ExpenseClaim_Rule", "(\r\n                ([Type] = 2 AND [ExpenseClaimId] IS NOT NULL)\r\n                OR\r\n                ([Type] <> 2 AND [ExpenseClaimId] IS NULL)\r\n            )");
+
+                            t.HasCheckConstraint("CK_Movement_Type_Valid", "[Type] IN (1, 2, 3, 4, 5)");
+                        });
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDisabled")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("RequiresAttachment")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ExpenseCategories", t =>
+                        {
+                            t.HasCheckConstraint("CK_ExpenseCategory_Name_NotEmpty", "LEN(LTRIM(RTRIM([Name]))) > 0");
+                        });
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaim", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ClaimDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CurrentState")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("Number")
+                        .IsUnique();
+
+                    b.HasIndex("UpdatedById");
+
+                    b.HasIndex("UserId", "ClaimDate");
+
+                    b.ToTable("ExpenseClaims", t =>
+                        {
+                            t.HasCheckConstraint("CK_ExpenseClaim_Number_NotEmpty", "LEN(LTRIM(RTRIM([Number]))) > 0");
+
+                            t.HasCheckConstraint("CK_ExpenseClaim_State_Valid", "[CurrentState] IN (1, 2, 3, 4, 5, 6, 7, 8, 9)");
+                        });
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaimHistory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("ApplicationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExpenseClaimId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FromState")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("ToState")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ExpenseClaimId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ExpenseClaimHistories", t =>
+                        {
+                            t.HasCheckConstraint("CK_ExpenseClaimHistory_FromState_NotEqual_ToState", "[FromState] <> [ToState]");
+
+                            t.HasCheckConstraint("CK_ExpenseClaimHistory_FromState_Valid", "[FromState] IN (1, 2, 3, 4, 5, 6, 7, 8, 9)");
+
+                            t.HasCheckConstraint("CK_ExpenseClaimHistory_ToState_Valid", "[ToState] IN (1, 2, 3, 4, 5, 6, 7, 8, 9)");
+                        });
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaimItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExpenseCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExpenseClaimId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileUrl")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("Note")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<string>("RejectionReason")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("State")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(1);
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ExpenseCategoryId");
+
+                    b.HasIndex("ExpenseClaimId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("ExpenseClaimItems", t =>
+                        {
+                            t.HasCheckConstraint("CK_ExpenseClaimItem_Amount_Positive", "[Amount] > 0");
+
+                            t.HasCheckConstraint("CK_ExpenseClaimItem_RejectionReason_Required_WhenRejected", "(\r\n                [State] <> 3\r\n                OR\r\n                (\r\n                    [State] = 3 \r\n                    AND [RejectionReason] IS NOT NULL \r\n                    AND LEN(LTRIM(RTRIM([RejectionReason]))) > 0\r\n                )\r\n            )");
+
+                            t.HasCheckConstraint("CK_ExpenseClaimItem_State_Valid", "[State] IN (1, 2, 3)");
+                        });
+                });
+
             modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
@@ -745,195 +1099,6 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.ToTable("UserCompanies");
                 });
 
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.Transaction", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("CurrentState")
-                        .HasColumnType("tinyint");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedById")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("UpdatedById");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Transactions");
-                });
-
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedById")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("UpdatedById");
-
-                    b.ToTable("TransactionCategories");
-                });
-
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionHistory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
-
-                    b.Property<byte>("FromState")
-                        .HasColumnType("tinyint");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte>("ToState")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int>("TransactionId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedById")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("TransactionId");
-
-                    b.HasIndex("UpdatedById");
-
-                    b.ToTable("TransactionHistory");
-                });
-
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatedById")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FileUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<string>("Note")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<int>("TransactionCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransactionId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("UpdatedById")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("TransactionCategoryId");
-
-                    b.HasIndex("TransactionId");
-
-                    b.HasIndex("UpdatedById");
-
-                    b.ToTable("TransactionItems");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationRole", null)
@@ -1060,6 +1225,176 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.Custody", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "User")
+                        .WithMany("Custodies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("UpdatedBy");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.Movement", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Custodies.Custody", "Custody")
+                        .WithMany("Movements")
+                        .HasForeignKey("CustodyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaim", "ExpenseClaim")
+                        .WithMany("Movements")
+                        .HasForeignKey("ExpenseClaimId");
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("Custody");
+
+                    b.Navigation("ExpenseClaim");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseCategory", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaim", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "User")
+                        .WithMany("ExpenseClaims")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("UpdatedBy");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaimHistory", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", null)
+                        .WithMany("ExpenseClaimHistories")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaim", "ExpenseClaim")
+                        .WithMany("Histories")
+                        .HasForeignKey("ExpenseClaimId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ExpenseClaim");
+
+                    b.Navigation("UpdatedBy");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaimItem", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Companies.Company", "Company")
+                        .WithMany("ExpenseClaimItems")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseCategory", "ExpenseCategory")
+                        .WithMany("ExpenseClaimItems")
+                        .HasForeignKey("ExpenseCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaim", "ExpenseClaim")
+                        .WithMany("Items")
+                        .HasForeignKey("ExpenseClaimId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById");
+
+                    b.Navigation("Company");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ExpenseCategory");
+
+                    b.Navigation("ExpenseClaim");
+
+                    b.Navigation("UpdatedBy");
+                });
+
             modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.UserRolePermissionOverride", b =>
                 {
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "User")
@@ -1132,130 +1467,45 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.Transaction", b =>
-                {
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedById");
-
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "User")
-                        .WithMany("Transactions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("UpdatedBy");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionCategory", b =>
-                {
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedById");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("UpdatedBy");
-                });
-
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionHistory", b =>
-                {
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Transactions.Transaction", "Transaction")
-                        .WithMany("Histories")
-                        .HasForeignKey("TransactionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedById");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("Transaction");
-
-                    b.Navigation("UpdatedBy");
-                });
-
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionItem", b =>
-                {
-                    b.HasOne("SA.Accounting.Core.Entities.Companies.Company", "Company")
-                        .WithMany("TransactionItems")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Transactions.TransactionCategory", "TransactionCategory")
-                        .WithMany("TransactionItems")
-                        .HasForeignKey("TransactionCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Transactions.Transaction", "Transaction")
-                        .WithMany("Items")
-                        .HasForeignKey("TransactionId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedById");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("Transaction");
-
-                    b.Navigation("TransactionCategory");
-
-                    b.Navigation("UpdatedBy");
-                });
-
             modelBuilder.Entity("SA.Accounting.Core.Entities.Companies.Company", b =>
                 {
                     b.Navigation("Accounts");
 
-                    b.Navigation("Owners");
+                    b.Navigation("ExpenseClaimItems");
 
-                    b.Navigation("TransactionItems");
+                    b.Navigation("Owners");
 
                     b.Navigation("UserCompanies");
                 });
 
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.Custody", b =>
+                {
+                    b.Navigation("Movements");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseCategory", b =>
+                {
+                    b.Navigation("ExpenseClaimItems");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaim", b =>
+                {
+                    b.Navigation("Histories");
+
+                    b.Navigation("Items");
+
+                    b.Navigation("Movements");
+                });
+
             modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.ApplicationUser", b =>
                 {
-                    b.Navigation("Permissions");
+                    b.Navigation("Custodies");
 
-                    b.Navigation("Transactions");
+                    b.Navigation("ExpenseClaimHistories");
+
+                    b.Navigation("ExpenseClaims");
+
+                    b.Navigation("Permissions");
 
                     b.Navigation("UserCompanies");
                 });
@@ -1265,18 +1515,6 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("Accounts");
 
                     b.Navigation("Selectors");
-                });
-
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.Transaction", b =>
-                {
-                    b.Navigation("Histories");
-
-                    b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Transactions.TransactionCategory", b =>
-                {
-                    b.Navigation("TransactionItems");
                 });
 #pragma warning restore 612, 618
         }

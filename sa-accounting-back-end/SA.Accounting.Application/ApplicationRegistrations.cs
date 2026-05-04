@@ -16,5 +16,6 @@ public static class ApplicationRegistrations
         var mappingConfiguration = TypeAdapterConfig.GlobalSettings;
         mappingConfiguration.Scan(typeof(ApplicationRegistrations).Assembly);
         services.AddSingleton<IMapper>(new Mapper(mappingConfiguration));
+
     }
 }

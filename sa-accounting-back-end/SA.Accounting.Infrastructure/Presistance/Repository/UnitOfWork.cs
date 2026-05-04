@@ -1,9 +1,10 @@
 ﻿using SA.Accounting.Infrastructure.Repository;
 using SA.Accounting.Core.Entities.Companies;
 using SA.Accounting.Core.Entities.Platforms;
-using SA.Accounting.Core.Entities.Transactions;
 using SA.Accounting.Core.Interfaces;
 using SA.Accounting.Core.Entities.Identity;
+using SA.Accounting.Core.Entities.ExpenseClaims;
+using SA.Accounting.Core.Entities.Custodies;
 
 namespace SA.Accounting.Infrastructure.Presistance.Repository;
 
@@ -18,24 +19,29 @@ public class UnitOfWork : IUnitOfWork
         Owners = new Repository<Owner>(_context);
         Platforms = new Repository<Platform>(_context);
         Selectors = new Repository<Selector>(_context);
-        Transactions = new Repository<Transaction>(_context);
-        TransactionCategories = new Repository<TransactionCategory>(_context);
-        TransactionItems = new Repository<TransactionItem>(_context);
+        ExpenseClaims = new Repository<ExpenseClaim>(_context);
+        ExpenseCategories = new Repository<ExpenseCategory>(_context);
+        ExpenseClaimItems = new Repository<ExpenseClaimItem>(_context);
         UserCompanies = new UserCompaniesRepository(_context);
         Accounts = new Repository<Account>(_context);
         DeniedPermissions = new Repository<UserRolePermissionOverride>(_context);
+        Custodies = new Repository<Custody>(_context);
+        Movements = new Repository<Movement>(_context);
     }
 
     public IRepository<Company> Companies { get; }
     public IRepository<Owner> Owners { get; }
     public IRepository<Platform> Platforms { get; }
     public IRepository<Selector> Selectors { get; }
-    public IRepository<Transaction> Transactions { get; }
-    public IRepository<TransactionCategory> TransactionCategories { get; }
-    public IRepository<TransactionItem> TransactionItems { get; }
+    public IRepository<ExpenseClaim> ExpenseClaims { get; }
+    public IRepository<ExpenseCategory> ExpenseCategories { get; }
+    public IRepository<ExpenseClaimItem> ExpenseClaimItems { get; }
     public IUserCompaniesRepository UserCompanies { get; }
     public IRepository<Account> Accounts { get; }
     public IRepository<UserRolePermissionOverride> DeniedPermissions { get; }
+    public IRepository<Custody> Custodies { get; }
+    public IRepository<Movement> Movements { get; }
+
     public void Dispose()
     {
         _context.Dispose();

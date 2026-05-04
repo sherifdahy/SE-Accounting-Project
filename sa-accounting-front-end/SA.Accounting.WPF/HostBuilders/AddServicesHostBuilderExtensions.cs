@@ -30,8 +30,7 @@ public static class AddServicesHostBuilderExtensions
             services.AddTransient<ITransactionService, TransactionService>();
             services.AddTransient<ITransactionCategoryService, TransactionCategoryService>();
             services.AddTransient<IAccountService, AccountService>();
-
-
+            services.AddScoped<IAccountAutomationService, PlaywrightAccountAutomationService>();
         });
     }
 }

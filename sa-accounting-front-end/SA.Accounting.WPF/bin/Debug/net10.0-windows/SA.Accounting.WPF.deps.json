@@ -60,11 +60,11 @@
           }
         }
       },
-      "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+      "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
         "runtime": {
           "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "4.700.20.21406"
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
           }
         }
       },
@@ -78,7 +78,7 @@
       },
       "Microsoft.EntityFrameworkCore/3.1.5": {
         "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "1.1.1",
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0",
           "Microsoft.Bcl.HashCode": "1.1.0",
           "Microsoft.EntityFrameworkCore.Abstractions": "3.1.5",
           "Microsoft.Extensions.Caching.Memory": "3.1.5",
@@ -573,6 +573,17 @@
           }
         }
       },
+      "Microsoft.Playwright/1.59.0": {
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Playwright.dll": {
+            "assemblyVersion": "1.59.0.0",
+            "fileVersion": "1.59.0.0"
+          }
+        }
+      },
       "Microsoft.Spatial/7.8.3": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.Spatial.dll": {
@@ -1003,6 +1014,7 @@
       "SA.Accounting.Application/1.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Caching.Abstractions": "10.0.0",
+          "Microsoft.Playwright": "1.59.0",
           "SA.Accounting.Infrastructure": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "8.17.0"
         },
@@ -1077,12 +1089,12 @@
       "path": "mapster.dependencyinjection/1.0.1",
       "hashPath": "mapster.dependencyinjection.1.0.1.nupkg.sha512"
     },
-    "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
+    "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-yuvf07qFWFqtK3P/MRkEKLhn5r2UbSpVueRziSqj0yJQIKFwG1pq9mOayK3zE5qZCTs0CbrwL9M6R8VwqyGy2w==",
-      "path": "microsoft.bcl.asyncinterfaces/1.1.1",
-      "hashPath": "microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512"
+      "sha512": "sha512-UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "path": "microsoft.bcl.asyncinterfaces/6.0.0",
+      "hashPath": "microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512"
     },
     "Microsoft.Bcl.HashCode/1.1.0": {
       "type": "package",
@@ -1363,6 +1375,13 @@
       "sha512": "sha512-/FvQD76LzScuc350wyiESY9UE3aSgBLXT16AKutwvHPO9c4bIaTPPf3JU/cqtXTDz2632nyIUzzSaccBadduEA==",
       "path": "microsoft.odata.edm/7.8.3",
       "hashPath": "microsoft.odata.edm.7.8.3.nupkg.sha512"
+    },
+    "Microsoft.Playwright/1.59.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-igqHbZMmXI6cYNPg1X1o5/51U3CQp83lvvov/d/zmus2wlG1LjvpEL6i1Jx51pRahPtSyppvwq+ZoBfxeSjiew==",
+      "path": "microsoft.playwright/1.59.0",
+      "hashPath": "microsoft.playwright.1.59.0.nupkg.sha512"
     },
     "Microsoft.Spatial/7.8.3": {
       "type": "package",

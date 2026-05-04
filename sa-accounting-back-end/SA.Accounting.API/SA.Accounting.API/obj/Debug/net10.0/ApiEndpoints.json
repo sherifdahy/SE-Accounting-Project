@@ -324,6 +324,462 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.CustodiesController",
+    "Method": "GetAll",
+    "RelativePath": "api/custodies",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "isActive",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "userId",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.CustodiesController",
+    "Method": "Create",
+    "RelativePath": "api/custodies",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Custodies.Requests.CreateCustodyRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.CustodiesController",
+    "Method": "GetMovements",
+    "RelativePath": "api/custodies/{custodyId}/movements",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "custodyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.CustodiesController",
+    "Method": "CreateMovement",
+    "RelativePath": "api/custodies/{custodyId}/movements",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "custodyId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.Custodies.Requests.CreateMovementRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.CustodiesController",
+    "Method": "GetCustodyById",
+    "RelativePath": "api/custodies/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.CustodiesController",
+    "Method": "Close",
+    "RelativePath": "api/custodies/{id}/close",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseCategoriesController",
+    "Method": "GetAll",
+    "RelativePath": "api/expense-categories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "includeDisabled",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[SA.Accounting.Application.Contracts.ExpenseCategories.Responses.ExpenseCategoryResponse, SA.Accounting.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseCategoriesController",
+    "Method": "Create",
+    "RelativePath": "api/expense-categories",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.ExpenseCategories.Requests.ExpenseCategoryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SA.Accounting.Application.Contracts.ExpenseCategories.Responses.ExpenseCategoryResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseCategoriesController",
+    "Method": "GetById",
+    "RelativePath": "api/expense-categories/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SA.Accounting.Application.Contracts.ExpenseCategories.Responses.ExpenseCategoryResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseCategoriesController",
+    "Method": "Update",
+    "RelativePath": "api/expense-categories/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.ExpenseCategories.Requests.ExpenseCategoryRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SA.Accounting.Application.Contracts.ExpenseCategories.Responses.ExpenseCategoryResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseCategoriesController",
+    "Method": "Delete",
+    "RelativePath": "api/expense-categories/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseCategoriesController",
+    "Method": "Activate",
+    "RelativePath": "api/expense-categories/{id}/activate",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseCategoriesController",
+    "Method": "Deactivate",
+    "RelativePath": "api/expense-categories/{id}/deactivate",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "GetAll",
+    "RelativePath": "api/expense-claims",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IReadOnlyList\u00601[[SA.Accounting.Application.Contracts.ExpenseClaims.Responses.ExpenseClaimResponse, SA.Accounting.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "Create",
+    "RelativePath": "api/expense-claims",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.ExpenseClaims.Requests.ExpenseClaimRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SA.Accounting.Application.Contracts.ExpenseClaims.Responses.ExpenseClaimResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "GetById",
+    "RelativePath": "api/expense-claims/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SA.Accounting.Application.Contracts.ExpenseClaims.Responses.ExpenseClaimResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "Update",
+    "RelativePath": "api/expense-claims/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.ExpenseClaims.Requests.ExpenseClaimRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "SA.Accounting.Application.Contracts.ExpenseClaims.Responses.ExpenseClaimResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "Cancel",
+    "RelativePath": "api/expense-claims/{id}/cancel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "ReturnForEdit",
+    "RelativePath": "api/expense-claims/{id}/return-for-edit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.ExpenseClaims.Requests.ReturnExpenseClaimForEditRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "Review",
+    "RelativePath": "api/expense-claims/{id}/review",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "SA.Accounting.Application.Contracts.ExpenseClaims.Requests.ReviewExpenseClaimRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "Settle",
+    "RelativePath": "api/expense-claims/{id}/settle",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SA.Accounting.API.Controllers.Expense.ExpenseClaimsController",
+    "Method": "Submit",
+    "RelativePath": "api/expense-claims/{id}/submit",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SA.Accounting.API.Controllers.Owner.OwnersController",
     "Method": "Get",
     "RelativePath": "api/Owners/{id}",
@@ -656,263 +1112,6 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
-    "Method": "GetAll",
-    "RelativePath": "api/TransactionCategories",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "includeDisabled",
-        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
-    "Method": "Create",
-    "RelativePath": "api/TransactionCategories",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "request",
-        "Type": "SA.Accounting.Application.Contracts.TransactionCategory.Requests.TransactionCategoryRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
-    "Method": "Get",
-    "RelativePath": "api/TransactionCategories/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
-    "Method": "Update",
-    "RelativePath": "api/TransactionCategories/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "SA.Accounting.Application.Contracts.TransactionCategory.Requests.TransactionCategoryRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionCategoriesController",
-    "Method": "ToggleStatus",
-    "RelativePath": "api/TransactionCategories/{id}/toggle-status",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
-    "Method": "GetAll",
-    "RelativePath": "api/Transactions",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "PageNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "SearchValue",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "SortColumn",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "SortDirection",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
-    "Method": "Get",
-    "RelativePath": "api/Transactions/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
-    "Method": "Update",
-    "RelativePath": "api/Transactions/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "SA.Accounting.Application.Contracts.Transaction.Requests.UpdateTransactionRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
-    "Method": "Delete",
-    "RelativePath": "api/Transactions/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
-    "Method": "ChangeTransactionState",
-    "RelativePath": "api/Transactions/{id}",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "SA.Accounting.Application.Contracts.Transaction.Requests.ChangeTransactionStateRequest",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
-    "Method": "GetAll",
-    "RelativePath": "api/Transactions/users/{userId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "PageNumber",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "PageSize",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
-      {
-        "Name": "SearchValue",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "SortColumn",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "SortDirection",
-        "Type": "System.String",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "SA.Accounting.API.Controllers.Transaction.TransactionsController",
-    "Method": "Create",
-    "RelativePath": "api/Transactions/users/{userId}",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "userId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "request",
-        "Type": "SA.Accounting.Application.Contracts.Transaction.Requests.CreateTransactionRequest",
         "IsRequired": true
       }
     ],

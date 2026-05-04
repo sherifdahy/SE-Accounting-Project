@@ -1,6 +1,6 @@
 ﻿using SA.Accounting.Core.Entities.Base;
+using SA.Accounting.Core.Entities.ExpenseClaims;
 using SA.Accounting.Core.Entities.Relations;
-using SA.Accounting.Core.Entities.Transactions;
 
 namespace SA.Accounting.Core.Entities.Companies;
 
@@ -15,6 +15,5 @@ public class Company : AuditableEntity
     public virtual ICollection<Owner> Owners { get; set; } = new HashSet<Owner>();
     public virtual ICollection<Account> Accounts { get; set; } = new HashSet<Account>();
     public virtual ICollection<UserCompany> UserCompanies { get; set; } = new HashSet<UserCompany>();
-    public virtual ICollection<TransactionItem> TransactionItems { get; set; } = new HashSet<TransactionItem>();
-
+    public virtual ICollection<ExpenseClaimItem> ExpenseClaimItems { get; set; } = new HashSet<ExpenseClaimItem>();
 }

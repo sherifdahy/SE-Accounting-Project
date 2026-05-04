@@ -14,6 +14,9 @@ public static class ServicesRegistrations
     {
         services.AddScoped<IEmailSender, EmailServices>();
 
+        services.AddScoped<ICustodyNumberGenerator, CustodyNumberGenerator>();
+        services.AddScoped<ICustodyBalanceCalculator, CustodyBalanceCalculator>();
+        services.AddScoped<IExpenseClaimNumberGenerator, ExpenseClaimNumberGenerator>();
         services
             .AddOptions<MailSettings>()
             .BindConfiguration(nameof(MailSettings))

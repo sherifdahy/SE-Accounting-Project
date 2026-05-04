@@ -3,32 +3,14 @@
   "WorkspaceRootPath": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.application\\contracts\\permissionoverride\\requests\\updateuserpermissionoverridesrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9DCC2651-A027-EE9D-7BA6-4B57457DEB45}|..\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.infrastructure\\presistance\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.application\\contracts\\permissionoverride\\responses\\userpermissionoverridesresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.api\\sa.accounting.api\\controllers\\expense\\expenseclaimscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|solutionrelative:sa.accounting.api\\controllers\\expense\\expenseclaimscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9DCC2651-A027-EE9D-7BA6-4B57457DEB45}|..\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.infrastructure\\migrations\\20260426184006_update_table_name.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.application\\handlers\\querieshandler\\userquerieshandler\\getuserpermissionoverridesqueryhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.api\\sa.accounting.api\\controllers\\user\\userpermissionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23D14CD4-C54C-8936-764E-9FB2A7390FC9}|SA.Accounting.API\\SA.Accounting.API.csproj|solutionrelative:sa.accounting.api\\controllers\\user\\userpermissionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.application\\contracts\\permissionoverride\\validators\\updatepermissionoverridesrequestvalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.application\\handlers\\commandshandler\\usercommandshandler\\updatepermissionoverridescommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.application\\commands\\user\\updateusercommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DCC2651-A027-EE9D-7BA6-4B57457DEB45}|..\\SA.Accounting.Infrastructure\\SA.Accounting.Infrastructure.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.infrastructure\\migrations\\20260426182058_remove_is_allowed_from_userpermission_override.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{E4986043-0BFE-98DD-4186-69436C505922}|..\\SA.Accounting.Application\\SA.Accounting.Application.csproj|d:\\se-accounting-project\\sa-accounting-back-end\\sa.accounting.application\\handlers\\commandshandler\\expenseclaimcommandshandler\\settleexpenseclaimcommandhandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,116 +25,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UpdateUserPermissionOverridesRequest.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Requests\\UpdateUserPermissionOverridesRequest.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Requests\\UpdateUserPermissionOverridesRequest.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Requests\\UpdateUserPermissionOverridesRequest.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Requests\\UpdateUserPermissionOverridesRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Presistance\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "..\\SA.Accounting.Infrastructure\\Presistance\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Presistance\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "..\\SA.Accounting.Infrastructure\\Presistance\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAYwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T18:43:30.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserPermissionOverridesResponse.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Responses\\UserPermissionOverridesResponse.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Responses\\UserPermissionOverridesResponse.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Responses\\UserPermissionOverridesResponse.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Responses\\UserPermissionOverridesResponse.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T18:43:23.283Z",
+              "WhenOpened": "2026-05-03T21:18:30.792Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "20260426184006_update_table_name.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Migrations\\20260426184006_update_table_name.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Infrastructure\\Migrations\\20260426184006_update_table_name.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Migrations\\20260426184006_update_table_name.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Infrastructure\\Migrations\\20260426184006_update_table_name.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "SettleExpenseClaimCommandHandler.cs",
+              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Handlers\\CommandsHandler\\ExpenseClaimCommandsHandler\\SettleExpenseClaimCommandHandler.cs",
+              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Handlers\\CommandsHandler\\ExpenseClaimCommandsHandler\\SettleExpenseClaimCommandHandler.cs",
+              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Handlers\\CommandsHandler\\ExpenseClaimCommandsHandler\\SettleExpenseClaimCommandHandler.cs",
+              "RelativeToolTip": "..\\SA.Accounting.Application\\Handlers\\CommandsHandler\\ExpenseClaimCommandsHandler\\SettleExpenseClaimCommandHandler.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAowFwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T18:40:06.168Z",
+              "WhenOpened": "2026-05-02T10:36:30.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ExpenseClaimsController.cs",
+              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\Controllers\\Expense\\ExpenseClaimsController.cs",
+              "RelativeDocumentMoniker": "SA.Accounting.API\\Controllers\\Expense\\ExpenseClaimsController.cs",
+              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\Controllers\\Expense\\ExpenseClaimsController.cs",
+              "RelativeToolTip": "SA.Accounting.API\\Controllers\\Expense\\ExpenseClaimsController.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAwwE0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-02T10:28:51.38Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "20260426182058_remove_is_allowed_from_userpermission_override.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Migrations\\20260426182058_remove_is_allowed_from_userpermission_override.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Infrastructure\\Migrations\\20260426182058_remove_is_allowed_from_userpermission_override.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Infrastructure\\Migrations\\20260426182058_remove_is_allowed_from_userpermission_override.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Infrastructure\\Migrations\\20260426182058_remove_is_allowed_from_userpermission_override.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T18:20:58.914Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UpdatePermissionOverridesRequestValidator.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Validators\\UpdatePermissionOverridesRequestValidator.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Validators\\UpdatePermissionOverridesRequestValidator.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Validators\\UpdatePermissionOverridesRequestValidator.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Application\\Contracts\\PermissionOverride\\Validators\\UpdatePermissionOverridesRequestValidator.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T18:03:25.549Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GetUserPermissionOverridesQueryHandler.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Handlers\\QueriesHandler\\UserQueriesHandler\\GetUserPermissionOverridesQueryHandler.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Handlers\\QueriesHandler\\UserQueriesHandler\\GetUserPermissionOverridesQueryHandler.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Handlers\\QueriesHandler\\UserQueriesHandler\\GetUserPermissionOverridesQueryHandler.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Application\\Handlers\\QueriesHandler\\UserQueriesHandler\\GetUserPermissionOverridesQueryHandler.cs",
-              "ViewState": "AgIAADYAAAAAAAAAAAAwwC8AAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T13:11:54.85Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserPermissionsController.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\Controllers\\User\\UserPermissionsController.cs",
-              "RelativeDocumentMoniker": "SA.Accounting.API\\Controllers\\User\\UserPermissionsController.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.API\\SA.Accounting.API\\Controllers\\User\\UserPermissionsController.cs",
-              "RelativeToolTip": "SA.Accounting.API\\Controllers\\User\\UserPermissionsController.cs",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAqwBQAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T11:06:20.684Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UpdatePermissionOverridesCommandHandler.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Handlers\\CommandsHandler\\UserCommandsHandler\\UpdatePermissionOverridesCommandHandler.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Handlers\\CommandsHandler\\UserCommandsHandler\\UpdatePermissionOverridesCommandHandler.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Handlers\\CommandsHandler\\UserCommandsHandler\\UpdatePermissionOverridesCommandHandler.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Application\\Handlers\\CommandsHandler\\UserCommandsHandler\\UpdatePermissionOverridesCommandHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAkAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T11:46:40.034Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UpdateUserCommand.cs",
-              "DocumentMoniker": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Commands\\User\\UpdateUserCommand.cs",
-              "RelativeDocumentMoniker": "..\\SA.Accounting.Application\\Commands\\User\\UpdateUserCommand.cs",
-              "ToolTip": "D:\\SE-Accounting-Project\\sa-accounting-back-end\\SA.Accounting.Application\\Commands\\User\\UpdateUserCommand.cs",
-              "RelativeToolTip": "..\\SA.Accounting.Application\\Commands\\User\\UpdateUserCommand.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-26T18:17:28.229Z"
             }
           ]
         }

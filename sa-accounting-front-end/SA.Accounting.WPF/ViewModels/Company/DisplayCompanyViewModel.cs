@@ -6,7 +6,6 @@ using SA.Accounting.WPF.Commands.Base;
 using SA.Accounting.WPF.Interfaces;
 using SA.Accounting.WPF.ViewModels.Base;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -17,8 +16,8 @@ public class DisplayCompanyViewModel : ViewModelBase, IAsyncInitializable<int>
     private readonly ICompanyService _companyService;
     private readonly IDialogService _dialogService;
     private readonly INavigator _navigator;
+    private readonly IAccountAutomationService _accountAutomationService;
     private readonly IViewModelAbstractFactory _viewModelAbstractFactory;
-
     public override ViewType Section => ViewType.Companies;
 
     // ══════ Properties ══════
@@ -70,20 +69,27 @@ public class DisplayCompanyViewModel : ViewModelBase, IAsyncInitializable<int>
         ICompanyService companyService,
         IDialogService dialogService,
         INavigator navigator,
+        IAccountAutomationService accountAutomationService,
         IViewModelAbstractFactory viewModelAbstractFactory)
     {
+        _accountAutomationService = accountAutomationService;
         _companyService = companyService;
         _dialogService = dialogService;
         _navigator = navigator;
         _viewModelAbstractFactory = viewModelAbstractFactory;
 
         OpenPlatformCommand = new RelayCommand(
-            execute: p =>
+            execute: async p =>
             {
                 if (p is AccountResponse account && !string.IsNullOrWhiteSpace(account.Platform?.Url))
                 {
-                    try { Process.Start(new ProcessStartInfo { FileName = account.Platform.Url, UseShellExecute = true }); }
-                    catch { }
+                    try {
+
+                        await _accountAutomationService.OpenAsync(account);
+                    }
+                    catch(Exception ex) {
+                        await _dialogService.ShowErrorAsync(ex.Message,"حدث خطأ");
+                    }
                 }
             },
             canExecute: p => p is AccountResponse a && !string.IsNullOrWhiteSpace(a.Platform?.Url));

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "WR7AsVQ3o30=",
+  "dgSpecHash": "beaySAq2K18=",
   "success": true,
   "projectFilePath": "D:\\SE-Accounting-Project\\sa-accounting-front-end\\SA.Accounting.Application\\SA.Accounting.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\fluentvalidation\\12.1.0\\fluentvalidation.12.1.0.nupkg.sha512",
+    "C:\\Users\\Sherif Dahy\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\10.0.0\\microsoft.extensions.caching.abstractions.10.0.0.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.0\\microsoft.extensions.configuration.10.0.0.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.0\\microsoft.extensions.configuration.abstractions.10.0.0.nupkg.sha512",
@@ -23,10 +24,12 @@
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.17.0\\microsoft.identitymodel.jsonwebtokens.8.17.0.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\microsoft.identitymodel.logging\\8.17.0\\microsoft.identitymodel.logging.8.17.0.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.17.0\\microsoft.identitymodel.tokens.8.17.0.nupkg.sha512",
+    "C:\\Users\\Sherif Dahy\\.nuget\\packages\\microsoft.playwright\\1.59.0\\microsoft.playwright.1.59.0.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\refit\\9.0.2\\refit.9.0.2.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\refit.httpclientfactory\\9.0.2\\refit.httpclientfactory.9.0.2.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\refit.newtonsoft.json\\9.0.2\\refit.newtonsoft.json.9.0.2.nupkg.sha512",
+    "C:\\Users\\Sherif Dahy\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512",
     "C:\\Users\\Sherif Dahy\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.17.0\\system.identitymodel.tokens.jwt.8.17.0.nupkg.sha512"
   ],
   "logs": []

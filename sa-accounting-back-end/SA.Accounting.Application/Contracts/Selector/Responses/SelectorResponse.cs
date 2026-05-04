@@ -12,5 +12,4 @@ public record SelectorResponse
     public int Priority { get; set; }
     public SelectorContentType ContentType { get; set; }
     public SelectorType Type { get; set; }
-    public bool IsDeleted { get; set; }
 }
