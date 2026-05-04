@@ -1,6 +1,0 @@
-﻿{
-  "configProperties": {
-    "System.Runtime.TieredCompilation": true,
-    "System.GC.Server": true
-  }
-}
