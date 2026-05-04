@@ -1,0 +1,22 @@
+############################
+# .NET / Visual Studio
+############################
+
+## Build output
+**/bin/
+**/obj/
+**/out/
+**/Debug/
+**/Release/
+
+## VS user-specific files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+
+## ASP.NET Core specific
+**/appsettings.Development.json
+**/secrets.json
