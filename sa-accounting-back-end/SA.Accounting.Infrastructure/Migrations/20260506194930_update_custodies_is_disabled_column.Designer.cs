@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SA.Accounting.Infrastructure.Presistance.Data;
 
@@ -11,9 +12,11 @@ using SA.Accounting.Infrastructure.Presistance.Data;
 namespace SA.Accounting.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260506194930_update_custodies_is_disabled_column")]
+    partial class update_custodies_is_disabled_column
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -519,7 +522,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.ToTable("Custodies");
                 });
 
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.CustodyMovement", b =>
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.Movement", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -539,6 +542,9 @@ namespace SA.Accounting.Infrastructure.Migrations
 
                     b.Property<int>("CustodyId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("ExpenseClaimId")
                         .HasColumnType("int");
@@ -568,7 +574,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                         .IsUnique()
                         .HasFilter("[ExpenseClaimId] IS NOT NULL AND [Type] = 2");
 
-                    b.ToTable("CustodyMovements", t =>
+                    b.ToTable("Movements", t =>
                         {
                             t.HasCheckConstraint("CK_Movement_Amount_Positive", "[Amount] > 0");
 
@@ -1243,7 +1249,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.CustodyMovement", b =>
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Custodies.Movement", b =>
                 {
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
                         .WithMany()

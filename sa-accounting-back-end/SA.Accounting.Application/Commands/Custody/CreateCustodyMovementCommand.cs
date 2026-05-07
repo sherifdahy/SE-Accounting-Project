@@ -6,5 +6,4 @@ using System.Text;
 
 namespace SA.Accounting.Application.Commands.Custody;
 
-public record CreateMovementCommand(int CustodyId, CreateMovementRequest Request)
-    : IRequest<Result<MovementResponse>>;
+public record CreateCustodyMovementCommand(int CustodyId, CreateMovementRequest Request) : IRequest<Result<CustodyMovementResponse>>;

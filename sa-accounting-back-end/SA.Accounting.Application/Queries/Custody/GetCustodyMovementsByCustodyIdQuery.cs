@@ -5,4 +5,4 @@ using System.Text;
 
 namespace SA.Accounting.Application.Queries.Custody;
 
-public record GetCustodiesQuery(int? UserId = null,bool? IncludeDisabled = false) : IRequest<Result<IReadOnlyList<CustodyResponse>>>;
+public record GetCustodyMovementsByCustodyIdQuery(int CustodyId) : IRequest<Result<IReadOnlyList<CustodyMovementResponse>>>;

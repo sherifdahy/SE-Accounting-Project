@@ -5,17 +5,14 @@ using System.Text;
 
 namespace SA.Accounting.Infrastructure.Presistance.Data.Config;
 
-public class MovementConfig : IEntityTypeConfiguration<Movement>
+public class CustodyMovementConfig : IEntityTypeConfiguration<CustodyMovement>
 {
-    public void Configure(EntityTypeBuilder<Movement> builder)
+    public void Configure(EntityTypeBuilder<CustodyMovement> builder)
     {
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Amount)
             .HasPrecision(18, 2)
-            .IsRequired();
-
-        builder.Property(x => x.DateTime)
             .IsRequired();
 
         builder.Property(x => x.Type)

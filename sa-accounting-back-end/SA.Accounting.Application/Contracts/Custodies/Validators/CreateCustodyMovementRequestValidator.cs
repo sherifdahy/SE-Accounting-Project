@@ -6,9 +6,9 @@ using System.Text;
 
 namespace SA.Accounting.Application.Contracts.Custodies.Validators;
 
-public class CreateMovementRequestValidator : AbstractValidator<CreateMovementRequest>
+public class CreateCustodyMovementRequestValidator : AbstractValidator<CreateMovementRequest>
 {
-    public CreateMovementRequestValidator()
+    public CreateCustodyMovementRequestValidator()
     {
         RuleFor(x => x.Type)
             .IsInEnum()

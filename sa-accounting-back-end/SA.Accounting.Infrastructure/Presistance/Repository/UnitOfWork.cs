@@ -26,7 +26,7 @@ public class UnitOfWork : IUnitOfWork
         Accounts = new Repository<Account>(_context);
         DeniedPermissions = new Repository<UserRolePermissionOverride>(_context);
         Custodies = new Repository<Custody>(_context);
-        Movements = new Repository<Movement>(_context);
+        CustodyMovements = new Repository<CustodyMovement>(_context);
     }
 
     public IRepository<Company> Companies { get; }
@@ -40,7 +40,7 @@ public class UnitOfWork : IUnitOfWork
     public IRepository<Account> Accounts { get; }
     public IRepository<UserRolePermissionOverride> DeniedPermissions { get; }
     public IRepository<Custody> Custodies { get; }
-    public IRepository<Movement> Movements { get; }
+    public IRepository<CustodyMovement> CustodyMovements { get; }
 
     public void Dispose()
     {

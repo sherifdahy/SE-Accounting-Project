@@ -4,4 +4,4 @@ using System.Text;
 
 namespace SA.Accounting.Application.Commands.ExpenseCategory;
 
-public record ActivateExpenseCategoryCommand(int Id) : IRequest<Result>;
+public record ToggleStatusExpenseCategoryCommand(int Id) : IRequest<Result>;

@@ -20,7 +20,7 @@ public interface IUnitOfWork : IDisposable
     public IRepository<Account> Accounts { get; }
     public IRepository<UserRolePermissionOverride> DeniedPermissions { get; }
     public IRepository<Custody> Custodies { get; }
-    public IRepository<Movement> Movements { get; }
+    public IRepository<CustodyMovement> CustodyMovements { get; }
 
     int Save();
     Task<int> SaveAsync(CancellationToken cancellationToken = default);

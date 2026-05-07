@@ -35,7 +35,7 @@ public class SettleExpenseClaimHandler(IUnitOfWork unitOfWork,ICustodyBalanceCal
         }
 
         // 3. Idempotency check (defense in depth - DB has unique index too)
-        var alreadySettled = _unitOfWork.Movements.IsExist(x => x.ExpenseClaimId == claim.Id && x.Type == MovementType.ApprovedExpense);
+        var alreadySettled = _unitOfWork.CustodyMovements.IsExist(x => x.ExpenseClaimId == claim.Id && x.Type == MovementType.ApprovedExpense);
 
         if (alreadySettled)
             return Result.Failure(ExpenseClaimErrors.AlreadySettled);
@@ -51,7 +51,7 @@ public class SettleExpenseClaimHandler(IUnitOfWork unitOfWork,ICustodyBalanceCal
         var approvedAmount = approvedItems.Sum(i => i.Amount);
 
         // 5. Get user's active custody
-        var custody = await _unitOfWork.Custodies.FindAsync(x => x.UserId == claim.UserId && x.IsActive,[],cancellationToken);
+        var custody = await _unitOfWork.Custodies.FindAsync(x => x.UserId == claim.UserId && !x.IsDisabled,[],cancellationToken);
 
         if (custody is null)
             return Result.Failure(ExpenseClaimErrors.NoActiveCustody);
@@ -63,17 +63,16 @@ public class SettleExpenseClaimHandler(IUnitOfWork unitOfWork,ICustodyBalanceCal
             return Result.Failure(ExpenseClaimErrors.InsufficientCustodyBalance);
 
         // 7. Create the Movement (ApprovedExpense)
-        var movement = new Movement
+        var movement = new CustodyMovement
         {
             CustodyId = custody.Id,
             ExpenseClaimId = claim.Id,
-            DateTime = DateTime.UtcNow,
             Type = MovementType.ApprovedExpense,
             Amount = approvedAmount,
             Note = $"Settlement for claim {claim.Number}"
         };
 
-        await _unitOfWork.Movements.AddAsync(movement, cancellationToken);
+        await _unitOfWork.CustodyMovements.AddAsync(movement, cancellationToken);
 
         // 8. Transition state
         var fromState = claim.CurrentState;

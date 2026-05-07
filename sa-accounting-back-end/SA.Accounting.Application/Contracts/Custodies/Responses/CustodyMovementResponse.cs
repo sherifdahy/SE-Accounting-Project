@@ -5,10 +5,9 @@ using System.Text;
 
 namespace SA.Accounting.Application.Contracts.Custodies.Responses;
 
-public record MovementResponse(
+public record CustodyMovementResponse(
     int Id,
     int CustodyId,
-    DateTime DateTime,
     MovementType Type,
     decimal Amount,
     string? Note,

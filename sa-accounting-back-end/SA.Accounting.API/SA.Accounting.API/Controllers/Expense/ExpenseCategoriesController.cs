@@ -56,18 +56,10 @@ public class ExpenseCategoriesController(IMediator mediator) : ControllerBase
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
 
-    [HttpPatch("{id:int}/deactivate")]
-    public async Task<IActionResult> Deactivate(int id, CancellationToken cancellationToken = default)
+    [HttpPatch("{id:int}/toggle-status")]
+    public async Task<IActionResult> ToggleStatus(int id, CancellationToken cancellationToken = default)
     {
-        var command = new DeactivateExpenseCategoryCommand(id);
-        var result = await _mediator.Send(command, cancellationToken);
-        return result.IsSuccess ? NoContent() : result.ToProblem();
-    }
-
-    [HttpPatch("{id:int}/activate")]
-    public async Task<IActionResult> Activate(int id, CancellationToken cancellationToken = default)
-    {
-        var command = new ActivateExpenseCategoryCommand(id);
+        var command = new ToggleStatusExpenseCategoryCommand(id);
         var result = await _mediator.Send(command, cancellationToken);
         return result.IsSuccess ? NoContent() : result.ToProblem();
     }
