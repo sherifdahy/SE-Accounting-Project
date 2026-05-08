@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SA.Accounting.Application.Contracts.ExpenseClaims.Responses;
+namespace SA.Accounting.Application.Contracts.ExpenseClaimItems.Responses;
 
-public record ExpenseClaimListItemResponse(
+public record ExpenseClaimSummaryResponse(
     int Id,
     string Number,
     DateTime ClaimDate,

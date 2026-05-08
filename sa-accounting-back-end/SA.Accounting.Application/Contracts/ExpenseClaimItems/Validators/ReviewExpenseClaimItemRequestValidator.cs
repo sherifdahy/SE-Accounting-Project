@@ -1,10 +1,10 @@
-﻿using SA.Accounting.Application.Contracts.ExpenseClaims.Requests;
+﻿using SA.Accounting.Application.Contracts.ExpenseClaimItems.Requests;
 using SA.Accounting.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SA.Accounting.Application.Contracts.ExpenseClaims.Validators;
+namespace SA.Accounting.Application.Contracts.ExpenseClaimItems.Validators;
 
 
 public class ReviewExpenseClaimItemRequestValidator : AbstractValidator<ReviewExpenseClaimItemRequest>

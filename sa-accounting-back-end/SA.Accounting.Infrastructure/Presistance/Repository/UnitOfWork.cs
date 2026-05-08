@@ -5,6 +5,7 @@ using SA.Accounting.Core.Interfaces;
 using SA.Accounting.Core.Entities.Identity;
 using SA.Accounting.Core.Entities.ExpenseClaims;
 using SA.Accounting.Core.Entities.Custodies;
+using SA.Accounting.Core.Entities.Files;
 
 namespace SA.Accounting.Infrastructure.Presistance.Repository;
 
@@ -27,6 +28,7 @@ public class UnitOfWork : IUnitOfWork
         DeniedPermissions = new Repository<UserRolePermissionOverride>(_context);
         Custodies = new Repository<Custody>(_context);
         CustodyMovements = new Repository<CustodyMovement>(_context);
+        Files = new Repository<UploadedFile>(_context);
     }
 
     public IRepository<Company> Companies { get; }
@@ -41,6 +43,7 @@ public class UnitOfWork : IUnitOfWork
     public IRepository<UserRolePermissionOverride> DeniedPermissions { get; }
     public IRepository<Custody> Custodies { get; }
     public IRepository<CustodyMovement> CustodyMovements { get; }
+    public IRepository<UploadedFile> Files { get; }
 
     public void Dispose()
     {

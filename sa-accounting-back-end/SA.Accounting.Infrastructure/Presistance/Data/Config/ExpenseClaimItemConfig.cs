@@ -13,10 +13,6 @@ public class ExpenseClaimItemConfig : IEntityTypeConfiguration<ExpenseClaimItem>
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.Note)
-            .IsRequired()
-            .HasMaxLength(1000);
-
-        builder.Property(x => x.FileUrl)
             .HasMaxLength(1000);
 
         builder.Property(x => x.Amount)
@@ -44,19 +40,19 @@ public class ExpenseClaimItemConfig : IEntityTypeConfiguration<ExpenseClaimItem>
 
             t.HasCheckConstraint(
                 "CK_ExpenseClaimItem_State_Valid",
-                "[State] IN (1, 2, 3)");
+                $"[{nameof(ExpenseClaimItem.State)}] IN ({string.Join(',',Enum.GetValues<ExpenseClaimItemState>().Select(x=> (int)x))})");
 
             t.HasCheckConstraint(
                 "CK_ExpenseClaimItem_RejectionReason_Required_WhenRejected",
-                @"(
-                [State] <> 3
-                OR
+                $@"
                 (
-                    [State] = 3 
-                    AND [RejectionReason] IS NOT NULL 
-                    AND LEN(LTRIM(RTRIM([RejectionReason]))) > 0
-                )
-            )");
+                    [State] <> {(int)ExpenseClaimItemState.Rejected}
+                    OR
+                    (
+                        [RejectionReason] IS NOT NULL
+                        AND LEN(LTRIM(RTRIM([RejectionReason]))) > 0
+                    )
+                )");
         });
 
     }

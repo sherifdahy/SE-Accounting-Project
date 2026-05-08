@@ -8,7 +8,7 @@ using SA.Accounting.Application.Contracts.ExpenseCategories.Responses;
 using SA.Accounting.Application.Queries.ExpenseCategory;
 using SA.Accounting.Core.Extensions;
 
-namespace SA.Accounting.API.Controllers.Expense;
+namespace SA.Accounting.API.Controllers.ExpenseCategory;
 
 [ApiController]
 [Route("api/expense-categories")]

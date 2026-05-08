@@ -633,8 +633,8 @@ namespace SA.Accounting.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("ClaimDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("ClaimDate")
+                        .HasColumnType("date");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
@@ -679,9 +679,7 @@ namespace SA.Accounting.Infrastructure.Migrations
 
                     b.ToTable("ExpenseClaims", t =>
                         {
-                            t.HasCheckConstraint("CK_ExpenseClaim_Number_NotEmpty", "LEN(LTRIM(RTRIM([Number]))) > 0");
-
-                            t.HasCheckConstraint("CK_ExpenseClaim_State_Valid", "[CurrentState] IN (1, 2, 3, 4, 5, 6, 7, 8, 9)");
+                            t.HasCheckConstraint("CK_ExpenseClaim_State_Valid", "[CurrentState] IN (1,2,3,4,5,6,7)");
                         });
                 });
 
@@ -768,12 +766,7 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Property<int>("ExpenseClaimId")
                         .HasColumnType("int");
 
-                    b.Property<string>("FileUrl")
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
                     b.Property<string>("Note")
-                        .IsRequired()
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
@@ -808,10 +801,62 @@ namespace SA.Accounting.Infrastructure.Migrations
                         {
                             t.HasCheckConstraint("CK_ExpenseClaimItem_Amount_Positive", "[Amount] > 0");
 
-                            t.HasCheckConstraint("CK_ExpenseClaimItem_RejectionReason_Required_WhenRejected", "(\r\n                [State] <> 3\r\n                OR\r\n                (\r\n                    [State] = 3 \r\n                    AND [RejectionReason] IS NOT NULL \r\n                    AND LEN(LTRIM(RTRIM([RejectionReason]))) > 0\r\n                )\r\n            )");
+                            t.HasCheckConstraint("CK_ExpenseClaimItem_RejectionReason_Required_WhenRejected", "\r\n                (\r\n                    [State] <> 3\r\n                    OR\r\n                    (\r\n                        [RejectionReason] IS NOT NULL\r\n                        AND LEN(LTRIM(RTRIM([RejectionReason]))) > 0\r\n                    )\r\n                )");
 
-                            t.HasCheckConstraint("CK_ExpenseClaimItem_State_Valid", "[State] IN (1, 2, 3)");
+                            t.HasCheckConstraint("CK_ExpenseClaimItem_State_Valid", "[State] IN (1,2,3)");
                         });
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Files.UploadedFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExpenseClaimItemId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("StoredFileName")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("ExpenseClaimItemId");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("Files");
                 });
 
             modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.ApplicationRole", b =>
@@ -1387,6 +1432,31 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("UpdatedBy");
                 });
 
+            modelBuilder.Entity("SA.Accounting.Core.Entities.Files.UploadedFile", b =>
+                {
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaimItem", "ExpenseClaimItem")
+                        .WithMany("Files")
+                        .HasForeignKey("ExpenseClaimItemId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany()
+                        .HasForeignKey("UpdatedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("ExpenseClaimItem");
+
+                    b.Navigation("UpdatedBy");
+                });
+
             modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.UserRolePermissionOverride", b =>
                 {
                     b.HasOne("SA.Accounting.Core.Entities.Identity.ApplicationUser", "User")
@@ -1487,6 +1557,11 @@ namespace SA.Accounting.Infrastructure.Migrations
                     b.Navigation("Items");
 
                     b.Navigation("Movements");
+                });
+
+            modelBuilder.Entity("SA.Accounting.Core.Entities.ExpenseClaims.ExpenseClaimItem", b =>
+                {
+                    b.Navigation("Files");
                 });
 
             modelBuilder.Entity("SA.Accounting.Core.Entities.Identity.ApplicationUser", b =>

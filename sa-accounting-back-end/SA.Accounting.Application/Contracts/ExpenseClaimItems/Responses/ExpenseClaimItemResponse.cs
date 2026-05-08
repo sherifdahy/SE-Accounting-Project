@@ -1,9 +1,10 @@
-﻿using SA.Accounting.Core.Enums;
+﻿using SA.Accounting.Application.Contracts.Files.Responses;
+using SA.Accounting.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SA.Accounting.Application.Contracts.ExpenseClaims.Responses;
+namespace SA.Accounting.Application.Contracts.ExpenseClaimItems.Responses;
 
 public record ExpenseClaimItemResponse(
     int Id,
@@ -11,9 +12,9 @@ public record ExpenseClaimItemResponse(
     string CompanyName,
     int ExpenseCategoryId,
     string ExpenseCategoryName,
-    string Note,
-    string? FileUrl,
+    string? Note,
     decimal Amount,
     ExpenseClaimItemState State,
-    string? RejectionReason
+    string? RejectionReason,
+    List<FileResponse> Files
 );

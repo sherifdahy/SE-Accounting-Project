@@ -1,6 +1,7 @@
 ﻿using SA.Accounting.Core.Entities.Companies;
 using SA.Accounting.Core.Entities.Custodies;
 using SA.Accounting.Core.Entities.ExpenseClaims;
+using SA.Accounting.Core.Entities.Files;
 using SA.Accounting.Core.Entities.Identity;
 using SA.Accounting.Core.Entities.Platforms;
 using SA.Accounting.Core.Entities.Relations;
@@ -21,7 +22,7 @@ public interface IUnitOfWork : IDisposable
     public IRepository<UserRolePermissionOverride> DeniedPermissions { get; }
     public IRepository<Custody> Custodies { get; }
     public IRepository<CustodyMovement> CustodyMovements { get; }
-
+    public IRepository<UploadedFile> Files { get; }
     int Save();
     Task<int> SaveAsync(CancellationToken cancellationToken = default);
 }

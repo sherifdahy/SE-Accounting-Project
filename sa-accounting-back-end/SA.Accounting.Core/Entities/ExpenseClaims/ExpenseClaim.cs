@@ -9,7 +9,7 @@ public class ExpenseClaim : AuditableEntity
 {
     public int Id { get; set; }
     public string Number { get; set; } = string.Empty;
-    public DateTime ClaimDate { get; set; }
+    public DateOnly ClaimDate { get; set; }
     public string Note { get; set; } = string.Empty;
     public ExpenseClaimState CurrentState { get; set; } = ExpenseClaimState.Draft;
     public int UserId { get; set; }

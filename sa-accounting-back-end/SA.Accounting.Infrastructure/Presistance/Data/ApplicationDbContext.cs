@@ -3,6 +3,7 @@ using SA.Accounting.Core.Entities.Base;
 using SA.Accounting.Core.Entities.Companies;
 using SA.Accounting.Core.Entities.Custodies;
 using SA.Accounting.Core.Entities.ExpenseClaims;
+using SA.Accounting.Core.Entities.Files;
 using SA.Accounting.Core.Entities.Identity;
 using SA.Accounting.Core.Entities.Platforms;
 using SA.Accounting.Infrastructure.Extensions;
@@ -17,6 +18,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser,Applicatio
         _httpContext = context;
     }
 
+    public virtual DbSet<UploadedFile> Files { get; set; }
     public virtual DbSet<Company> Companies { get; set; }
     public virtual DbSet<Account> Accounts { get; set; }
     public virtual DbSet<Owner> Owners { get; set; }
